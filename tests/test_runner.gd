@@ -18,6 +18,14 @@ func _ready() -> void:
 	for a in OS.get_cmdline_user_args():
 		if a.begins_with("--suite="):
 			suite_filter = a.substr(8)
+	var wd := Timer.new()
+	wd.wait_time = 280.0
+	wd.one_shot = true
+	wd.timeout.connect(func() -> void:
+		print("TIMEOUT: testes excederam o tempo limite")
+		get_tree().quit(2))
+	add_child(wd)
+	wd.start()
 	await get_tree().process_frame
 	var suites := ["data", "geometry", "systems", "ai", "endings", "save", "walkthrough"]
 	for s in suites:
@@ -25,6 +33,9 @@ func _ready() -> void:
 			continue
 		print("== Suíte: ", s)
 		var script: GDScript = load("res://tests/suite_%s.gd" % s)
+		if script == null or not script.can_instantiate():
+			check(false, "suíte %s não compila" % s)
+			continue
 		var inst = script.new()
 		inst.t = self
 		add_child(inst)

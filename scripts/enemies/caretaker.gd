@@ -227,7 +227,7 @@ func _perceive(delta: float) -> void:
 func _on_noise(pos: Vector2, radius: float, source: String) -> void:
 	if not enabled or room == null or state == S.CHASE or state == S.ATTACK:
 		return
-	if source == "clara":
+	if source == "clara" or radius <= 0.0:
 		return
 	var d := position.distance_to(pos)
 	var eff := radius if room.nav.has_los(position, pos) else radius * 0.6
@@ -324,7 +324,7 @@ func _do_chase(delta: float) -> void:
 	var target := player.position
 	if player.hiding:
 		if saw_hide:
-			target = player.position
+			target = player.hide_spot.exit_position() if player.hide_spot != null else player.position
 		else:
 			last_known = player.position
 			_enter(S.SEARCH)
@@ -340,7 +340,8 @@ func _do_chase(delta: float) -> void:
 		if lost_timer >= 3.5 or (lost_timer >= 2.0 and d > 240.0):
 			_enter(S.SEARCH)
 			return
-	if d < CAPTURE_DIST and not player.captured:
+	var at_spot: bool = player.hiding and saw_hide and player.hide_spot != null and player.hide_spot.rect.grow(14.0).has_point(position)
+	if (at_spot or (d < CAPTURE_DIST and not player.hiding)) and not player.captured:
 		_enter(S.ATTACK)
 		if not _captured_sent:
 			_captured_sent = true
@@ -369,7 +370,6 @@ func _animate(delta: float) -> void:
 		if _step_acc > 30.0:
 			_step_acc = 0.0
 			AudioManager.play_at("step_run" if state == S.CHASE else "step_walk", position, -10.0)
-			GameManager.emit_noise(position, 0.0, "caretaker")
 
 func _ambient_sounds(delta: float) -> void:
 	_sound_t -= delta
