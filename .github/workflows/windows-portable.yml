@@ -1,0 +1,129 @@
+name: Windows Portable
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+env:
+  GODOT_VERSION: "4.4.1"
+  GODOT_RELEASE: "4.4.1-stable"
+  GAME_NAME: "O-Orfanato-das-Coisas-Perdidas"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Definir versão do pacote
+        id: ver
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF -like 'refs/tags/v*') { $v = $env:GITHUB_REF_NAME } else { $v = "dev-" + $env:GITHUB_SHA.Substring(0,7) }
+          "version=$v" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          Write-Host "Versão do pacote: $v"
+
+      - name: Baixar Godot ${{ env.GODOT_VERSION }} e export templates (fonte oficial, SHA-512 verificado)
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $base = "https://github.com/godotengine/godot-builds/releases/download/$env:GODOT_RELEASE"
+          New-Item -ItemType Directory -Force -Path "$env:RUNNER_TEMP\godot" | Out-Null
+          Set-Location "$env:RUNNER_TEMP\godot"
+          $files = @("Godot_v$env:GODOT_VERSION-stable_win64.exe.zip", "Godot_v$env:GODOT_VERSION-stable_export_templates.tpz")
+          Invoke-WebRequest "$base/SHA512-SUMS.txt" -OutFile sums.txt
+          foreach ($f in $files) {
+            Invoke-WebRequest "$base/$f" -OutFile $f
+            $expected = ((Get-Content sums.txt | Where-Object { $_ -match [regex]::Escape($f) + '$' }) -split '\s+')[0].ToLower()
+            $actual = (Get-FileHash $f -Algorithm SHA512).Hash.ToLower()
+            if ($expected -ne $actual) { throw "SHA-512 inválido para $f (esperado $expected, obtido $actual)" }
+            Write-Host "OK SHA-512: $f"
+          }
+          Expand-Archive "Godot_v$env:GODOT_VERSION-stable_win64.exe.zip" -DestinationPath bin -Force
+          Copy-Item "Godot_v$env:GODOT_VERSION-stable_export_templates.tpz" templates.zip
+          Expand-Archive templates.zip -DestinationPath tpl -Force
+          $dest = "$env:APPDATA\Godot\export_templates\$env:GODOT_VERSION.stable"
+          New-Item -ItemType Directory -Force -Path $dest | Out-Null
+          Copy-Item "tpl\templates\*" $dest -Recurse -Force
+          "GODOT=$env:RUNNER_TEMP\godot\bin\Godot_v$env:GODOT_VERSION-stable_win64_console.exe" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Importar recursos do projeto
+        shell: pwsh
+        run: |
+          & $env:GODOT --headless --path . --import
+          Write-Host "Importação concluída (código $LASTEXITCODE)"
+
+      - name: Verificação estática (todos os scripts compilam) e testes automatizados
+        shell: pwsh
+        run: |
+          $out = & $env:GODOT --headless --path . res://tests/TestRunner.tscn 2>&1 | Out-String
+          Write-Host $out
+          if ($LASTEXITCODE -ne 0) { throw "Testes automatizados falharam (código $LASTEXITCODE)" }
+          if ($out -match 'SCRIPT ERROR') { throw "Erros de script detectados" }
+          if ($out -notmatch 'RESULTADO: \d+ verificações OK, 0 falhas') { throw "Resumo de testes ausente ou com falhas" }
+
+      - name: Exportar Windows x86_64
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path build\windows | Out-Null
+          & $env:GODOT --headless --path . --export-release "Windows Desktop" build/windows/Orfanato.exe
+          if ($LASTEXITCODE -ne 0) { throw "Exportação falhou (código $LASTEXITCODE)" }
+          if (-not (Test-Path build\windows\Orfanato.exe)) { throw "Orfanato.exe não foi gerado" }
+          $size = (Get-Item build\windows\Orfanato.exe).Length
+          Write-Host "Orfanato.exe: $size bytes"
+          if ($size -lt 20000000) { throw "EXE suspeitamente pequeno ($size bytes)" }
+
+      - name: Montar pasta portable e ZIP
+        id: pack
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $dir = "$env:GAME_NAME-Windows-Portable"
+          New-Item -ItemType Directory -Force -Path "dist\$dir" | Out-Null
+          Copy-Item build\windows\* "dist\$dir" -Recurse
+          Copy-Item README-PORTABLE.txt "dist\$dir\README-PORTABLE.txt"
+          Copy-Item LICENSE "dist\$dir\LICENSE.txt"
+          $zip = "$env:GAME_NAME-Windows-Portable-${{ steps.ver.outputs.version }}.zip"
+          Compress-Archive -Path "dist\$dir" -DestinationPath "dist\$zip" -Force
+          $hash = (Get-FileHash "dist\$zip" -Algorithm SHA256).Hash.ToLower()
+          "$hash  $zip" | Out-File -FilePath "dist\$zip.sha256" -Encoding ascii
+          "zip=$zip" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          Get-ChildItem dist -Recurse | Select-Object FullName, Length | Format-Table -AutoSize | Out-String | Write-Host
+
+      - name: Smoke test do EXE exportado (Windows real)
+        shell: pwsh
+        run: |
+          $exe = "dist\$env:GAME_NAME-Windows-Portable\Orfanato.exe"
+          $p = Start-Process -FilePath $exe -ArgumentList "--headless","--quit-after","900" -PassThru -RedirectStandardOutput smoke_out.txt -RedirectStandardError smoke_err.txt -NoNewWindow
+          if (-not $p.WaitForExit(120000)) { $p.Kill(); throw "Smoke test: o jogo não encerrou em 120 s" }
+          Get-Content smoke_out.txt, smoke_err.txt | Write-Host
+          if ($p.ExitCode -ne 0) { throw "Smoke test: código de saída $($p.ExitCode)" }
+          if ((Get-Content smoke_out.txt, smoke_err.txt -Raw) -match 'SCRIPT ERROR|Failed to load') { throw "Smoke test: erros no log do jogo" }
+          Write-Host "Smoke test OK: o EXE exportado inicia, gera o áudio, abre o menu e encerra sem erros."
+
+      - name: Enviar artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.pack.outputs.zip }}
+          path: |
+            dist/${{ steps.pack.outputs.zip }}
+            dist/${{ steps.pack.outputs.zip }}.sha256
+          if-no-files-found: error
+
+      - name: Criar GitHub Release (somente em tags v*)
+        if: startsWith(github.ref, 'refs/tags/v')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = $env:GITHUB_REF_NAME
+          $zip = "dist\${{ steps.pack.outputs.zip }}"
+          gh release create $tag $zip "$zip.sha256" --title "O Orfanato das Coisas Perdidas $tag" --notes-file RELEASE_NOTES.md
+          if ($LASTEXITCODE -ne 0) { throw "Falha ao criar a release" }
