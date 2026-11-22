@@ -1,0 +1,148 @@
+{
+	"memories": {
+		"ursinho": {"title": "A cantiga", "scene": "lullaby", "lines": [
+			"Uma voz de mulher cantarola perto do meu ouvido.",
+			"Mãos quentes ajeitam o cobertor. Cheiro de sabão.",
+			"Não era a minha mãe. Eu não lembro de ter uma mãe. Então, quem cantava?"]},
+		"foto": {"title": "A fotografia", "scene": "photo", "lines": [
+			"Doze crianças. Doze sorrisos duros diante de uma câmera.",
+			"A mulher alta guarda uma chave na gaveta de baixo da escrivaninha, 'para o caso de precisarem sair'.",
+			"Há um espaço vazio na última fila. Ele tem o meu tamanho."]},
+		"desenho": {"title": "Escadas de giz", "scene": "mirror", "lines": [
+			"Um menino desenha escadas na parede com um giz gasto.",
+			"'Aqui embaixo é onde a gente dorme de verdade', ele diz.",
+			"Quando ele me olha, não é para mim. É para alguém atrás de mim."]},
+		"tomas": {"title": "A caixa de Tomás", "scene": "crib", "lines": [
+			"Tomás gira a manivela e a caixa toca a mesma cantiga.",
+			"Ele pergunta se eu também escuto. Eu escuto.",
+			"Quando a música para, ele já não lembra de mim. Eu também esqueço, por um segundo."]},
+		"aula": {"title": "A última aula", "scene": "classroom", "lines": [
+			"A professora escreve no quadro: 'O QUE É LEMBRAR?'",
+			"Todas as crianças respondem juntas, com a mesma voz, sem mover os lábios.",
+			"Uma carteira vazia, na última fileira, está arrumada para alguém que ainda não chegou."]},
+		"cuidadora": {"title": "Comigo. Só comigo.", "scene": "hospital", "lines": [
+			"Uma sala branca. Uma mulher estende o braço: 'Comigo. Só comigo.'",
+			"Um homem de jaleco anota: 'voluntária adulta. Reação inesperada.'",
+			"Ela canta baixinho enquanto o tecido a abraça. Ela ainda tem o próprio rosto... por pouco tempo."]},
+		"brinquedos": {"title": "Ordem dos brinquedos", "scene": "toys", "lines": [
+			"Primeiro o urso. Depois o trem azul.",
+			"A boneca de pano senta ao lado. A bola vermelha vai por último.",
+			"Alguém arruma os brinquedos antes de dormir. Sempre na mesma ordem, como um ritual."]},
+		"clara": {"title": "A primeira", "scene": "chair", "lines": [
+			"Uma menina de vestido claro está sentada numa cadeira com tiras.",
+			"Ela não chora. Conta os estalos da máquina: um, dois, três...",
+			"'Eu fui a primeira', ela diz. 'E ainda estou aqui.'"]},
+		"pre_inauguracao": {"title": "Antes da inauguração", "scene": "lab", "lines": [
+			"Vozes de pessoas que já estavam mortas antes de a casa existir.",
+			"Um homem velho fala de um barco. Uma mulher chama por alguém chamado Davi.",
+			"Elas foram gravadas para que algo pudesse lembrar em seu lugar. Algo... ou alguém."]},
+		"elias": {"title": "A última criança", "scene": "mirror", "lines": [
+			"No espelho do laboratório, a minha imagem demora um instante para me acompanhar.",
+			"Não houve quarto 4. Não houve cama. Não houve chegada.",
+			"Eu sou o que sobrou quando juntaram o que os outros perderam."]}
+	},
+	"cutscenes": {
+		"chapter_1": {"title": "CAPÍTULO I — O DESPERTAR", "scene": "title", "lines": [
+			"Água pingando. Cheiro de mofo e de sabão velho.",
+			"Elias abre os olhos. Ele não sabe onde está."]},
+		"chapter_2": {"title": "CAPÍTULO II — OS PEQUENOS HABITANTES", "scene": "title", "lines": [
+			"A porta de serviço não dá para fora. Dá para uma ala que não devia existir.",
+			"Há alguém sentado no escuro. Uma menina."]},
+		"chapter_3": {"title": "CAPÍTULO III — A CASA RESPIRA", "scene": "title", "lines": [
+			"Abaixo do alçapão, as paredes são quentes.",
+			"A casa respira. E o que ela respira, escuta."]},
+		"chapter_4": {"title": "CAPÍTULO IV — O QUE EXISTE DEBAIXO", "scene": "title", "lines": [
+			"O elevador desce mais do que qualquer prédio deveria descer.",
+			"As luzes de alerta acendem uma a uma: ele foi esperado."]},
+		"chapter_5": {"title": "CAPÍTULO V — A ÚLTIMA CRIANÇA", "scene": "title", "lines": [
+			"O chão treme. O laboratório está desabando.",
+			"Só resta decidir o que vai ficar de pé."]},
+		"ending_liberdade": {"title": "", "scene": "car", "lines": [
+			"Elias corre pelo mato até a estrada. Uma caminhonete para; uma mulher o leva até a cidade.",
+			"Ele conta tudo na delegacia. Os documentos que ele não conseguiu trazer já não existem. Não há registro do orfanato. Nem de crianças desaparecidas.",
+			"À noite, da janela do abrigo, ele vê um carro escuro parado na rua. Alguém o observa.",
+			"FINAL: A LIBERDADE"]},
+		"ending_silencio": {"title": "", "scene": "fire", "lines": [
+			"O reator ruge. Os corredores ficam vermelhos, depois brancos.",
+			"O tecido grita uma última vez com todas as vozes. Depois, silêncio.",
+			"O prédio desaba em fogo. Elias nunca mais vai lembrar o que ficou lá embaixo.",
+			"FINAL: O SILÊNCIO"]},
+		"ending_herdeiro": {"title": "", "scene": "voices", "lines": [
+			"Elias encosta o cartão no console. O sistema o reconhece.",
+			"As luzes acendem. Vozes infantis o chamam pelo nome, de todos os lados.",
+			"'Fica com a gente', dizem. Elias fica diante da sala de controle, e escuta.",
+			"FINAL: O HERDEIRO"]},
+		"ending_coisas_perdidas": {"title": "", "scene": "dawn", "lines": [
+			"Clara pega a mão dele. 'Você nunca chegou aqui. Eu te lembrei até você existir.'",
+			"As vozes dos mortos se acalmam. Os corredores se abrem como pálpebras.",
+			"Elias acorda no quarto 4, com a lanterna na mão. Ou será que nunca saiu de lá? Esteve neste lugar, ou apenas reviveu uma memória implantada?",
+			"FINAL: AS COISAS PERDIDAS"]},
+		"ending_credits": {"title": "O ORFANATO DAS COISAS PERDIDAS", "scene": "black", "lines": [
+			"Obrigado por jogar.",
+			"Godot Engine 4.4.1 · arte e áudio procedurais originais."]}
+	},
+	"choices": {
+		"clara_encontro": {"prompt": "Clara se oferece para guiá-lo pela casa. Elias...", "options": [
+			{"text": "Confia em Clara e aceita a ajuda.", "effects": [
+				{"counter": "clara_trust", "add": 1}, {"flag": "trust_clara_1"},
+				{"say": {"who": "Clara", "text": "Obrigada. Há muito tempo ninguém me escuta."}}]},
+			{"text": "Desconfia, mas a segue.", "effects": [
+				{"flag": "clara_wary"},
+				{"say": {"who": "Clara", "text": "Faz bem em desconfiar. Mesmo assim, venha."}}]}
+		]},
+		"tomas": {"prompt": "Tomás pede de volta a caixa de música.", "options": [
+			{"text": "Entregar a caixa a Tomás.", "requires": {"items": ["caixa_tomas"]}, "effects": [
+				{"take": "caixa_tomas"}, {"flag": "helped_child_1"}, {"counter": "helped_children", "add": 1},
+				{"say": {"who": "Tomás", "text": "Ela toca. Toca! Leve isto: pilhas que eu guardava."}},
+				{"battery": 40}, {"memory": "tomas"}]},
+			{"text": "Ficar com a caixa por enquanto.", "effects": [
+				{"text": "Tomás desaparece devagar, sem reclamar."}]},
+			{"text": "Ir embora.", "effects": []}
+		]},
+		"lia": {"prompt": "Lia puxa a manga de Elias.", "options": [
+			{"text": "Ajudar Lia a arrumar os brinquedos.", "effects": [
+				{"puzzle": "p_brinquedos", "on_solved": [
+					{"flag": "helped_child_2"}, {"counter": "helped_children", "add": 1},
+					{"give": "chip_lazaro"},
+					{"say": {"who": "Lia", "text": "Obrigada. Isto estava dentro do urso. Acho que é seu."}}]}]},
+			{"text": "Seguir Lia até a 'passagem secreta'.", "effects": [
+				{"flag": "lia_trap"},
+				{"text": ["Lia sorri com a boca esticada demais.", "O chão estremece. Algo se mexe embaixo da casa."]}]},
+			{"text": "Ignorar.", "effects": []}
+		]},
+		"beto": {"prompt": "Beto, preso num canto do laboratório, estende as mãos.", "options": [
+			{"text": "Abrir a tranca da cela e ajudar Beto.", "effects": [
+				{"flag": "helped_child_3"}, {"counter": "helped_children", "add": 1},
+				{"say": {"who": "Beto", "text": "Tem uma passagem atrás do arquivo. Eu mostro."}}]},
+			{"text": "Deixá-lo.", "effects": [{"text": "Beto abaixa as mãos devagar."}]}
+		]},
+		"clara_c3": {"prompt": "Clara aponta o túnel mais fundo: 'Só tem esse caminho. Confie em mim.'", "options": [
+			{"text": "Confiar em Clara.", "effects": [{"counter": "clara_trust", "add": 1}, {"flag": "trust_clara_2"}]},
+			{"text": "Escolher o próprio caminho.", "effects": [{"flag": "clara_wary"}]}
+		]},
+		"clara_c4": {"prompt": "Clara pede: 'Escute o que eu tenho a dizer antes de decidir qualquer coisa.'", "options": [
+			{"text": "Ouvir Clara com atenção.", "effects": [{"counter": "clara_trust", "add": 1}, {"flag": "trust_clara_3"}]},
+			{"text": "Interromper e seguir sozinho.", "effects": [{"flag": "clara_wary"}]}
+		]},
+		"registro_elias": {"prompt": "O registro L-12 está em suas mãos. O que fazer com ele?", "options": [
+			{"text": "Guardar o documento.", "effects": [
+				{"flag": "keep_elias_record"}, {"flag": "record_choice_made"},
+				{"text": "Elias dobra o papel e o guarda junto ao peito."}]},
+			{"text": "Destruir o documento.", "effects": [
+				{"flag": "destroyed_record"}, {"flag": "record_choice_made"},
+				{"text": "Elias rasga o papel em pedaços pequenos. Algumas letras ficam piscando no chão."}]}
+		]},
+		"equipamento": {"prompt": "O projetor de memórias do Projeto Lázaro está à sua frente.", "options": [
+			{"text": "Destruir o equipamento.", "effects": [
+				{"flag": "equipment_destroyed"}, {"sfx": "drop"}, {"shake": 3},
+				{"text": "As lentes estouram. As fitas queimam sozinhas. Algo, no fundo, grita."}]},
+			{"text": "Deixar intacto.", "effects": [{"flag": "equipment_spared"}]}
+		]},
+		"reator": {"prompt": "O reator pode ser armado manualmente. Ele destruiria o laboratório inteiro.", "options": [
+			{"text": "Armar o reator.", "effects": [
+				{"flag": "reactor_primed"}, {"sfx": "alarm"}, {"shake": 2},
+				{"text": "Contagem regressiva armada. Ainda dá tempo de desistir... se alguém desligar na sala de controle."}]},
+			{"text": "Não mexer.", "effects": []}
+		]}
+	}
+}

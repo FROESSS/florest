@@ -1,0 +1,52 @@
+; Engine configuration file.
+; Projeto: O Orfanato das Coisas Perdidas
+config_version=5
+
+[application]
+
+config/name="O Orfanato das Coisas Perdidas"
+config/description="Survival horror 2D top-down. Godot 4.4.1."
+run/main_scene="res://scenes/main/Main.tscn"
+config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="res://icon.svg"
+config/version="0.9.0"
+
+[autoload]
+
+SettingsManager="*res://scripts/autoload/settings_manager.gd"
+LocalizationManager="*res://scripts/autoload/localization_manager.gd"
+AudioManager="*res://scripts/autoload/audio_manager.gd"
+InventoryManager="*res://scripts/autoload/inventory_manager.gd"
+NarrativeManager="*res://scripts/autoload/narrative_manager.gd"
+GameManager="*res://scripts/autoload/game_manager.gd"
+SaveManager="*res://scripts/autoload/save_manager.gd"
+SceneManager="*res://scripts/autoload/scene_manager.gd"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
+
+[gui]
+
+theme/default_font_antialiasing=0
+theme/default_font_subpixel_positioning=0
+
+[layer_names]
+
+2d_physics/layer_1="mundo"
+2d_physics/layer_2="jogador"
+2d_physics/layer_3="inimigos"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

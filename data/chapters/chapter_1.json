@@ -1,0 +1,165 @@
+{
+	"id": 1, "title": "O Despertar", "start_room": "c1_quarto", "start_spawn": "cama",
+	"objective": "Encontrar uma luz e sair do quarto.",
+	"rooms": {
+		"c1_quarto": {
+			"name": "Quarto 4", "size": [20, 14], "theme": "quarto", "ambient": 0.3, "ambient_sound": "amb_house", "decals": 0.1,
+			"spawns": {"cama": [4, 5], "porta": [16, 3]},
+			"lights": [
+				{"tile": [5, 3], "radius": 70, "energy": 0.6, "color": "#ffd9a0"},
+				{"tile": [8, 3], "radius": 70, "energy": 0.5, "color": "#8aa0d8"}
+			],
+			"objects": [
+				{"id": "rug", "kind": "rug", "tile": [8, 6], "size": [4, 3], "solid": false},
+				{"id": "janela", "kind": "window", "tile": [8, 1], "size": [2, 1], "name": "Janela", "prompt": "Olhar", "effects": [
+					{"text": ["As vidraças estão cobertas por uma película de poeira e musgo.", "Lá fora há só névoa e galhos. Nenhuma estrada."]}]},
+				{"id": "mesa", "kind": "desk", "tile": [8, 2], "size": [2, 1], "name": "Escrivaninha", "prompt": "Examinar", "effects": [
+					{"text": "Giz de cera quebrado e folhas em branco. Uma delas tem escrito, várias vezes, 'ELIAS'."}]},
+				{"id": "cama", "kind": "bed", "tile": [2, 3], "size": [1, 2], "name": "Cama", "prompt": "Examinar", "effects": [
+					{"text": "Os lençóis ainda guardam o formato do meu corpo. Estão frios."}]},
+				{"id": "lamp", "kind": "lamp", "tile": [5, 2], "px": [8, 16], "solid": false},
+				{"id": "gaveta", "kind": "drawers", "tile": [16, 5], "name": "Cômoda", "prompt": "Abrir", "important": true, "effects": [
+					{"text": ["Na última gaveta, enrolada num pano, há uma lanterna.", "Está pesada. Ainda funciona."]},
+					{"give": "lanterna"},
+					{"hint": "[F] liga e desliga a lanterna. A bateria é limitada: procure pilhas. Algumas criaturas reagem à luz.", "hint_time": 10},
+					{"objective": "Sair do quarto e explorar o corredor."}]},
+				{"id": "armario", "kind": "wardrobe", "tile": [12, 2], "size": [2, 2], "name": "Armário", "prompt": "Esconder-se", "hide": true},
+				{"id": "bau", "kind": "toybox", "tile": [3, 9], "size": [2, 1], "name": "Baú de brinquedos", "prompt": "Examinar", "effects": [
+					{"text": "Soldadinhos sem cabeça, uma boneca sem olhos, um trem azul... Tudo arrumado em fila, com cuidado demais."}]},
+				{"id": "ursinho", "kind": "bear", "tile": [7, 9], "px": [8, 8], "name": "Ursinho de pelúcia", "prompt": "Pegar", "important": true, "solid": false, "effects": [
+					{"memory": "ursinho"}]},
+				{"id": "porta", "kind": "door", "tile": [16, 1], "name": "Porta do corredor", "prompt": "Abrir",
+					"requires": {"items": ["lanterna"]}, "locked_text": "Está escuro demais lá fora. Preciso de uma luz antes de sair.",
+					"door": {"to": "c1_corredor", "spawn": "porta_quarto"}}
+			],
+			"triggers": [
+				{"id": "intro", "rect": [1, 2, 18, 11], "effects": [
+					{"cutscene": "chapter_1"},
+					{"text": ["...onde estou?", "Esse quarto... eu conheço. Ou acho que conheço."]},
+					{"objective": "Encontrar uma luz e sair do quarto."},
+					{"hint": "WASD/Setas: mover · Shift: correr (faz barulho) · E: interagir · Tab: inventário · J: diário", "hint_time": 12}]}
+			]
+		},
+		"c1_corredor": {
+			"name": "Corredor Principal", "size": [40, 10], "theme": "orfanato", "ambient": 0.16, "ambient_sound": "amb_house", "decals": 0.15,
+			"blocks": [[13, 4, 1, 5], [27, 2, 1, 5]],
+			"spawns": {"porta_quarto": [6, 3], "porta_dorm": [17, 3], "porta_sec": [28, 3], "este": [38, 5], "oeste": [2, 5]},
+			"lights": [
+				{"tile": [6, 3], "radius": 64, "energy": 0.7},
+				{"tile": [17, 4], "radius": 64, "energy": 0.6, "flicker": true},
+				{"tile": [30, 4], "radius": 64, "energy": 0.6},
+				{"tile": [37, 5], "radius": 60, "energy": 0.5, "color": "#c0d0ff"}
+			],
+			"objects": [
+				{"id": "d_quarto", "kind": "door", "tile": [6, 1], "name": "Quarto 4", "prompt": "Abrir", "door": {"to": "c1_quarto", "spawn": "porta"}},
+				{"id": "d_dorm", "kind": "door", "tile": [17, 1], "name": "Dormitório", "prompt": "Abrir", "door": {"to": "c1_dormitorio", "spawn": "porta"}},
+				{"id": "d_sec", "kind": "door", "tile": [28, 1], "name": "Secretaria", "prompt": "Abrir",
+					"requires": {"items": ["chave_secretaria"]}, "locked_text": "Trancada. Uma plaquinha: 'Secretaria'. Preciso da chave.",
+					"door": {"to": "c1_secretaria", "spawn": "porta"}},
+				{"id": "d_salao", "kind": "door", "tile": [39, 5], "name": "Salão principal", "prompt": "Abrir",
+					"requires": {"flags": ["c1_alarm"]}, "locked_text": "A porta do salão está emperrada. Ainda não tenho motivo para ir lá.",
+					"door": {"to": "c1_saguao", "spawn": "oeste"}},
+				{"id": "w1", "kind": "wardrobe", "tile": [9, 2], "size": [2, 2], "name": "Armário", "prompt": "Esconder-se", "hide": true},
+				{"id": "w2", "kind": "wardrobe", "tile": [20, 2], "size": [2, 2], "name": "Armário", "prompt": "Esconder-se", "hide": true},
+				{"id": "w3", "kind": "wardrobe", "tile": [34, 2], "size": [2, 2], "name": "Armário", "prompt": "Esconder-se", "hide": true},
+				{"id": "balde", "kind": "bucket", "tile": [22, 7], "px": [12, 12], "name": "Balde", "prompt": "Chutar", "solid": true, "effects": [
+					{"sfx": "drop", "db": 0, "sub": "[Balde metálico rolando]"},
+					{"noise": {"radius": 220, "source": "object"}},
+					{"text": "O balde rolou pelo chão. Que barulho! Isso pode atrair a atenção de quem estiver por perto."}]}
+			],
+			"triggers": [
+				{"id": "t_warn", "rect": [1, 2, 5, 7], "effects": [
+					{"text": ["Passos arrastados. Uma cantiga distorcida, vindo do fundo do corredor.", "Alguém patrulha este lugar. Preciso me esconder dos olhos dela e fazer o mínimo de barulho."]},
+					{"hint": "Andar faz pouco ruído; correr faz muito. Esconda-se nos armários [E] — ela só abre o esconderijo se te VIR entrar.", "hint_time": 12}]}
+			],
+			"enemies": [
+				{"id": "patrol", "type": "caretaker", "tile": [20, 6], "patrol": [[2, 5], [11, 6], [20, 5], [26, 8], [33, 6], [37, 3]], "inactive_if": {"flags": ["c1_alarm"]}},
+				{"id": "chase", "type": "caretaker", "tile": [24, 5], "start_chase": true, "active_if": {"flags": ["c1_alarm"]}}
+			]
+		},
+		"c1_dormitorio": {
+			"name": "Dormitório", "size": [18, 12], "theme": "quarto", "ambient": 0.22, "ambient_sound": "amb_house",
+			"spawns": {"porta": [3, 3]},
+			"lights": [{"tile": [9, 6], "radius": 80, "energy": 0.6, "color": "#d8c090", "flicker": true}],
+			"objects": [
+				{"id": "porta", "kind": "door", "tile": [3, 1], "name": "Corredor", "prompt": "Abrir", "door": {"to": "c1_corredor", "spawn": "porta_dorm"}},
+				{"id": "cama1", "kind": "bed", "tile": [6, 3], "size": [1, 2], "name": "Cama 1", "prompt": "Esconder-se", "hide": true},
+				{"id": "cama2", "kind": "bed", "tile": [9, 3], "size": [1, 2], "name": "Cama 2", "prompt": "Esconder-se", "hide": true},
+				{"id": "cama3", "kind": "bed", "tile": [12, 3], "size": [1, 2], "name": "Cama 3", "prompt": "Esconder-se", "hide": true},
+				{"id": "cama4", "kind": "bed", "tile": [15, 3], "size": [1, 2], "name": "Cama 4", "prompt": "Esconder-se", "hide": true},
+				{"id": "des1", "kind": "drawing", "variant": "sun:3", "tile": [6, 1], "name": "Desenho da cama 1", "prompt": "Examinar", "effects": [
+					{"text": "Giz de cera sobre papel. Três sóis amarelos, bem apertados. Assinado: 'cama 1'."}]},
+				{"id": "des2", "kind": "drawing", "variant": "house:1", "tile": [9, 1], "name": "Desenho da cama 2", "prompt": "Examinar", "effects": [
+					{"text": "Uma casinha vermelha, sozinha. Só uma. Assinado: 'cama 2'."}]},
+				{"id": "des3", "kind": "drawing", "variant": "tree:4", "tile": [12, 1], "name": "Desenho da cama 3", "prompt": "Examinar", "effects": [
+					{"text": "Quatro árvores verdes em fila. Assinado: 'cama 3'."}]},
+				{"id": "des4", "kind": "drawing", "variant": "star:2", "tile": [15, 1], "name": "Desenho da cama 4", "prompt": "Examinar", "effects": [
+					{"text": "Duas estrelas azuis. Assinado: 'cama 4'. É a minha cama? A letra parece a minha."}]},
+				{"id": "caixa", "kind": "musicbox", "tile": [14, 8], "px": [10, 8], "name": "Caixa de música", "prompt": "Abrir", "important": true, "solid": true, "effects": [
+					{"puzzle": "p_caixa_musica", "on_solved": [
+						{"sfx": "pickup"},
+						{"text": ["A caixa toca uma cantiga lenta e se abre.", "Dentro há uma chave com a etiqueta 'Secretaria'."]},
+						{"give": "chave_secretaria"},
+						{"objective": "Entrar na secretaria, pelo corredor."}]}]},
+				{"id": "comoda", "kind": "drawers", "tile": [13, 8], "size": [1, 1], "name": "Cômoda", "prompt": "Examinar", "effects": [
+					{"text": "Roupas de criança dobradas. Todas do mesmo tamanho. Todas do meu tamanho."}]},
+				{"id": "bau", "kind": "toybox", "tile": [8, 8], "size": [2, 1], "name": "Baú de brinquedos", "prompt": "Examinar", "effects": [
+					{"text": "Vazio, exceto por um bilhete: 'Cada desenho conta quantas coisas a criança viu'."}]}
+			]
+		},
+		"c1_secretaria": {
+			"name": "Secretaria", "size": [16, 10], "theme": "orfanato", "ambient": 0.2, "ambient_sound": "amb_house",
+			"spawns": {"porta": [3, 3]},
+			"lights": [{"tile": [7, 5], "radius": 80, "energy": 0.7, "flicker": true}],
+			"objects": [
+				{"id": "porta", "kind": "door", "tile": [3, 1], "name": "Corredor", "prompt": "Abrir", "door": {"to": "c1_corredor", "spawn": "porta_sec"}},
+				{"id": "mesa", "kind": "desk", "tile": [5, 4], "size": [3, 1], "name": "Escrivaninha", "prompt": "Examinar", "effects": [
+					{"text": "Papéis rasgados, carimbos secos. A gaveta de baixo está entreaberta, mas não me interessa... ainda."}]},
+				{"id": "foto", "kind": "photo", "tile": [3, 6], "px": [8, 8], "name": "Fotografia", "prompt": "Pegar", "important": true, "solid": false, "effects": [
+					{"memory": "foto"}, {"give": "foto_antiga"},
+					{"text": "Na lembrança, alguém guardava uma chave na gaveta de baixo da escrivaninha."}]},
+				{"id": "gaveta", "kind": "drawers", "tile": [9, 4], "name": "Gaveta de baixo", "prompt": "Abrir", "important": true,
+					"requires": {"flags": ["mem_foto"]}, "locked_text": "Só tem poeira e clipes enferrujados. Nada que me ajude... por enquanto.",
+					"effects": [
+						{"text": ["Embaixo dos clipes, uma chave de ferro com a etiqueta 'Serviço'.", "É exatamente onde a lembrança dizia."]},
+						{"give": "chave_servico"},
+						{"text": "No corredor, a cantiga parou de repente. Depois, um grito."},
+						{"flag": "c1_alarm"}, {"sfx": "screech", "sub": "[Grito distante]"},
+						{"checkpoint": true},
+						{"objective": "Fugir pelo salão e sair pela porta de serviço."},
+						{"hint": "Ela está te procurando. Corra pelo corredor até o salão. Se ela perder você de vista, esconda-se.", "hint_time": 10}]},
+				{"id": "arquivo", "kind": "cabinet", "tile": [11, 2], "size": [1, 2], "name": "Arquivo", "prompt": "Abrir", "effects": [
+					{"doc": "carta_inauguracao"}]},
+				{"id": "armario", "kind": "locker", "tile": [13, 2], "size": [1, 2], "name": "Armário de arquivos", "prompt": "Esconder-se", "hide": true}
+			]
+		},
+		"c1_saguao": {
+			"name": "Salão Principal", "size": [34, 22], "theme": "orfanato", "ambient": 0.14, "ambient_sound": "amb_house", "decals": 0.2,
+			"spawns": {"oeste": [2, 12]},
+			"lights": [
+				{"tile": [8, 9], "radius": 90, "energy": 0.5},
+				{"tile": [24, 9], "radius": 90, "energy": 0.5, "flicker": true},
+				{"tile": [16, 16], "radius": 90, "energy": 0.4},
+				{"tile": [32, 12], "radius": 60, "energy": 0.7, "color": "#c0d0ff"}
+			],
+			"objects": [
+				{"id": "d_oeste", "kind": "door", "tile": [0, 12], "name": "Corredor", "prompt": "Abrir", "door": {"to": "c1_corredor", "spawn": "este"}},
+				{"id": "servico", "kind": "labdoor", "variant": "", "tile": [33, 12], "name": "Porta de serviço", "prompt": "Abrir", "important": true,
+					"requires": {"items": ["chave_servico"]}, "locked_text": "Trancada com uma fechadura pesada. Preciso da chave de serviço.",
+					"effects": [{"sfx": "door_open"}, {"text": "A chave gira. A porta de serviço range, e a cantiga atrás de mim fica cada vez mais alta."}, {"chapter": 2}]},
+				{"id": "p1", "kind": "pillar", "tile": [8, 6]}, {"id": "p2", "kind": "pillar", "tile": [8, 12]}, {"id": "p3", "kind": "pillar", "tile": [8, 18]},
+				{"id": "p4", "kind": "pillar", "tile": [16, 6]}, {"id": "p5", "kind": "pillar", "tile": [16, 12]}, {"id": "p6", "kind": "pillar", "tile": [16, 18]},
+				{"id": "p7", "kind": "pillar", "tile": [24, 6]}, {"id": "p8", "kind": "pillar", "tile": [24, 12]}, {"id": "p9", "kind": "pillar", "tile": [24, 18]},
+				{"id": "b1", "kind": "bench", "tile": [11, 9], "size": [3, 1]}, {"id": "b2", "kind": "bench", "tile": [19, 15], "size": [3, 1]},
+				{"id": "b3", "kind": "bench", "tile": [27, 9], "size": [3, 1]}, {"id": "b4", "kind": "bench", "tile": [11, 15], "size": [3, 1]},
+				{"id": "recep", "kind": "reception", "tile": [14, 2], "size": [4, 1], "name": "Balcão da recepção", "prompt": "Examinar", "effects": [
+					{"text": "Um livro de visitas. A última página tem apenas um nome, escrito mil vezes: 'ELIAS'."}]},
+				{"id": "c1", "kind": "wardrobe", "tile": [3, 2], "size": [2, 2], "name": "Guarda-casacos", "prompt": "Esconder-se", "hide": true},
+				{"id": "c2", "kind": "wardrobe", "tile": [28, 2], "size": [2, 2], "name": "Guarda-casacos", "prompt": "Esconder-se", "hide": true}
+			],
+			"enemies": [
+				{"id": "chase", "type": "caretaker", "tile": [2, 17], "start_chase": true, "active_if": {"flags": ["c1_alarm"]}}
+			]
+		}
+	}
+}

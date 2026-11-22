@@ -1,0 +1,131 @@
+{
+	"id": 2, "title": "Os Pequenos Habitantes", "start_room": "c2_dormitorio", "start_spawn": "inicio",
+	"objective": "Descobrir quem é a menina e o que são as escadas desenhadas nas paredes.",
+	"rooms": {
+		"c2_corredor": {
+			"name": "Ala Infantil — Corredor", "size": [36, 10], "theme": "orfanato", "ambient": 0.16, "ambient_sound": "amb_house", "decals": 0.18,
+			"blocks": [[9, 5, 2, 4], [19, 2, 2, 4]],
+			"spawns": {"porta_dorm": [5, 3], "porta_aula": [14, 3], "porta_enf": [24, 3], "alcapao": [28, 6]},
+			"lights": [
+				{"tile": [5, 4], "radius": 64, "energy": 0.6}, {"tile": [14, 4], "radius": 64, "energy": 0.6, "flicker": true},
+				{"tile": [24, 4], "radius": 64, "energy": 0.6}, {"tile": [31, 7], "radius": 60, "energy": 0.5, "color": "#ffcc80"}
+			],
+			"objects": [
+				{"id": "d_dorm", "kind": "door", "tile": [5, 1], "name": "Dormitório das meninas", "prompt": "Abrir", "door": {"to": "c2_dormitorio", "spawn": "porta"}},
+				{"id": "d_aula", "kind": "door", "tile": [14, 1], "name": "Sala de aula", "prompt": "Abrir", "door": {"to": "c2_aula", "spawn": "porta"}},
+				{"id": "d_enf", "kind": "door", "tile": [24, 1], "name": "Enfermaria", "prompt": "Abrir",
+					"requires": {"items": ["chave_enfermaria"]}, "locked_text": "Trancada. Uma cruz verde está desenhada na porta.",
+					"door": {"to": "c2_enfermaria", "spawn": "porta"}},
+				{"id": "alcapao", "kind": "hatch", "tile": [30, 6], "size": [2, 2], "name": "Alçapão", "prompt": "Abrir", "important": true, "once": false,
+					"requires": {"items": ["chave_alcapao"]}, "locked_text": "Um alçapão trancado por um cadeado. Preciso de uma chave.",
+					"effects": [
+						{"puzzle": "p_simbolos", "on_solved": [{"sfx": "door_open"}, {"text": "O cadeado cede. Uma escada estreita desce para uma escuridão quente."}]},
+						{"if": {"flags": ["solved_p_simbolos"]}, "then": [{"goto": {"room": "c2_alcapao", "spawn": "entrada"}}]}]},
+				{"id": "w1", "kind": "wardrobe", "tile": [2, 2], "size": [2, 2], "name": "Armário", "prompt": "Esconder-se", "hide": true},
+				{"id": "w2", "kind": "wardrobe", "tile": [29, 2], "size": [2, 2], "name": "Armário", "prompt": "Esconder-se", "hide": true},
+				{"id": "balde", "kind": "bucket", "tile": [16, 8], "px": [12, 12], "name": "Latas empilhadas", "prompt": "Derrubar", "solid": true, "effects": [
+					{"sfx": "drop", "db": 0, "sub": "[Latas caindo]"},
+					{"noise": {"radius": 240, "source": "object"}},
+					{"text": "As latas desabam com um estrondo. Algo ouviu."}]}
+			],
+			"clara_talk": [
+				{"id": "a", "effects": [{"say": {"who": "Clara", "text": "Ela patrulha daqui até o fim do corredor. Faça barulho longe de você, não perto."}}]}
+			],
+			"enemies": [
+				{"id": "patrol", "type": "caretaker", "tile": [16, 6], "patrol": [[3, 6], [8, 4], [15, 7], [22, 6], [27, 4], [33, 7]]}
+			]
+		},
+		"c2_dormitorio": {
+			"name": "Dormitório das Meninas", "size": [20, 12], "theme": "quarto", "ambient": 0.2, "ambient_sound": "amb_house",
+			"spawns": {"porta": [3, 3], "inicio": [4, 6]},
+			"lights": [{"tile": [11, 5], "radius": 70, "energy": 0.55, "color": "#a0b4d8"}, {"tile": [4, 4], "radius": 50, "energy": 0.4}],
+			"objects": [
+				{"id": "porta", "kind": "door", "tile": [3, 1], "name": "Corredor", "prompt": "Abrir", "door": {"to": "c2_corredor", "spawn": "porta_dorm"}},
+				{"id": "clara", "kind": "npc", "style": "clara", "tile": [11, 6], "name": "Menina de vestido claro", "prompt": "Falar com", "hide_if": {"flags": ["clara_met"]}, "effects": [
+					{"say": {"who": "Clara", "text": "Você demorou. Eu sou a Clara."}},
+					{"say": {"who": "Elias", "text": "Você mora aqui?"}},
+					{"say": {"who": "Clara", "text": "Mais ou menos. Conheço as passagens. Se ficar perto de mim, a Cuidadora não vai nos achar... pelo menos não tão rápido."}},
+					{"say": {"who": "Clara", "text": "Os desenhos de escada nas paredes mostram o caminho para baixo. É lá que tudo acontece de verdade."}},
+					{"choice": "clara_encontro"},
+					{"flag": "clara_met"}, {"set_clara": true},
+					{"objective": "Encontrar os desenhos de escada, o alçapão e a chave dele. Procure na sala de aula e na enfermaria."}]},
+				{"id": "desenho", "kind": "drawing", "variant": "spiral:1", "tile": [8, 1], "name": "Desenho de escada", "prompt": "Examinar", "important": true, "effects": [
+					{"text": "Uma escada desenhada a giz descendo em espiral. Legenda: '2 degraus'."},
+					{"memory": "desenho"}, {"flag": "sym_1"}]},
+				{"id": "cama1", "kind": "bed", "tile": [14, 3], "size": [1, 2], "name": "Cama", "prompt": "Esconder-se", "hide": true},
+				{"id": "cama2", "kind": "bed", "tile": [17, 3], "size": [1, 2], "name": "Cama", "prompt": "Esconder-se", "hide": true},
+				{"id": "criado", "kind": "drawers", "tile": [16, 8], "name": "Criado-mudo", "prompt": "Abrir", "effects": [{"doc": "diario_lia"}]},
+				{"id": "espelho", "kind": "mirror", "tile": [12, 1], "name": "Espelho", "prompt": "Olhar", "effects": [
+					{"text": "No espelho, a menina não aparece. Só eu. Duas vezes? Pisco, e volta a ser uma."}]}
+			]
+		},
+		"c2_aula": {
+			"name": "Sala de Aula", "size": [22, 14], "theme": "orfanato", "ambient": 0.2, "ambient_sound": "amb_house",
+			"spawns": {"porta": [3, 3]},
+			"lights": [{"tile": [8, 6], "radius": 90, "energy": 0.5, "flicker": true}, {"tile": [16, 8], "radius": 70, "energy": 0.4, "color": "#a0b4d8"}],
+			"objects": [
+				{"id": "porta", "kind": "door", "tile": [3, 1], "name": "Corredor", "prompt": "Abrir", "door": {"to": "c2_corredor", "spawn": "porta_aula"}},
+				{"id": "quadro", "kind": "blackboard", "tile": [8, 1], "size": [4, 1], "name": "Quadro-negro", "prompt": "Ler", "important": true, "effects": [
+					{"text": "Escrito a giz, com letra de criança: 'O QUE É LEMBRAR?'. Embaixo, outra letra, mais firme: 'É TER SIDO'."}, {"memory": "aula"}]},
+				{"id": "mesa", "kind": "desk", "tile": [8, 2], "size": [3, 1], "name": "Mesa da professora", "prompt": "Abrir gaveta", "important": true, "effects": [
+					{"text": "Na gaveta há giz, uma régua e uma chave verde com uma cruz riscada."}, {"give": "chave_enfermaria"},
+					{"objective": "Abrir a enfermaria (corredor) e procurar os prontuários."}]},
+				{"id": "des_a", "kind": "drawing", "variant": "spiral:1", "tile": [14, 1], "name": "Desenho de escada (esquerda)", "prompt": "Examinar", "effects": [
+					{"text": "Uma escada desenhada em giz azul. Legenda: '7 degraus'."}, {"flag": "sym_2"}]},
+				{"id": "des_b", "kind": "drawing", "variant": "spiral:1", "tile": [17, 1], "name": "Desenho de escada (direita)", "prompt": "Examinar", "effects": [
+					{"text": "Outra escada, em giz vermelho, bem menor. Legenda: '1 degrau'."}, {"flag": "sym_3"}]},
+				{"id": "c1", "kind": "schooldesk", "tile": [5, 6]}, {"id": "c2", "kind": "schooldesk", "tile": [8, 6]},
+				{"id": "c3", "kind": "schooldesk", "tile": [11, 6]}, {"id": "c4", "kind": "schooldesk", "tile": [5, 9]},
+				{"id": "c5", "kind": "schooldesk", "tile": [8, 9]}, {"id": "c6", "kind": "schooldesk", "tile": [11, 9]},
+				{"id": "tomas", "kind": "npc", "style": "kid_a", "ghost": true, "tile": [17, 8], "facing": "left", "name": "Tomás", "prompt": "Falar com", "once": false, "hide_if": {"flags": ["helped_child_1"]}, "effects": [
+					{"text": ["Eu... você viu minha caixa de música?", "Deixei na enfermaria. Quando a luz apagou."]},
+					{"choice": "tomas"}]},
+				{"id": "armario", "kind": "locker", "tile": [19, 2], "size": [1, 2], "name": "Armário de material", "prompt": "Esconder-se", "hide": true}
+			],
+			"clara_talk": [
+				{"id": "a", "effects": [{"say": {"who": "Clara", "text": "O Tomás desenhava as escadas. Ele sempre perdia a caixa de música... e depois a si mesmo."}}]}
+			]
+		},
+		"c2_enfermaria": {
+			"name": "Enfermaria", "size": [20, 12], "theme": "lab", "ambient": 0.22, "ambient_sound": "amb_lab", "decals": 0.22,
+			"spawns": {"porta": [3, 3]},
+			"lights": [{"tile": [9, 6], "radius": 90, "energy": 0.6, "flicker": true, "color": "#e8f0ff"}],
+			"objects": [
+				{"id": "porta", "kind": "door", "tile": [3, 1], "name": "Corredor", "prompt": "Abrir", "door": {"to": "c2_corredor", "spawn": "porta_enf"}},
+				{"id": "leito1", "kind": "hospital_bed", "tile": [6, 3], "size": [1, 2], "name": "Leito", "prompt": "Esconder-se", "hide": true},
+				{"id": "leito2", "kind": "hospital_bed", "tile": [9, 3], "size": [1, 2], "name": "Leito", "prompt": "Esconder-se", "hide": true},
+				{"id": "leito3", "kind": "hospital_bed", "tile": [12, 3], "size": [1, 2], "name": "Leito", "prompt": "Esconder-se", "hide": true},
+				{"id": "leito_tomas", "kind": "hospital_bed", "tile": [15, 3], "size": [1, 2], "name": "Leito com lençol revirado", "prompt": "Examinar", "important": true, "effects": [
+					{"text": "Embaixo do travesseiro há uma caixa de música pequena e arranhada. A manivela está faltando."},
+					{"give": "caixa_tomas"}, {"objective": "Devolver a caixa a Tomás, na sala de aula, se quiser."}]},
+				{"id": "arquivo", "kind": "cabinet", "tile": [3, 8], "size": [1, 2], "name": "Arquivo de prontuários", "prompt": "Abrir", "important": true, "effects": [
+					{"puzzle": "p_prontuarios", "on_solved": [
+						{"text": "Os prontuários encaixam. Atrás da última gaveta, presa por uma fita, há uma chave enferrujada: o desenho de uma escada."},
+						{"doc": "prontuarios_resumo"}, {"give": "chave_alcapao"},
+						{"objective": "Abrir o alçapão no corredor (código nos desenhos de escada)."}]}]},
+				{"id": "lista", "kind": "poster", "tile": [10, 1], "name": "Quadro de avisos", "prompt": "Ler", "effects": [{"doc": "lista_criancas"}]},
+				{"id": "armario", "kind": "locker", "tile": [17, 2], "size": [1, 2], "name": "Armário de remédios", "prompt": "Esconder-se", "hide": true}
+			],
+			"clara_talk": [
+				{"id": "a", "effects": [{"say": {"who": "Clara", "text": "Eles arquivavam as crianças por data. Como se fôssemos remédios."}}]}
+			]
+		},
+		"c2_alcapao": {
+			"name": "Escada de Serviço", "size": [14, 12], "theme": "orfanato", "ambient": 0.14, "ambient_sound": "amb_organic", "decals": 0.3,
+			"blocks": [[1, 5, 8, 1], [5, 8, 8, 1]],
+			"spawns": {"entrada": [6, 3]},
+			"lights": [{"tile": [6, 4], "radius": 70, "energy": 0.5, "color": "#ffcc80"}, {"tile": [6, 10], "radius": 70, "energy": 0.5, "color": "#d06070"}],
+			"objects": [
+				{"id": "subir", "kind": "stairs", "tile": [4, 2], "size": [2, 1], "px": [32, 16], "name": "Escada para o corredor", "prompt": "Subir", "solid": false, "flat": true, "effects": [
+					{"goto": {"room": "c2_corredor", "spawn": "alcapao"}}]},
+				{"id": "porta_fundo", "kind": "door", "variant": "organic", "tile": [6, 11], "name": "Porta quente", "prompt": "Abrir", "important": true, "effects": [
+					{"sfx": "door_open"},
+					{"text": ["A madeira da porta está úmida e quente, como pele.", "Atrás dela, algo respira devagar."]},
+					{"chapter": 3}]}
+			],
+			"clara_talk": [
+				{"id": "a", "effects": [{"say": {"who": "Clara", "text": "Daqui para baixo, a casa responde ao que você faz. Não corra se não precisar."}}]}
+			]
+		}
+	}
+}

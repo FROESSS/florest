@@ -1,0 +1,46 @@
+{
+	"carta_inauguracao": {
+		"title": "Carta de inauguração", "chapter": 1,
+		"body": "FUNDAÇÃO AURORA\nOrfanato Santa Aurora — Carta aos benfeitores\n\nNo dia 14 de março de 1978 inauguramos nossa casa, que acolherá crianças sem família. A cuidadora-chefe, Sra. Marta Reis, dedica-se dia e noite aos pequenos.\n\nOs recursos adicionais vêm do Departamento de Pesquisa. Pedimos discrição sobre o 'Nível B'.\n\n— Dr. Heitor Valmont, diretor"
+	},
+	"diario_lia": {
+		"title": "Diário de Lia", "chapter": 2,
+		"body": "Dia 12. A Marta canta pra gente dormir. Mas ontem ela não cantou, só ficou olhando.\n\nDia 19. Levaram o Tomás pra baixo de novo. Ele voltou sem lembrar da própria caixa de música.\n\nDia 23. Os desenhos de escada na parede são do Tomás. Ele diz que é o caminho que leva até onde a gente dorme de verdade."
+	},
+	"prontuarios_resumo": {
+		"title": "Prontuários: resumo", "chapter": 2,
+		"body": "L-01 (14/03): menina, 10 anos. Resposta extraordinária ao estímulo de memória. Sem registro de família.\nL-04 (02/05): menino, 8 anos. Reproduz falas de pessoas que nunca conheceu.\nL-07 (19/08): menina, 9 anos. Lembra de um incêndio que não existiu.\nL-11 (30/11): menino, 7 anos. Não responde ao próprio nome.\n\nObservação manuscrita: 'Falta o prontuário L-12. Ainda não nasceu... ainda não chegou.'"
+	},
+	"nota_fusiveis": {
+		"title": "Bilhete da manutenção", "chapter": 3,
+		"body": "Se o tecido voltar a crescer no refeitório, ligue o incinerador pelo painel. Lembre: B e C ligados, A e D desligados. Do contrário a casa percebe e respira mais forte."
+	},
+	"diario_marta": {
+		"title": "Diário de Marta Reis", "chapter": 3,
+		"body": "Eu me ofereci. Se uma pessoa adulta aguentasse o procedimento, eles não precisariam usar as crianças. Eu aguentei. Mas o tecido não aceitou só a mim: ele aprendeu meu rosto e minha voz.\n\nAgora ouço as crianças dentro de mim. Cantar é a única coisa que as acalma. Se eu parar de cantar, elas procuram sozinhas, e machucam.\n\nSe alguém ler isto: não deixe que me chamem de monstro. Eu só continuei cuidando."
+	},
+	"lazaro_fase1": {
+		"title": "Projeto Lázaro — Fase 1", "chapter": 4,
+		"body": "OBJETIVO: registrar, reproduzir e preservar fragmentos de memória humana usando tecido neural cultivado (TNC).\n\nMÉTODO: estimulação em ambiente controlado; o tecido absorve o padrão e o devolve como experiência reproduzida.\n\nRESULTADO PRELIMINAR: o TNC não separa memória de quem a viveu. Memórias de pessoas falecidas podem ser reproduzidas se registradas antes do óbito."
+	},
+	"lazaro_falha": {
+		"title": "Registro de falha", "chapter": 4,
+		"body": "O tecido ultrapassou o contenimento da Sala B-2. Responde a ruído, calor e presença de sujeitos L-01 e L-12.\n\nSujeito L-12 é o único cujo padrão não foi construído a partir de uma vida própria, mas montado a partir de fragmentos de todos os demais. Recomenda-se não expô-lo ao tecido principal."
+	},
+	"memorando_encerramento": {
+		"title": "Memorando de encerramento", "chapter": 4,
+		"body": "Data: 07/12/1978.\n\nO laboratório está lacrado. O orfanato será declarado desativado. Registros parciais serão destruídos. O TNC permanece ativo e será 'isolado' atrás do Nível B.\n\nA Sra. Reis recusou-se a sair. Os sujeitos remanescentes ficam aos cuidados dela."
+	},
+	"registro_elias": {
+		"title": "Registro L-12: Elias", "chapter": 4,
+		"body": "SUJEITO L-12 — 'ELIAS'\nIdade aparente: 12 anos. Origem: nenhuma.\n\nMemória base: composta de fragmentos de L-01 a L-11 e de doadores falecidos antes da inauguração. Memória do orfanato: implantada.\n\nNOTA: o sujeito acredita ter acordado no quarto 4. Não há registro de que tenha entrado no prédio algum dia."
+	},
+	"nota_valvulas": {
+		"title": "Manual de emergência", "chapter": 5,
+		"body": "COLAPSO DO NÍVEL B\n1. Corte a pressão: feche as válvulas na ordem 3, 1, 2.\n2. A rota de serviço se abrirá para o túnel externo.\n3. O reator deve ser armado manualmente SOMENTE se o laboratório precisar ser destruído."
+	},
+	"lista_criancas": {
+		"title": "Lista de crianças", "chapter": 2,
+		"body": "Nomes riscados a lápis: Lia, Tomás, Beto, Ana, Davi, Rute, Caio, Nina, Pedro, Isa, Teo.\n\nUm nome escrito por cima, com letra diferente, ainda sem risco: Elias.\n\nAbaixo, em outra letra: 'Clara não consta na lista. Clara nunca esteve na lista.'"
+	}
+}

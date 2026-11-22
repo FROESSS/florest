@@ -1,0 +1,55 @@
+{
+	"p_caixa_musica": {
+		"type": "code", "title": "Caixa de música", "digits": 4, "solution": "3142",
+		"prompt": "Quatro dígitos. Os desenhos sobre as camas do dormitório parecem ser a chave: cada um mostra uma quantidade de figuras. Siga a ordem das camas, da 1 à 4."
+	},
+	"p_prontuarios": {
+		"type": "order", "title": "Arquivo de prontuários",
+		"prompt": "Uma etiqueta no arquivo diz: 'Arquivar por data de admissão, do mais antigo ao mais recente'. Escolha os prontuários na ordem correta.",
+		"items": [
+			{"id": "p3", "label": "Admissão 19/08/1978 — L-07"},
+			{"id": "p1", "label": "Admissão 14/03/1978 — L-01"},
+			{"id": "p4", "label": "Admissão 30/11/1978 — L-11"},
+			{"id": "p2", "label": "Admissão 02/05/1978 — L-04"}
+		],
+		"solution": ["p1", "p2", "p3", "p4"]
+	},
+	"p_simbolos": {
+		"type": "code", "title": "Tranca do alçapão", "digits": 3, "solution": "271",
+		"prompt": "Três dígitos. Os desenhos das crianças mostram uma escada para baixo. Cada um tem uma legenda com o número de degraus. Use a ordem em que você os encontrou: dormitório, e depois os dois da sala de aula (da esquerda para a direita)."
+	},
+	"p_fusiveis": {
+		"type": "toggles", "title": "Painel elétrico", "labels": ["Fusível A", "Fusível B", "Fusível C", "Fusível D"],
+		"solution": [0, 1, 1, 0],
+		"prompt": "Uma etiqueta colada no painel: 'Incinerador: B e C LIGADOS. A e D DESLIGADOS. Nunca o contrário.'"
+	},
+	"p_brinquedos": {
+		"type": "order", "title": "Brinquedos de Lia",
+		"prompt": "Arrume os brinquedos na ordem em que a lembrança os mostrou. (Consulte o diário: aba Memórias.)",
+		"items": [
+			{"id": "bola", "label": "Bola vermelha"},
+			{"id": "urso", "label": "Urso de pelúcia"},
+			{"id": "boneca", "label": "Boneca de pano"},
+			{"id": "trem", "label": "Trem azul"}
+		],
+		"solution": ["urso", "trem", "boneca", "bola"]
+	},
+	"p_terminal": {
+		"type": "code", "title": "Terminal do Projeto Lázaro", "digits": 4, "solution": "0712",
+		"prompt": "SENHA DE ADMINISTRAÇÃO (DDMM). Dica do sistema: 'data de encerramento do projeto'."
+	},
+	"p_cofre": {
+		"type": "code", "title": "Cofre da diretoria", "digits": 4, "solution": "1403",
+		"prompt": "Cofre de quatro dígitos (DDMM). A placa de bronze diz: 'Para a data em que tudo começou'."
+	},
+	"p_valvulas": {
+		"type": "order", "title": "Válvulas de pressão",
+		"prompt": "O manual de emergência diz: 'Fechar na ordem 3, 1, 2 para abrir a rota de serviço'.",
+		"items": [
+			{"id": "v1", "label": "Válvula 1"},
+			{"id": "v2", "label": "Válvula 2"},
+			{"id": "v3", "label": "Válvula 3"}
+		],
+		"solution": ["v3", "v1", "v2"]
+	}
+}

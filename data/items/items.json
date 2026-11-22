@@ -1,0 +1,13 @@
+{
+	"lanterna": {"name": "Lanterna", "icon": "lamp", "desc": "Uma lanterna de metal, velha mas funcional. [F] liga/desliga. A bateria é limitada: pilhas espalhadas pela casa a recarregam."},
+	"chave_secretaria": {"name": "Chave da secretaria", "icon": "key", "desc": "Chave pequena com uma etiqueta desbotada: 'Secretaria'."},
+	"foto_antiga": {"name": "Fotografia antiga", "icon": "photo", "desc": "Doze crianças e uma mulher alta ao fundo. Há um espaço vazio na última fila. No verso: 'Inauguração — 1978'."},
+	"chave_servico": {"name": "Chave de serviço", "icon": "key", "desc": "Chave de ferro pesada. Abre a porta de serviço do salão principal."},
+	"chave_enfermaria": {"name": "Chave da enfermaria", "icon": "key", "desc": "Chave verde-clara, com uma cruz riscada a lápis."},
+	"caixa_tomas": {"name": "Caixa de música de Tomás", "icon": "musicbox", "desc": "Uma caixa de música pequena e arranhada. Falta a manivela, mas ainda toca baixinho."},
+	"chave_alcapao": {"name": "Chave do alçapão", "icon": "key", "desc": "Uma chave enferrujada, presa a uma fita com o desenho de uma escada."},
+	"cartao_acesso": {"name": "Cartão de acesso", "icon": "photo", "desc": "Cartão magnético com a inscrição 'NÍVEL B — LÁZARO'."},
+	"chip_lazaro": {"name": "Chip Lázaro", "icon": "note", "desc": "Um chip de memória do tamanho de uma unha, quente ao toque."},
+	"bateria_lab": {"name": "Bateria do laboratório", "icon": "battery", "desc": "Célula de energia pesada. Ainda guarda carga."},
+	"cartao_controle": {"name": "Cartão de controle", "icon": "photo", "desc": "Credencial de administrador do sistema. Abre a sala de controle."}
+}
