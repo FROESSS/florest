@@ -4,6 +4,7 @@ extends Node
 
 var game: Game
 var busy: bool = false
+var current_obj: Interactable = null
 var _pause_depth: int = 0
 
 const GENERIC_LOCKED := "Está trancado."
@@ -22,6 +23,7 @@ func interact(obj: Interactable) -> void:
 		game.hud.set_hidden(true)
 		return
 	busy = true
+	current_obj = obj
 	_pause(true)
 	game.player.play_interact()
 	var req: Dictionary = spec.get("requires", {})
@@ -39,8 +41,10 @@ func interact(obj: Interactable) -> void:
 		await run(effects)
 		if once:
 			NarrativeManager.set_flag(done_flag, true)
+	current_obj = null
 	_pause(false)
 	busy = false
+	_autosave()
 
 func run_trigger(trig: Dictionary, flag_id: String) -> void:
 	if busy:
@@ -51,6 +55,7 @@ func run_trigger(trig: Dictionary, flag_id: String) -> void:
 	await run(trig.get("effects", []))
 	_pause(false)
 	busy = false
+	_autosave()
 
 func _pause(on: bool) -> void:
 	if on:
@@ -62,7 +67,7 @@ func _pause(on: bool) -> void:
 func _default_once(effects: Array) -> bool:
 	for e in effects:
 		if e is Dictionary:
-			for k in ["give", "memory", "doc", "take", "puzzle", "choice"]:
+			for k in ["give", "take", "battery", "choice"]:
 				if e.has(k):
 					return true
 	return false
@@ -117,7 +122,7 @@ func _run_one(e: Dictionary) -> void:
 			NarrativeManager.add_memory(mid)
 			GameManager.toast.emit(LocalizationManager.tf("hud.memory_got", [NarrativeManager.memories_db.get(mid, {}).get("title", mid)]))
 		else:
-			await game.dialogue.run(["A lembrança já voltou. Não há mais nada aqui."])
+			await game.memory.play_memory(mid)   # reviver uma lembrança já registrada
 	if e.has("doc"):
 		var did := str(e["doc"])
 		NarrativeManager.add_document(did)
@@ -126,16 +131,17 @@ func _run_one(e: Dictionary) -> void:
 		if not GameManager.test_mode:
 			game.book.read_document(did)
 			await game.book.closed
-	if e.has("puzzle"):
-		var pid := str(e["puzzle"])
-		var solved := NarrativeManager.has_flag("solved_" + pid)
-		if not solved:
-			solved = await game.puzzle.open(pid)
-		if solved:
-			NarrativeManager.set_flag("solved_" + pid, true)
-			await run(e.get("on_solved", []))
 		else:
-			await run(e.get("on_fail", []))
+			GameManager.docs_opened += 1
+	if e.has("puzzle"):
+		await _run_puzzle(e)
+	if e.has("inspect"):
+		var ins: Dictionary = e["inspect"] if e["inspect"] is Dictionary else {}
+		if not GameManager.test_mode and current_obj != null:
+			game.book.inspect_object(current_obj, str(ins.get("title", current_obj.spec.get("name", ""))), str(ins.get("text", "")))
+			await game.book.closed
+		else:
+			GameManager.docs_opened += 1
 	if e.has("choice"):
 		await _run_choice(str(e["choice"]))
 	if e.has("goto"):
@@ -177,10 +183,42 @@ func _run_one(e: Dictionary) -> void:
 	if e.has("ending"):
 		await game.run_ending(str(e["ending"]))
 
+func _autosave() -> void:
+	if GameManager.is_chased() or GameManager.ended != "" or game.changing_room:
+		return
+	SaveManager.save_to("auto")
+
+## Puzzle com estados: não iniciado → em andamento → resolvido (ou bloqueado).
+## Cancelar/errar NUNCA tranca o mecanismo; resolvido executa on_solved uma vez e depois `repeat`.
+func _run_puzzle(e: Dictionary) -> void:
+	var pid := str(e["puzzle"])
+	var st := NarrativeManager.puzzle_state(pid)
+	if st == "blocked":
+		await run([{"text": e.get("blocked_text", "Não consigo mexer nisso agora.")}])
+		return
+	if st != "solved":
+		NarrativeManager.set_puzzle_state(pid, "in_progress")
+		var ok: bool = await game.puzzle.open(pid)
+		NarrativeManager.add_attempt(pid)
+		if not ok:
+			await run(e.get("on_fail", []))
+			return
+		NarrativeManager.set_puzzle_state(pid, "solved")
+	var done_flag := "onsolved_" + pid
+	if not NarrativeManager.has_flag(done_flag):
+		await run(e.get("on_solved", []))
+		NarrativeManager.set_flag(done_flag, true)
+	elif e.has("repeat"):
+		await run(e["repeat"])
+	elif not bool(e.get("silent_repeat", false)):
+		await run([{"text": "Já resolvi isso."}])
+
 func _run_choice(cid: String) -> void:
 	var def: Dictionary = NarrativeManager.choices_db.get(cid, {})
 	if def.is_empty():
 		return
+	if NarrativeManager.flags.has("choice_" + cid) and not bool(def.get("repeatable", false)):
+		return   # escolha única já feita: não reexecuta nem sobrescreve
 	var opts: Array = []
 	for o in def.get("options", []):
 		var req: Dictionary = o.get("requires", {})
@@ -192,8 +230,10 @@ func _run_choice(cid: String) -> void:
 		idx = await game.dialogue.choose(str(def.get("prompt", "")), opts)
 	if idx < 0 or idx >= opts.size():
 		idx = 0
-	NarrativeManager.set_flag("choice_" + cid, idx)
-	await run(def["options"][idx].get("effects", []))
+	var picked: Dictionary = def["options"][idx]
+	if not bool(def.get("repeatable", false)) or not picked.get("effects", []).is_empty():
+		NarrativeManager.set_flag("choice_" + cid, idx)
+	await run(picked.get("effects", []))
 
 func _run_final_choice() -> void:
 	var opts: Array = NarrativeManager.final_options()

@@ -43,7 +43,7 @@ func open(puzzle_id: String) -> bool:
 	if def.is_empty():
 		return false
 	if GameManager.test_mode:
-		return true
+		return bool(GameManager.test_puzzle_answers.get(puzzle_id, true))
 	_build()
 	visible = true
 	var res: bool = await _closed

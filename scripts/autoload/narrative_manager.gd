@@ -30,6 +30,10 @@ var flags: Dictionary = {}
 var docs_found: Array[String] = []
 var memories_found: Array[String] = []
 var objective: String = ""
+var puzzle_states: Dictionary = {}     # id -> not_started | in_progress | solved | blocked
+var puzzle_attempts: Dictionary = {}
+
+const PUZZLE_STATES := ["not_started", "in_progress", "solved", "blocked"]
 
 func _ready() -> void:
 	load_all()
@@ -84,6 +88,26 @@ func reset() -> void:
 	docs_found.clear()
 	memories_found.clear()
 	objective = ""
+	puzzle_states.clear()
+	puzzle_attempts.clear()
+
+func puzzle_state(pid: String) -> String:
+	if has_flag("solved_" + pid):
+		return "solved"
+	return str(puzzle_states.get(pid, "not_started"))
+
+func set_puzzle_state(pid: String, state: String) -> void:
+	if state not in PUZZLE_STATES:
+		return
+	if puzzle_state(pid) == "solved" and state != "solved":
+		return    # resolvido nunca regride
+	puzzle_states[pid] = state
+	if state == "solved":
+		set_flag("solved_" + pid, true)
+
+func add_attempt(pid: String) -> int:
+	puzzle_attempts[pid] = int(puzzle_attempts.get(pid, 0)) + 1
+	return int(puzzle_attempts[pid])
 
 func set_flag(id: String, value: Variant = true) -> void:
 	flags[id] = value
@@ -199,6 +223,8 @@ func serialize() -> Dictionary:
 		"docs": docs_found.duplicate(),
 		"memories": memories_found.duplicate(),
 		"objective": objective,
+		"puzzles": puzzle_states.duplicate(),
+		"attempts": puzzle_attempts.duplicate(),
 	}
 
 func deserialize(d: Dictionary) -> void:
@@ -216,3 +242,13 @@ func deserialize(d: Dictionary) -> void:
 		if memories_db.has(str(v)):
 			memories_found.append(str(v))
 	objective = str(d.get("objective", ""))
+	var pz: Dictionary = d.get("puzzles", {})
+	for k in pz:
+		if str(pz[k]) in PUZZLE_STATES and puzzles_db.has(str(k)):
+			puzzle_states[str(k)] = str(pz[k])
+	for k in flags:
+		if str(k).begins_with("solved_") and puzzles_db.has(str(k).substr(7)):
+			puzzle_states[str(k).substr(7)] = "solved"
+	var at: Dictionary = d.get("attempts", {})
+	for k in at:
+		puzzle_attempts[str(k)] = int(at[k])

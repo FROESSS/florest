@@ -90,7 +90,7 @@
 				{"flag": "clara_wary"},
 				{"say": {"who": "Clara", "text": "Faz bem em desconfiar. Mesmo assim, venha."}}]}
 		]},
-		"tomas": {"prompt": "Tomás pede de volta a caixa de música.", "options": [
+		"tomas": {"repeatable": true, "prompt": "Tomás pede de volta a caixa de música.", "options": [
 			{"text": "Entregar a caixa a Tomás.", "requires": {"items": ["caixa_tomas"]}, "effects": [
 				{"take": "caixa_tomas"}, {"flag": "helped_child_1"}, {"counter": "helped_children", "add": 1},
 				{"say": {"who": "Tomás", "text": "Ela toca. Toca! Leve isto: pilhas que eu guardava."}},
@@ -99,7 +99,7 @@
 				{"text": "Tomás desaparece devagar, sem reclamar."}]},
 			{"text": "Ir embora.", "effects": []}
 		]},
-		"lia": {"prompt": "Lia puxa a manga de Elias.", "options": [
+		"lia": {"repeatable": true, "prompt": "Lia puxa a manga de Elias.", "options": [
 			{"text": "Ajudar Lia a arrumar os brinquedos.", "effects": [
 				{"puzzle": "p_brinquedos", "on_solved": [
 					{"flag": "helped_child_2"}, {"counter": "helped_children", "add": 1},
@@ -110,7 +110,7 @@
 				{"text": ["Lia sorri com a boca esticada demais.", "O chão estremece. Algo se mexe embaixo da casa."]}]},
 			{"text": "Ignorar.", "effects": []}
 		]},
-		"beto": {"prompt": "Beto, preso num canto do laboratório, estende as mãos.", "options": [
+		"beto": {"repeatable": true, "prompt": "Beto, preso num canto do laboratório, estende as mãos.", "options": [
 			{"text": "Abrir a tranca da cela e ajudar Beto.", "effects": [
 				{"flag": "helped_child_3"}, {"counter": "helped_children", "add": 1},
 				{"say": {"who": "Beto", "text": "Tem uma passagem atrás do arquivo. Eu mostro."}}]},

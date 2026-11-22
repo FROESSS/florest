@@ -34,6 +34,7 @@
 			"name": "Laboratório — Arquivos", "size": [26, 14], "theme": "lab", "ambient": 0.2, "ambient_sound": "amb_lab", "decals": 0.3,
 			"blocks": [[8, 6, 1, 3]],
 			"spawns": {"este": [23, 8]},
+			"recovery": [[6, 4]],
 			"lights": [{"tile": [6, 6], "radius": 90, "energy": 0.6, "color": "#e8f0ff", "flicker": true}, {"tile": [18, 6], "radius": 90, "energy": 0.5, "color": "#ffb0b0"}],
 			"objects": [
 				{"id": "d_este", "kind": "labdoor", "tile": [25, 8], "name": "Saguão", "prompt": "Abrir", "door": {"to": "c4_lab_hall", "spawn": "oeste"}},
@@ -44,7 +45,7 @@
 						{"objective": "Entrar na câmara B-2 (saguão, porta ao norte) e ler o registro L-12 no arquivo."}]}]},
 				{"id": "arq1", "kind": "cabinet", "tile": [11, 2], "size": [1, 2], "name": "Arquivo: falhas", "prompt": "Abrir", "effects": [{"doc": "lazaro_falha"}]},
 				{"id": "arq2", "kind": "cabinet", "tile": [14, 2], "size": [1, 2], "name": "Arquivo: encerramento", "prompt": "Abrir", "effects": [{"doc": "memorando_encerramento"}]},
-				{"id": "arq3", "kind": "cabinet", "tile": [20, 2], "size": [1, 2], "name": "Arquivo: L-12", "prompt": "Abrir", "important": true, "effects": [
+				{"id": "arq3", "kind": "cabinet", "tile": [20, 2], "size": [1, 2], "name": "Arquivo: L-12", "prompt": "Abrir", "important": true, "once": false, "effects": [
 					{"doc": "registro_elias"}, {"choice": "registro_elias"}]},
 				{"id": "cofre", "kind": "cabinet", "tile": [3, 9], "size": [1, 2], "name": "Cofre da diretoria", "prompt": "Abrir", "important": true, "once": false, "effects": [
 					{"if": {"flags": ["equipment_destroyed"]}, "then": [{"text": "O cofre ainda se abriria, mas sem o projetor de memórias não há como ouvir a fita. Fui eu quem o destruiu."}],

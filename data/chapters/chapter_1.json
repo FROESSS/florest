@@ -88,13 +88,13 @@
 				{"id": "cama3", "kind": "bed", "tile": [12, 3], "size": [1, 2], "name": "Cama 3", "prompt": "Esconder-se", "hide": true},
 				{"id": "cama4", "kind": "bed", "tile": [15, 3], "size": [1, 2], "name": "Cama 4", "prompt": "Esconder-se", "hide": true},
 				{"id": "des1", "kind": "drawing", "variant": "sun:3", "tile": [6, 1], "name": "Desenho da cama 1", "prompt": "Examinar", "effects": [
-					{"text": "Giz de cera sobre papel. Três sóis amarelos, bem apertados. Assinado: 'cama 1'."}]},
+					{"inspect": {"text": "Giz de cera sobre papel. Três sóis amarelos, bem apertados. Assinado: 'cama 1'."}}]},
 				{"id": "des2", "kind": "drawing", "variant": "house:1", "tile": [9, 1], "name": "Desenho da cama 2", "prompt": "Examinar", "effects": [
-					{"text": "Uma casinha vermelha, sozinha. Só uma. Assinado: 'cama 2'."}]},
+					{"inspect": {"text": "Uma casinha vermelha, sozinha. Só uma. Assinado: 'cama 2'."}}]},
 				{"id": "des3", "kind": "drawing", "variant": "tree:4", "tile": [12, 1], "name": "Desenho da cama 3", "prompt": "Examinar", "effects": [
-					{"text": "Quatro árvores verdes em fila. Assinado: 'cama 3'."}]},
+					{"inspect": {"text": "Quatro árvores verdes em fila. Assinado: 'cama 3'."}}]},
 				{"id": "des4", "kind": "drawing", "variant": "star:2", "tile": [15, 1], "name": "Desenho da cama 4", "prompt": "Examinar", "effects": [
-					{"text": "Duas estrelas azuis. Assinado: 'cama 4'. É a minha cama? A letra parece a minha."}]},
+					{"inspect": {"text": "Duas estrelas azuis. Assinado: 'cama 4'. É a minha cama? A letra parece a minha."}}]},
 				{"id": "caixa", "kind": "musicbox", "tile": [14, 8], "px": [10, 8], "name": "Caixa de música", "prompt": "Abrir", "important": true, "solid": true, "effects": [
 					{"puzzle": "p_caixa_musica", "on_solved": [
 						{"sfx": "pickup"},
@@ -115,9 +115,10 @@
 				{"id": "porta", "kind": "door", "tile": [3, 1], "name": "Corredor", "prompt": "Abrir", "door": {"to": "c1_corredor", "spawn": "porta_sec"}},
 				{"id": "mesa", "kind": "desk", "tile": [5, 4], "size": [3, 1], "name": "Escrivaninha", "prompt": "Examinar", "effects": [
 					{"text": "Papéis rasgados, carimbos secos. A gaveta de baixo está entreaberta, mas não me interessa... ainda."}]},
-				{"id": "foto", "kind": "photo", "tile": [3, 6], "px": [8, 8], "name": "Fotografia", "prompt": "Pegar", "important": true, "solid": false, "effects": [
-					{"memory": "foto"}, {"give": "foto_antiga"},
-					{"text": "Na lembrança, alguém guardava uma chave na gaveta de baixo da escrivaninha."}]},
+				{"id": "foto", "kind": "photo", "tile": [3, 6], "px": [8, 8], "name": "Fotografia", "prompt": "Examinar", "important": true, "solid": false, "once": false, "effects": [
+					{"inspect": {"text": "Uma fotografia amarelada: doze crianças em fila e uma mulher alta ao fundo. No verso, a letra de alguém com pressa: 'Inauguração — 1978'."}},
+					{"if": {"not_flags": ["mem_foto"]}, "then": [{"memory": "foto"}, {"give": "foto_antiga"},
+					{"text": "Na lembrança, alguém guardava uma chave na gaveta de baixo da escrivaninha."}]}]},
 				{"id": "gaveta", "kind": "drawers", "tile": [9, 4], "name": "Gaveta de baixo", "prompt": "Abrir", "important": true,
 					"requires": {"flags": ["mem_foto"]}, "locked_text": "Só tem poeira e clipes enferrujados. Nada que me ajude... por enquanto.",
 					"effects": [
@@ -136,6 +137,7 @@
 		"c1_saguao": {
 			"name": "Salão Principal", "size": [34, 22], "theme": "orfanato", "ambient": 0.14, "ambient_sound": "amb_house", "decals": 0.2,
 			"spawns": {"oeste": [2, 12]},
+			"recovery": [[20, 4], [30, 12]],
 			"lights": [
 				{"tile": [8, 9], "radius": 90, "energy": 0.5},
 				{"tile": [24, 9], "radius": 90, "energy": 0.5, "flicker": true},

@@ -2,7 +2,7 @@ extends Node
 ## Salvamento versionado e validado em user:// (nunca na pasta do jogo).
 
 const SAVE_DIR := "user://saves/"
-const VERSION := 1
+const VERSION := 2
 const SLOTS := ["auto", "slot1", "slot2", "slot3"]
 
 func _ready() -> void:
@@ -26,6 +26,8 @@ func build_state() -> Dictionary:
 		"play_time": GameManager.play_time,
 		"inventory": InventoryManager.serialize(),
 		"narrative": NarrativeManager.serialize(),
+		"world": GameManager.world_state.duplicate(true),
+		"player": GameManager.player_state.duplicate(true),
 	}
 
 func validate(d: Dictionary) -> String:
@@ -51,7 +53,17 @@ func validate(d: Dictionary) -> String:
 	return ""
 
 func _migrate(d: Dictionary) -> Dictionary:
-	# Ponto de extensão: migra versões antigas para VERSION (hoje só existe a v1).
+	# v1 -> v2: adiciona estados de puzzle (derivados das flags solved_*), mundo e jogador.
+	if int(d.get("version", 1)) < 2:
+		var nar: Dictionary = d.get("narrative", {})
+		var pz := {}
+		for k in nar.get("flags", {}):
+			if str(k).begins_with("solved_"):
+				pz[str(k).substr(7)] = "solved"
+		nar["puzzles"] = pz
+		d["narrative"] = nar
+		d["world"] = {}
+		d["player"] = {}
 	d["version"] = VERSION
 	return d
 
@@ -109,6 +121,8 @@ func apply_state(d: Dictionary) -> bool:
 	var pos: Array = d["pos"]
 	GameManager.pending_pos = Vector2(float(pos[0]), float(pos[1]))
 	GameManager.has_pending_pos = true
+	GameManager.world_state = (d.get("world", {}) as Dictionary).duplicate(true) if d.get("world") is Dictionary else {}
+	GameManager.player_state = (d.get("player", {}) as Dictionary).duplicate(true) if d.get("player") is Dictionary else {}
 	InventoryManager.deserialize(d["inventory"])
 	NarrativeManager.deserialize(d["narrative"])
 	return true

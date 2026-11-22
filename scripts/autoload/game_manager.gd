@@ -28,6 +28,11 @@ var pending_pos: Vector2 = Vector2.ZERO   # posição a restaurar ao carregar um
 var has_pending_pos: bool = false
 var test_mode: bool = false             # usado por tests/ (puzzles/escolhas auto-resolvidos)
 var test_choices: Dictionary = {}       # choice_id -> índice
+var deaths: int = 0
+var docs_opened: int = 0                # contador de aberturas de documento/inspeção (testes)
+var test_puzzle_answers: Dictionary = {} # puzzle_id -> bool (modo de teste)
+var world_state: Dictionary = {}        # estado persistente do mundo (buracos do Morador etc.)
+var player_state: Dictionary = {}       # estamina, ferimentos, kits usados
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -52,6 +57,8 @@ func new_game() -> void:
 	ended = ""
 	input_locked = false
 	has_pending_pos = false
+	world_state = {}
+	player_state = {}
 	NarrativeManager.reset()
 	InventoryManager.reset()
 	var ch: Dictionary = NarrativeManager.chapters_db.get(1, {})

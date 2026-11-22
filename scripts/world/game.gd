@@ -331,8 +331,17 @@ func _on_captured(by: String) -> void:
 		await get_tree().create_timer(1.0).timeout
 	await SceneManager.fade_out(0.5)
 	GameManager.set_flashlight(false)
-	if SaveManager.has_slot("auto"):
-		SaveManager.load_slot("auto")
+	# Morte NÃO desfaz progresso (itens, documentos, puzzles, flags): só reposiciona Elias
+	# no ponto de recuperação válido mais próximo, longe de inimigos, e reinicia os inimigos.
+	var extra: Array = []
+	for en in room.enemies:
+		if is_instance_valid(en):
+			extra.append(en.position)
+	var rp := Recovery.choose(room, player.position, extra)
+	GameManager.pending_pos = rp["pos"]
+	GameManager.has_pending_pos = true
+	GameManager.deaths += 1
+	GameManager.world_state["deaths"] = GameManager.deaths
 	await load_room(GameManager.current_room, GameManager.last_spawn, true, false)
 	_capturing = false
 	await SceneManager.fade_in(0.5)

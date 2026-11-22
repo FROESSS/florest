@@ -19,7 +19,7 @@
 				{"id": "alcapao", "kind": "hatch", "tile": [30, 6], "size": [2, 2], "name": "Alçapão", "prompt": "Abrir", "important": true, "once": false,
 					"requires": {"items": ["chave_alcapao"]}, "locked_text": "Um alçapão trancado por um cadeado. Preciso de uma chave.",
 					"effects": [
-						{"puzzle": "p_simbolos", "on_solved": [{"sfx": "door_open"}, {"text": "O cadeado cede. Uma escada estreita desce para uma escuridão quente."}]},
+						{"puzzle": "p_simbolos", "silent_repeat": true, "on_solved": [{"sfx": "door_open"}, {"text": "O cadeado cede. Uma escada estreita desce para uma escuridão quente."}]},
 						{"if": {"flags": ["solved_p_simbolos"]}, "then": [{"goto": {"room": "c2_alcapao", "spawn": "entrada"}}]}]},
 				{"id": "w1", "kind": "wardrobe", "tile": [2, 2], "size": [2, 2], "name": "Armário", "prompt": "Esconder-se", "hide": true},
 				{"id": "w2", "kind": "wardrobe", "tile": [29, 2], "size": [2, 2], "name": "Armário", "prompt": "Esconder-se", "hide": true},
@@ -71,9 +71,9 @@
 					{"text": "Na gaveta há giz, uma régua e uma chave verde com uma cruz riscada."}, {"give": "chave_enfermaria"},
 					{"objective": "Abrir a enfermaria (corredor) e procurar os prontuários."}]},
 				{"id": "des_a", "kind": "drawing", "variant": "spiral:1", "tile": [14, 1], "name": "Desenho de escada (esquerda)", "prompt": "Examinar", "effects": [
-					{"text": "Uma escada desenhada em giz azul. Legenda: '7 degraus'."}, {"flag": "sym_2"}]},
+					{"inspect": {"text": "Uma escada desenhada em giz azul. Legenda: '7 degraus'."}}, {"flag": "sym_2"}]},
 				{"id": "des_b", "kind": "drawing", "variant": "spiral:1", "tile": [17, 1], "name": "Desenho de escada (direita)", "prompt": "Examinar", "effects": [
-					{"text": "Outra escada, em giz vermelho, bem menor. Legenda: '1 degrau'."}, {"flag": "sym_3"}]},
+					{"inspect": {"text": "Outra escada, em giz vermelho, bem menor. Legenda: '1 degrau'."}}, {"flag": "sym_3"}]},
 				{"id": "c1", "kind": "schooldesk", "tile": [5, 6]}, {"id": "c2", "kind": "schooldesk", "tile": [8, 6]},
 				{"id": "c3", "kind": "schooldesk", "tile": [11, 6]}, {"id": "c4", "kind": "schooldesk", "tile": [5, 9]},
 				{"id": "c5", "kind": "schooldesk", "tile": [8, 9]}, {"id": "c6", "kind": "schooldesk", "tile": [11, 9]},

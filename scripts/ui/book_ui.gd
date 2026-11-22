@@ -8,6 +8,7 @@ var panel: Panel
 var list: ScrollContainer
 var listbox: VBoxContainer
 var desc: RichTextLabel
+var inspect_tex: TextureRect
 var title: Label
 var tab_buttons: Array[Button] = []
 var mode: String = "inventory"     # inventory | journal | doc
@@ -54,6 +55,14 @@ func _ready() -> void:
 	desc.bbcode_enabled = false
 	desc.add_theme_color_override("default_color", UIKit.TEXT)
 	panel.add_child(desc)
+	inspect_tex = TextureRect.new()
+	inspect_tex.position = Vector2(12, 34)
+	inspect_tex.size = Vector2(190, 252)
+	inspect_tex.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	inspect_tex.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	inspect_tex.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	inspect_tex.visible = false
+	panel.add_child(inspect_tex)
 
 func is_open() -> bool:
 	return _open
@@ -64,6 +73,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause") or event.is_action_pressed("ui_cancel") \
 			or (mode == "inventory" and event.is_action_pressed("inventory")) \
 			or (mode == "journal" and event.is_action_pressed("journal")):
+		get_viewport().set_input_as_handled()
+		_close()
+	elif (mode == "doc" or mode == "inspect") and event.is_action_pressed("interact"):
 		get_viewport().set_input_as_handled()
 		_close()
 	elif mode == "journal":
@@ -81,6 +93,7 @@ func _close() -> void:
 
 func open_inventory() -> void:
 	mode = "inventory"
+	inspect_tex.visible = false
 	title.text = LocalizationManager.t("inv.title")
 	for b in tab_buttons:
 		b.visible = false
@@ -89,6 +102,7 @@ func open_inventory() -> void:
 
 func open_journal(start_tab: int = 0) -> void:
 	mode = "journal"
+	inspect_tex.visible = false
 	title.text = LocalizationManager.t("journal.title")
 	for i in tab_buttons.size():
 		tab_buttons[i].visible = true
@@ -97,8 +111,31 @@ func open_journal(start_tab: int = 0) -> void:
 	_refresh()
 	_show()
 
+## Inspeção visual: mostra o sprite do objeto bem ampliado com a descrição.
+func inspect_object(obj: Interactable, ttl: String, text: String) -> void:
+	mode = "inspect"
+	title.text = ttl
+	for b in tab_buttons:
+		b.visible = false
+	_clear_list()
+	ids.clear()
+	list.visible = false
+	inspect_tex.visible = true
+	if obj.sprite != null and obj.sprite.texture != null:
+		var t: Texture2D = obj.sprite.texture
+		inspect_tex.texture = t
+	else:
+		inspect_tex.texture = null
+	desc.position = Vector2(212, 34)
+	desc.size = Vector2(336, 252)
+	desc.text = text
+	_open = true
+	visible = true
+	AudioManager.play_sfx("ui_move", -8.0)
+
 func read_document(doc_id: String) -> void:
 	mode = "doc"
+	inspect_tex.visible = false
 	var d: Dictionary = NarrativeManager.docs_db.get(doc_id, {})
 	title.text = str(d.get("title", "Documento"))
 	for b in tab_buttons:

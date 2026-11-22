@@ -70,6 +70,7 @@
 			"name": "Sala das Lembranças", "size": [20, 12], "theme": "memoria", "ambient": 0.3, "ambient_sound": "amb_lab", "decals": 0.1,
 			"blocks": [[6, 6, 2, 2]],
 			"spawns": {"porta": [10, 10]},
+			"recovery": [[10, 4]],
 			"lights": [{"tile": [10, 5], "radius": 100, "energy": 0.6, "color": "#c8c0b0"}],
 			"objects": [
 				{"id": "porta", "kind": "door", "tile": [10, 11], "name": "Refeitório", "prompt": "Abrir", "door": {"to": "c3_refeitorio", "spawn": "norte"}},
