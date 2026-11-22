@@ -5,7 +5,8 @@ extends CanvasLayer
 signal closed
 
 var panel: Panel
-var list: ItemList
+var list: ScrollContainer
+var listbox: VBoxContainer
 var desc: RichTextLabel
 var title: Label
 var tab_buttons: Array[Button] = []
@@ -36,21 +37,22 @@ func _ready() -> void:
 		b.pressed.connect(func() -> void: _set_tab(idx))
 		panel.add_child(b)
 		tab_buttons.append(b)
-	list = ItemList.new()
+	list = ScrollContainer.new()
 	list.position = Vector2(12, 34)
 	list.size = Vector2(190, 252)
-	list.add_theme_font_size_override("font_size", 11)
-	list.add_theme_stylebox_override("panel", UIKit.box(Color(0.08, 0.08, 0.1), Color(0.3, 0.29, 0.26), 1))
-	list.add_theme_stylebox_override("focus", UIKit.box(Color(0.08, 0.08, 0.1), Color(0.95, 0.85, 0.5), 2))
-	list.add_theme_color_override("font_selected_color", Color("fff0b0"))
-	list.item_selected.connect(_on_selected)
+	list.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
 	panel.add_child(list)
+	listbox = VBoxContainer.new()
+	listbox.custom_minimum_size = Vector2(184, 0)
+	listbox.add_theme_constant_override("separation", 2)
+	list.add_child(listbox)
 	desc = RichTextLabel.new()
 	desc.position = Vector2(212, 34)
 	desc.size = Vector2(336, 252)
 	desc.add_theme_font_size_override("normal_font_size", 11)
 	desc.add_theme_stylebox_override("normal", UIKit.box(Color(0.08, 0.08, 0.1), Color(0.3, 0.29, 0.26), 1))
 	desc.bbcode_enabled = false
+	desc.add_theme_color_override("default_color", UIKit.TEXT)
 	panel.add_child(desc)
 
 func is_open() -> bool:
@@ -101,7 +103,7 @@ func read_document(doc_id: String) -> void:
 	title.text = str(d.get("title", "Documento"))
 	for b in tab_buttons:
 		b.visible = false
-	list.clear()
+	_clear_list()
 	ids.clear()
 	list.visible = false
 	desc.position = Vector2(12, 34)
@@ -116,40 +118,57 @@ func _show() -> void:
 		list.visible = true
 		desc.position = Vector2(212, 34)
 		desc.size = Vector2(336, 252)
-		list.grab_focus()
+		_focus_list()
 	AudioManager.play_sfx("ui_move", -8.0)
 
 func _set_tab(i: int) -> void:
 	tab = i
 	_refresh()
 
+func _clear_list() -> void:
+	for c in listbox.get_children():
+		listbox.remove_child(c)
+		c.queue_free()
+
+func _add_entry(label: String) -> void:
+	var idx := ids.size() - 1
+	var b := UIKit.button(label, 11)
+	b.focus_entered.connect(func() -> void: _on_selected(idx))
+	b.pressed.connect(func() -> void: _on_selected(idx))
+	listbox.add_child(b)
+
+func _focus_list() -> void:
+	if listbox.get_child_count() > 0:
+		(listbox.get_child(0) as Button).grab_focus()
+	elif tab_buttons.size() > 0 and tab_buttons[0].visible:
+		tab_buttons[tab].grab_focus()
+
 func _refresh() -> void:
-	list.clear()
+	_clear_list()
 	ids.clear()
 	desc.text = ""
 	if mode == "inventory":
 		for id in InventoryManager.items:
 			var info := InventoryManager.item_info(id)
-			list.add_item(str(info.get("name", id)))
 			ids.append(id)
+			_add_entry(str(info.get("name", id)))
 		if ids.is_empty():
 			desc.text = LocalizationManager.t("inv.empty")
 	elif mode == "journal":
 		match tab:
 			0:
 				for id in NarrativeManager.docs_found:
-					list.add_item(str(NarrativeManager.docs_db[id].get("title", id)))
 					ids.append(id)
+					_add_entry(str(NarrativeManager.docs_db[id].get("title", id)))
 			1:
 				for id in NarrativeManager.memories_found:
-					list.add_item(str(NarrativeManager.memories_db[id].get("title", id)))
 					ids.append(id)
+					_add_entry(str(NarrativeManager.memories_db[id].get("title", id)))
 			2:
 				desc.text = NarrativeManager.objective if NarrativeManager.objective != "" else LocalizationManager.t("journal.none")
 		if tab != 2 and ids.is_empty():
 			desc.text = LocalizationManager.t("journal.none")
 	if not ids.is_empty():
-		list.select(0)
 		_on_selected(0)
 
 func _on_selected(i: int) -> void:

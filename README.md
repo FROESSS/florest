@@ -8,7 +8,7 @@ Você é **Elias**, 12 anos, que acorda num orfanato isolado e precisa sobrevive
 - Idioma inicial: **pt-BR**. Single-player.
 - Arte e áudio: **100% procedurais e originais**, gerados em código (ver `docs/ASSET_LICENSES.md`). Nenhum asset de jogos comerciais.
 
-## Estado real do projeto (v0.9.0)
+## Estado real do projeto (v1.0.0)
 
 | Área | Estado |
 |---|---|
@@ -73,7 +73,7 @@ tools/             capturas de tela (ShotRunner)
 O workflow `Windows Portable` roda em `windows-latest`: baixa o Godot 4.4.1 e os export templates da fonte oficial (SHA-512 verificado), importa, roda os testes, exporta (`Orfanato.exe` com PCK embutido), monta o ZIP portable, executa um smoke test do EXE e publica o artefato. Em tags `v*` cria a GitHub Release com o ZIP e o checksum SHA-256.
 
 - Manual: *Actions → Windows Portable → Run workflow*.
-- Release: `git tag v0.9.0 && git push origin v0.9.0`.
+- Release: `git tag v1.0.0 && git push origin v1.0.0`.
 
 ## Licença
 

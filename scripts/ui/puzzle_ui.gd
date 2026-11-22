@@ -72,7 +72,7 @@ func _build() -> void:
 	dim.color = Color(0, 0, 0, 0.7)
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
 	add_child(dim)
-	panel = UIKit.panel(Vector2(120, 60), Vector2(400, 240))
+	panel = UIKit.panel(Vector2(120, 40), Vector2(400, 280))
 	add_child(panel)
 	var title := UIKit.label(str(def.get("title", "Puzzle")), 13, Color("e6d27a"), false)
 	title.position = Vector2(12, 8)
@@ -82,10 +82,10 @@ func _build() -> void:
 	hint.size = Vector2(376, 56)
 	panel.add_child(hint)
 	msg = UIKit.label("", 11, Color("e0705a"), false)
-	msg.position = Vector2(12, 190)
+	msg.position = Vector2(12, 250)
 	panel.add_child(msg)
 	var esc := UIKit.label(LocalizationManager.t("puzzle.cancel"), 9, UIKit.DIM, false)
-	esc.position = Vector2(12, 218)
+	esc.position = Vector2(300, 256)
 	panel.add_child(esc)
 	match _kind:
 		"code": _build_code()
@@ -145,7 +145,7 @@ func _build_order() -> void:
 		if first == null:
 			first = b
 	var reset := UIKit.button("Refazer")
-	reset.position = Vector2(300, 212)
+	reset.position = Vector2(290, 224)
 	reset.pressed.connect(_reset_order)
 	panel.add_child(reset)
 	if first:
@@ -191,7 +191,7 @@ func _build_toggles() -> void:
 		box.add_child(b)
 		toggles.append(b)
 	var ok := UIKit.button(LocalizationManager.t("puzzle.confirm"))
-	ok.position = Vector2(140, 200)
+	ok.position = Vector2(140, 222)
 	ok.custom_minimum_size = Vector2(120, 22)
 	ok.alignment = HORIZONTAL_ALIGNMENT_CENTER
 	ok.pressed.connect(_check_toggles)

@@ -47,7 +47,7 @@ func _ready() -> void:
 	sub_t.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	add_child(sub_t)
 	box = VBoxContainer.new()
-	box.position = Vector2(440, 150)
+	box.position = Vector2(440, 118)
 	box.size = Vector2(170, 180)
 	add_child(box)
 	_add("menu.new_game", _on_new)
