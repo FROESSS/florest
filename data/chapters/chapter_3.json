@@ -11,6 +11,8 @@
 				{"tile": [28, 8], "radius": 70, "energy": 0.5, "color": "#d05070"}
 			],
 			"objects": [
+				{"id": "kit1", "kind": "medkit", "tile": [30, 9], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
+				{"id": "trap1", "kind": "trap", "tile": [30, 5], "name": "Piso estragado", "prompt": "Examinar", "solid": false, "effects": [{"text": "Uma crosta de tecido endurecida com farpas de osso. Melhor não pisar."}], "hazard": {"hurt": 1, "text": "O piso cede e Elias cai de mau jeito. Um corte profundo na perna.", "sfx": "drop"}},
 				{"id": "d_ref", "kind": "door", "variant": "organic", "tile": [33, 6], "name": "Refeitório", "prompt": "Abrir", "door": {"to": "c3_refeitorio", "spawn": "oeste"}},
 				{"id": "bilhete", "kind": "note", "tile": [6, 3], "px": [8, 8], "name": "Bilhete da manutenção", "prompt": "Ler", "important": true, "solid": false, "effects": [{"doc": "nota_fusiveis"}]},
 				{"id": "pilha1", "kind": "battery", "tile": [3, 9], "px": [6, 8], "name": "Pilhas", "prompt": "Pegar", "solid": false, "effects": [{"battery": 40}], "once": true, "vanish_when_done": true},
@@ -39,6 +41,7 @@
 				{"tile": [12, 13], "radius": 80, "energy": 0.5, "color": "#ffcc80"}, {"tile": [33, 8], "radius": 70, "energy": 0.5, "color": "#d05070"}
 			],
 			"objects": [
+				{"id": "kit1", "kind": "medkit", "tile": [30, 13], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
 				{"id": "d_oeste", "kind": "door", "variant": "organic", "tile": [0, 8], "name": "Túnel", "prompt": "Abrir", "door": {"to": "c3_tunel", "spawn": "este"}},
 				{"id": "d_norte", "kind": "door", "variant": "organic", "tile": [18, 1], "name": "Sala de memórias", "prompt": "Abrir", "door": {"to": "c3_memoria", "spawn": "porta"}},
 				{"id": "d_leste", "gated_by_barrier": true, "kind": "door", "variant": "organic", "tile": [35, 8], "name": "Caldeira", "prompt": "Abrir", "door": {"to": "c3_caldeira", "spawn": "oeste"}},
@@ -103,6 +106,7 @@
 			"spawns": {"oeste": [2, 8]},
 			"lights": [{"tile": [6, 5], "radius": 80, "energy": 0.6, "color": "#ffb060", "flicker": true}, {"tile": [22, 8], "radius": 90, "energy": 0.5, "color": "#d06050"}],
 			"objects": [
+				{"id": "kit1", "kind": "medkit", "tile": [27, 10], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
 				{"id": "d_oeste", "kind": "door", "variant": "organic", "tile": [0, 8], "name": "Refeitório", "prompt": "Abrir", "door": {"to": "c3_refeitorio", "spawn": "este"}},
 				{"id": "caldeira", "kind": "boiler", "tile": [18, 2], "size": [2, 2], "name": "Caldeira", "prompt": "Examinar", "effects": [
 					{"text": "Uma caldeira velha, ainda quente. O vapor sai em pulsos, no mesmo ritmo do tecido."}]},

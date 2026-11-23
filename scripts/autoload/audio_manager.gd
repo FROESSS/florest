@@ -15,7 +15,7 @@ const SOUND_NAMES := [
 	"step_walk", "step_run", "pickup", "error", "confirm", "ui_move", "door_open", "door_locked",
 	"hide", "flashlight", "drop", "heartbeat", "whisper", "hum", "screech", "growl", "drag",
 	"rumble", "breath", "music_box", "amb_house", "amb_lab", "amb_organic", "memory", "chase_loop",
-	"thud", "alarm", "fire",
+	"thud", "alarm", "fire", "gasp", "pain", "heal", "hole", "chapter",
 ]
 
 func _ready() -> void:
@@ -137,6 +137,11 @@ func _synth(name: String) -> AudioStreamWAV:
 		"thud": d = _tone(60.0, 0.4, 0.9, 0, 8.0, 0.0)
 		"alarm": d = _alarm()
 		"fire": d = _noise_burst(1.5, 0.35, 600.0, 1.0)
+		"gasp": d = _breath(0.7)
+		"pain": d = _tone(250.0, 0.32, 0.45, 2, 7.0, 1.2)
+		"heal": d = _heal_sound()
+		"hole": d = _rumble(1.1, 55.0, 0.6, 6.0)
+		"chapter": d = _chapter_sound()
 		_: return null
 	var loop := name.begins_with("amb_") or name == "chase_loop" or name == "hum" and false
 	return _make(d, loop)
@@ -374,4 +379,18 @@ func _alarm() -> PackedFloat32Array:
 		var t := float(i) / RATE
 		var f := 520.0 if fmod(t, 0.4) < 0.2 else 390.0
 		a[i] = signf(sin(TAU * f * t)) * 0.18
+	return a
+
+func _heal_sound() -> PackedFloat32Array:
+	var a := _noise_burst(0.35, 0.3, 500.0, 4.0)
+	a.append_array(_blips([440.0, 554.0, 659.0], 0.14, 0.22))
+	return a
+
+func _chapter_sound() -> PackedFloat32Array:
+	# acorde menor lento e grave, para as telas de transição de capítulo
+	var a := _alloc(4.0)
+	for i in a.size():
+		var t := float(i) / RATE
+		var env := sin(t / 4.0 * PI)
+		a[i] = (sin(TAU * 110.0 * t) * 0.3 + sin(TAU * 130.8 * t) * 0.22 + sin(TAU * 164.8 * t) * 0.18 + sin(TAU * 55.0 * t) * 0.25) * env * 0.7
 	return a

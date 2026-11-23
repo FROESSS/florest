@@ -12,6 +12,9 @@ var chase_label: Label
 var hidden_label: Label
 var hint_label: Label
 var objective_label: Label
+var stamina_fill: ColorRect
+var stamina_text: Label
+var wound_label: Label
 var vignette: TextureRect
 var _toast_t: float = 0.0
 var _sub_t: float = 0.0
@@ -64,6 +67,25 @@ func _ready() -> void:
 	remove_child(battery_text)
 	battery_box.add_child(battery_text)
 	battery_text.position = Vector2(42, -2)
+	var sbox := Control.new()
+	sbox.position = Vector2(8, 20)
+	add_child(sbox)
+	var sfr := ColorRect.new()
+	sfr.color = Color(0.8, 0.78, 0.7)
+	sfr.size = Vector2(38, 7)
+	sbox.add_child(sfr)
+	var sin_ := ColorRect.new()
+	sin_.color = Color(0.05, 0.05, 0.06)
+	sin_.position = Vector2(1, 1)
+	sin_.size = Vector2(36, 5)
+	sbox.add_child(sin_)
+	stamina_fill = ColorRect.new()
+	stamina_fill.color = Color("8fc0e0")
+	stamina_fill.position = Vector2(2, 2)
+	stamina_fill.size = Vector2(34, 3)
+	sbox.add_child(stamina_fill)
+	stamina_text = _mk(Vector2(50, 18), Vector2(120, 12), 9, HORIZONTAL_ALIGNMENT_LEFT)
+	wound_label = _mk(Vector2(8, 32), Vector2(160, 12), 9, HORIZONTAL_ALIGNMENT_LEFT)
 	GameManager.battery_changed.connect(func(_v: float) -> void: _update_battery())
 	GameManager.flashlight_changed.connect(func(_o: bool) -> void: _update_battery())
 	GameManager.chase_changed.connect(func(a: bool) -> void: chase_label.visible = a)
@@ -145,5 +167,12 @@ func _process(delta: float) -> void:
 		_hint_t -= delta
 		if _hint_t <= 0.0:
 			hint_label.text = ""
+	var pl = GameManager.player
+	if pl != null and is_instance_valid(pl):
+		stamina_fill.size.x = 34.0 * pl.stamina / Player.STAMINA_MAX
+		stamina_fill.color = Color("e0a060") if pl.exhausted else Color("8fc0e0")
+		stamina_text.text = LocalizationManager.t("hud.exhausted") if pl.exhausted else (LocalizationManager.t("hud.stamina") if pl.stamina < 99.0 else "")
+		var kits := InventoryManager.count("kit_pequeno") + InventoryManager.count("kit_grande")
+		wound_label.text = ("+ %s: %s%s" % [LocalizationManager.t("hud.wound"), pl.wound_name(), ("  [H] kits: %d" % kits) if kits > 0 else ""]) if pl.wound > 0 else ("[H] kits: %d" % kits if kits > 0 else "")
 	var chased := GameManager.is_chased()
 	vignette.modulate = Color(1, 0.5, 0.5, 1.0) if chased and not SettingsManager.reduce_flashes else Color.WHITE

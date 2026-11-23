@@ -5,7 +5,7 @@ Base: v1.0.0 publicada. Esta rodada: correção/expansão (prompt de aperfeiçoa
 ## Etapas
 - [x] E1 Diagnóstico (ver histórico da conversa)
 - [x] E2 Fundamentos: estados de puzzle, documentos reabríveis/inspeção, morte com retorno seguro (Recovery), save v2 (+migração v1). Testes: `tests/suite_e2.gd`
-- [ ] E3 Sobrevivência (estamina, ferimentos, kits)
+- [x] E3 Sobrevivência: estamina (18/s, exaustão, regen lenta sob perigo), ferimentos 0–3 (golpe do Morador fere; só ferimento grave + golpe = morte), kits pequeno/grande (H ou inventário), armadilhas sinalizadas, cura natural, 20 kits distribuídos. Testes: `tests/suite_e3.gd`
 - [ ] E4 Morador (buracos persistentes)
 - [ ] E5 Visual
 - [ ] E6 Narrativa e transições
@@ -22,4 +22,4 @@ Base: v1.0.0 publicada. Esta rodada: correção/expansão (prompt de aperfeiçoa
 - Nenhum teste manual com jogador humano; áudio não ouvido.
 
 ## Próxima tarefa
-E3: estamina, ferimentos, kits médicos.
+E4: Morador (buracos persistentes).

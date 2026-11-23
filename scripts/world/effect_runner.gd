@@ -161,6 +161,10 @@ func _run_one(e: Dictionary) -> void:
 		GameManager.emit_noise(at, float(n.get("radius", 200.0)), str(n.get("source", "object")))
 	if e.has("sfx"):
 		AudioManager.play_sfx(str(e["sfx"]), float(e.get("db", -2.0)), str(e.get("sub", "")))
+	if e.has("hurt"):
+		var fatal: bool = game.player.hurt(int(e["hurt"]), str(e.get("source", "ambiente")))
+		if fatal:
+			GameManager.capture("ambiente")
 	if e.has("force_chase"):
 		game.force_chase()
 	if e.has("shake"):

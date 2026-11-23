@@ -4,7 +4,7 @@ extends Node2D
 
 const T := 16
 const FLAT_KINDS := ["door", "labdoor", "window", "drawing", "poster", "panel", "blackboard", "mirror",
-	"elevator", "hatch", "rug", "vent"]
+	"elevator", "hatch", "rug", "vent", "trap"]
 const SOLID_KINDS := ["bed", "hospital_bed", "wardrobe", "desk", "reception", "drawers", "dresser", "toybox",
 	"table", "bench", "crib", "schooldesk", "pillar", "stairs", "capsule", "surgery", "locker", "cabinet",
 	"terminal", "console", "reactor", "boiler", "fridge", "shelf", "statue", "crate", "box", "cocoon"]

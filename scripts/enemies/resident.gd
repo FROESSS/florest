@@ -41,6 +41,7 @@ var _rng := RandomNumberGenerator.new()
 var _repath: float = 0.0
 var _sound_t: float = 0.0
 var _captured_sent: bool = false
+var _hit_cd: float = 0.0
 var block_body: StaticBody2D = null
 
 func setup(p_room: Room, p_player: Player, p_cfg: Dictionary) -> void:
@@ -161,6 +162,7 @@ func _physics_process(delta: float) -> void:
 	if not enabled or room == null or player == null:
 		return
 	timer += delta
+	_hit_cd = maxf(0.0, _hit_cd - delta)
 	match state:
 		S.DORMANT: _do_dormant(delta)
 		S.WARNING: _do_warning(delta)
@@ -268,10 +270,15 @@ func _do_stalk(delta: float) -> void:
 		_follow(spd, delta)
 	else:
 		velocity = Vector2.ZERO
-	if position.distance_to(player.position) < CAPTURE_DIST and not player.hiding and not player.captured:
-		if not _captured_sent:
-			_captured_sent = true
-			GameManager.capture("resident")
+	if position.distance_to(player.position) < CAPTURE_DIST and not player.hiding and not player.captured and _hit_cd <= 0.0:
+		_hit_cd = 2.5
+		var fatal := player.hurt(1, "resident")   # 1º–3º golpes ferem; só o golpe em ferimento grave captura
+		if fatal:
+			if not _captured_sent:
+				_captured_sent = true
+				GameManager.capture("resident")
+		else:
+			_enter(S.RETREAT)   # enfraquecido: interrompe a perseguição e foge para uma abertura
 
 func _follow(spd: float, delta: float) -> void:
 	if path_i >= path.size():

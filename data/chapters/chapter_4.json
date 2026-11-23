@@ -11,6 +11,7 @@
 				{"tile": [15, 3], "radius": 70, "energy": 0.5, "color": "#ff7070"}
 			],
 			"objects": [
+				{"id": "kit1", "kind": "medkit", "tile": [26, 11], "px": [10, 8], "name": "Kit médico grande", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_grande"}]},
 				{"id": "d_arq", "kind": "labdoor", "tile": [0, 8], "name": "Arquivos", "prompt": "Abrir", "door": {"to": "c4_arquivos", "spawn": "este"}},
 				{"id": "d_cir", "kind": "labdoor", "tile": [29, 8], "name": "Sala de cirurgia", "prompt": "Abrir", "door": {"to": "c4_cirurgia", "spawn": "oeste"}},
 				{"id": "d_clara", "kind": "labdoor", "tile": [6, 1], "name": "Câmara B-2", "prompt": "Abrir", "important": true,
@@ -37,6 +38,7 @@
 			"recovery": [[6, 4]],
 			"lights": [{"tile": [6, 6], "radius": 90, "energy": 0.6, "color": "#e8f0ff", "flicker": true}, {"tile": [18, 6], "radius": 90, "energy": 0.5, "color": "#ffb0b0"}],
 			"objects": [
+				{"id": "kit1", "kind": "medkit", "tile": [22, 11], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
 				{"id": "d_este", "kind": "labdoor", "tile": [25, 8], "name": "Saguão", "prompt": "Abrir", "door": {"to": "c4_lab_hall", "spawn": "oeste"}},
 				{"id": "terminal", "kind": "terminal", "tile": [4, 2], "name": "Terminal do Projeto", "prompt": "Usar", "important": true, "effects": [
 					{"puzzle": "p_terminal", "on_solved": [
@@ -65,6 +67,8 @@
 			"spawns": {"oeste": [2, 8]},
 			"lights": [{"tile": [10, 6], "radius": 100, "energy": 0.7, "color": "#e8f0ff", "flicker": true}, {"tile": [19, 5], "radius": 90, "energy": 0.6, "color": "#ff7070"}],
 			"objects": [
+				{"id": "kit1", "kind": "medkit", "tile": [20, 10], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
+				{"id": "vidro", "kind": "trap", "tile": [14, 10], "name": "Piso estragado", "prompt": "Examinar", "solid": false, "effects": [{"text": "Cacos de vidro das cápsulas espalhados. Melhor não pisar descalço... nem de tênis."}], "hazard": {"hurt": 1, "text": "O piso cede e Elias cai de mau jeito. Um corte profundo na perna.", "sfx": "drop"}},
 				{"id": "d_oeste", "kind": "labdoor", "tile": [0, 8], "name": "Saguão", "prompt": "Abrir", "door": {"to": "c4_lab_hall", "spawn": "este"}},
 				{"id": "cap1", "kind": "capsule", "tile": [6, 2], "size": [1, 2], "name": "Cápsula", "prompt": "Examinar", "effects": [{"text": "Uma cápsula de vidro. Dentro, uma silhueta pequena, imóvel, com um cabo ligado à nuca."}]},
 				{"id": "cap2", "kind": "capsule", "variant": "broken", "tile": [9, 2], "size": [1, 2], "name": "Cápsula quebrada", "prompt": "Examinar", "effects": [{"text": "Vidro estilhaçado por dentro. Quem estava aqui saiu andando."}]},

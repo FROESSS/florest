@@ -91,6 +91,9 @@
 			"spawns": {"porta": [3, 3]},
 			"lights": [{"tile": [9, 6], "radius": 90, "energy": 0.6, "flicker": true, "color": "#e8f0ff"}],
 			"objects": [
+				{"id": "kit1", "kind": "medkit", "tile": [17, 9], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
+				{"id": "kit2", "kind": "medkit", "tile": [11, 9], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
+				{"id": "kit3", "kind": "medkit", "tile": [6, 9], "px": [10, 8], "name": "Kit médico grande", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_grande"}]},
 				{"id": "porta", "kind": "door", "tile": [3, 1], "name": "Corredor", "prompt": "Abrir", "door": {"to": "c2_corredor", "spawn": "porta_enf"}},
 				{"id": "leito1", "kind": "hospital_bed", "tile": [6, 3], "size": [1, 2], "name": "Leito", "prompt": "Esconder-se", "hide": true},
 				{"id": "leito2", "kind": "hospital_bed", "tile": [9, 3], "size": [1, 2], "name": "Leito", "prompt": "Esconder-se", "hide": true},
@@ -116,6 +119,7 @@
 			"spawns": {"entrada": [6, 3]},
 			"lights": [{"tile": [6, 4], "radius": 70, "energy": 0.5, "color": "#ffcc80"}, {"tile": [6, 10], "radius": 70, "energy": 0.5, "color": "#d06070"}],
 			"objects": [
+				{"id": "trap1", "kind": "trap", "tile": [10, 7], "name": "Piso estragado", "prompt": "Examinar", "solid": false, "effects": [{"text": "As tábuas estão podres e uma delas se partiu. Melhor contornar pelo outro lado."}], "hazard": {"hurt": 1, "text": "O piso cede e Elias cai de mau jeito. Um corte profundo na perna.", "sfx": "drop"}},
 				{"id": "subir", "kind": "stairs", "tile": [4, 2], "size": [2, 1], "px": [32, 16], "name": "Escada para o corredor", "prompt": "Subir", "solid": false, "flat": true, "effects": [
 					{"goto": {"room": "c2_corredor", "spawn": "alcapao"}}]},
 				{"id": "porta_fundo", "kind": "door", "variant": "organic", "tile": [6, 11], "name": "Porta quente", "prompt": "Abrir", "important": true, "effects": [

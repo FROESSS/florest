@@ -193,7 +193,7 @@ static func prop(kind: String, w: int, h: int, variant: String = "") -> ImageTex
 		return _cache[key]
 	var img := PixelArt.new_image(maxi(w, 1), maxi(h, 1))
 	_draw_prop(img, kind, w, h, variant)
-	var no_outline := ["window", "drawing", "door", "poster", "panel", "blackboard", "mirror", "rug", "elevator", "labdoor", "vent", "hatch"]
+	var no_outline := ["window", "drawing", "door", "poster", "panel", "blackboard", "mirror", "rug", "elevator", "labdoor", "vent", "hatch", "trap"]
 	if kind not in no_outline:
 		PixelArt.outline(img)
 	var t := PixelArt.tex(img)
@@ -302,6 +302,19 @@ static func _draw_prop(img: Image, kind: String, w: int, h: int, variant: String
 			PixelArt.rect(img, 1, 1, w - 2, h - 3, Color("c9b98a"))
 			PixelArt.rect(img, 3, 3, w - 6, 3, Color("7a4a3a"))
 			PixelArt.rect(img, 3, 8, w - 6, 1, Color("5a5a4a"))
+		"medkit":
+			PixelArt.rect(img, 0, 1, w, h - 1, Color("e6e6e0"))
+			PixelArt.rect(img, 0, 1, w, 1, Color("ffffff"))
+			PixelArt.rect(img, w / 2 - 1, 2, 2, h - 3, Color("b02828"))
+			PixelArt.rect(img, w / 2 - 3, h / 2, 6, 2, Color("b02828"))
+			PixelArt.rect(img, w / 2 - 2, 0, 4, 1, Color("8a8a84"))
+		"trap":
+			PixelArt.rect(img, 1, 2, w - 2, h - 4, Color("120c08"))
+			for i in 4:
+				PixelArt.rect(img, 1 + i * 4, 1 + (i % 2) * 2, 3, h / 2 - (i % 2), Color("6a4a2c"))
+				PixelArt.rect(img, 2 + i * 4, h - 5 + (i % 2), 3, 4 - (i % 2), Color("5a3c22"))
+			PixelArt.px(img, 5, 8, Color("c0a070"))
+			PixelArt.px(img, 10, 7, Color("c0a070"))
 		"bear":
 			PixelArt.ellipse(img, 4, 5, 3, 3, Color("9a6a3e"))
 			PixelArt.ellipse(img, 4, 2, 2, 2, Color("b07c4a"))

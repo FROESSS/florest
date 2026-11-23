@@ -31,6 +31,7 @@ const ACTIONS := {
 	"flashlight": [KEY_F],
 	"inventory": [KEY_TAB],
 	"journal": [KEY_J],
+	"heal": [KEY_H],
 	"pause": [KEY_ESCAPE],
 }
 

@@ -45,6 +45,10 @@ func _ready() -> void:
 	runner.game = self
 	add_child(runner)
 	NarrativeManager.flag_changed.connect(_on_flag_changed)
+	book.use_item.connect(func(id: String) -> void:
+		book._close()
+		if player != null:
+			player.start_heal(id))
 	GameManager.player_captured.connect(_on_captured)
 	var spawn := GameManager.last_spawn
 	var use_pending := GameManager.has_pending_pos
@@ -263,6 +267,14 @@ func _physics_process(delta: float) -> void:
 
 func _check_triggers() -> void:
 	var cell := room.nav.cell_of(player.position)
+	for o in room.objects:
+		if o.visible and o.spec.has("hazard") and not player.hiding:
+			var hid := "sprung_" + o.uid
+			if NarrativeManager.has_flag(hid) or room.nav.cell_of(o.rect.get_center()) != cell:
+				continue
+			var hz: Dictionary = o.spec["hazard"]
+			runner.run_trigger({"effects": [{"sfx": str(hz.get("sfx", "drop")), "db": 0}, {"hurt": int(hz.get("hurt", 1)), "source": "armadilha"}, {"text": str(hz.get("text", "Algo cede sob os meus pés!"))}]}, hid)
+			return
 	for t in room.spec.get("triggers", []):
 		var tid := "trg:%s:%s" % [room.id, str(t.get("id", ""))]
 		var once: bool = bool(t.get("once", true))
@@ -291,6 +303,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("inventory") and not player.hiding:
 		get_viewport().set_input_as_handled()
 		_open_book(false)
+	elif event.is_action_pressed("heal") and not player.hiding:
+		get_viewport().set_input_as_handled()
+		var kit := player.best_kit()
+		if kit == "":
+			hud.show_toast(LocalizationManager.t("hud.no_kit"))
+		else:
+			player.start_heal(kit)
 	elif event.is_action_pressed("journal") and not player.hiding:
 		get_viewport().set_input_as_handled()
 		_open_book(true)
@@ -343,6 +362,7 @@ func _on_captured(by: String) -> void:
 	GameManager.deaths += 1
 	GameManager.world_state["deaths"] = GameManager.deaths
 	await load_room(GameManager.current_room, GameManager.last_spawn, true, false)
+	player.recover_after_death()
 	_capturing = false
 	await SceneManager.fade_in(0.5)
 	GameManager.toast.emit(LocalizationManager.t("game.captured"))

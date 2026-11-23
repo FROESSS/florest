@@ -3,6 +3,7 @@ extends CanvasLayer
 ## Inventário (Tab), Diário (J: documentos, memórias, objetivo) e leitor de documentos.
 
 signal closed
+signal use_item(id: String)
 
 var panel: Panel
 var list: ScrollContainer
@@ -171,7 +172,10 @@ func _add_entry(label: String) -> void:
 	var idx := ids.size() - 1
 	var b := UIKit.button(label, 11)
 	b.focus_entered.connect(func() -> void: _on_selected(idx))
-	b.pressed.connect(func() -> void: _on_selected(idx))
+	b.pressed.connect(func() -> void:
+		_on_selected(idx)
+		if mode == "inventory" and idx < ids.size() and InventoryManager.item_info(ids[idx]).has("use"):
+			use_item.emit(ids[idx]))
 	listbox.add_child(b)
 
 func _focus_list() -> void:
@@ -214,7 +218,8 @@ func _on_selected(i: int) -> void:
 	var id := ids[i]
 	if mode == "inventory":
 		var info := InventoryManager.item_info(id)
-		desc.text = "%s\n\n%s" % [info.get("name", id), info.get("desc", "")]
+		var count_txt := "  (x%d)" % InventoryManager.count(id) if InventoryManager.is_stack(id) else ""
+		desc.text = "%s%s\n\n%s%s" % [info.get("name", id), count_txt, info.get("desc", ""), "\n\n[Enter/clique] usar agora" if info.has("use") else ""]
 	elif tab == 0:
 		desc.text = str(NarrativeManager.docs_db[id].get("body", ""))
 	elif tab == 1:
