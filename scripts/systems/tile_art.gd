@@ -308,6 +308,13 @@ static func _draw_prop(img: Image, kind: String, w: int, h: int, variant: String
 			PixelArt.rect(img, w / 2 - 1, 2, 2, h - 3, Color("b02828"))
 			PixelArt.rect(img, w / 2 - 3, h / 2, 6, 2, Color("b02828"))
 			PixelArt.rect(img, w / 2 - 2, 0, 4, 1, Color("8a8a84"))
+		"hole":
+			PixelArt.ellipse(img, w / 2.0, h / 2.0, w / 2.0 - 0.5, h / 2.0 - 1.5, Color("6e2434"))
+			PixelArt.ellipse(img, w / 2.0, h / 2.0 + 0.5, w / 2.0 - 2.5, h / 2.0 - 3.0, Color("0a0204"))
+			PixelArt.px(img, 3, 4, Color("c06a7e"))
+			PixelArt.px(img, w - 4, 5, Color("c06a7e"))
+			PixelArt.rect(img, 5, h - 4, 2, 2, Color("8a2f3e"))
+			PixelArt.rect(img, w - 7, h - 5, 2, 3, Color("8a2f3e"))
 		"trap":
 			PixelArt.rect(img, 1, 2, w - 2, h - 4, Color("120c08"))
 			for i in 4:

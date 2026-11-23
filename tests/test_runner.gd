@@ -19,7 +19,7 @@ func _ready() -> void:
 		if a.begins_with("--suite="):
 			suite_filter = a.substr(8)
 	var wd := Timer.new()
-	wd.wait_time = 280.0
+	wd.wait_time = 560.0
 	wd.one_shot = true
 	wd.timeout.connect(func() -> void:
 		print("TIMEOUT: testes excederam o tempo limite")
@@ -27,7 +27,7 @@ func _ready() -> void:
 	add_child(wd)
 	wd.start()
 	await get_tree().process_frame
-	var suites := ["data", "geometry", "systems", "ai", "endings", "save", "e2", "e3", "walkthrough"]
+	var suites := ["data", "geometry", "systems", "ai", "endings", "save", "e2", "e3", "e4", "walkthrough"]
 	for s in suites:
 		if suite_filter != "" and suite_filter != s:
 			continue

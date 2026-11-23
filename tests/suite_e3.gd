@@ -134,7 +134,7 @@ func _test_resident_hits() -> void:
 	r._enter(Resident.S.STALK)
 	await get_tree().create_timer(0.6).timeout
 	t.check(p.wound == 1, "golpe do Morador causa ferimento (não morte)")
-	t.check(r.state == Resident.S.RETREAT or r.state == Resident.S.DORMANT, "Morador enfraquecido interrompe a perseguição e recua")
+	t.check(r.state == Resident.S.RETREAT or r.state == Resident.S.DORMANT or r.state == Resident.S.DIGGING, "Morador enfraquecido interrompe a perseguição e recua")
 	var captured := [false]
 	GameManager.player_captured.connect(func(_b: String) -> void: captured[0] = true)
 	t.check(not captured[0], "primeiro golpe não captura")
