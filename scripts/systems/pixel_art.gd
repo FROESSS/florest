@@ -109,17 +109,21 @@ static func _pose(anim: String, fr: int) -> Dictionary:
 		"idle":
 			p.dip = fr % 2
 		"walk":
-			match fr % 4:
+			match fr % 6:
 				0: p.stride = 2; p.arm = -2; p.lift_l = 1
-				1: p.dip = 1
-				2: p.stride = -2; p.arm = 2; p.lift_r = 1
-				3: p.dip = 1
+				1: p.stride = 1; p.arm = -1; p.dip = 1
+				2: p.dip = 1
+				3: p.stride = -2; p.arm = 2; p.lift_r = 1
+				4: p.stride = -1; p.arm = 1; p.dip = 1
+				5: p.dip = 1
 		"run":
-			match fr % 4:
+			match fr % 6:
 				0: p.stride = 3; p.arm = -3; p.lift_l = 2; p.lean = 1
-				1: p.dip = 1; p.lift_l = 1; p.lift_r = 1; p.lean = 1
-				2: p.stride = -3; p.arm = 3; p.lift_r = 2; p.lean = 1
-				3: p.dip = 1; p.lift_l = 1; p.lift_r = 1; p.lean = 1
+				1: p.stride = 1; p.arm = -1; p.dip = 1; p.lift_l = 1; p.lean = 1
+				2: p.dip = 1; p.lift_l = 1; p.lift_r = 1; p.lean = 1
+				3: p.stride = -3; p.arm = 3; p.lift_r = 2; p.lean = 1
+				4: p.stride = -1; p.arm = 1; p.dip = 1; p.lift_r = 1; p.lean = 1
+				5: p.dip = 1; p.lift_l = 1; p.lift_r = 1; p.lean = 1
 		"interact":
 			p.reach = 1 + (fr % 2)
 		"hide":
@@ -179,10 +183,15 @@ static func _draw_front(img: Image, st: Dictionary, p: Dictionary, twitch: int, 
 	var ar_y: int = torso_top + 1 - int(p.arm)
 	if p.reach > 0:
 		ar_y = torso_top - int(p.reach) * 2
-	_arm(img, lx - aw, al_y, aw, arm_len, st, p)
+	_arm(img, lx - aw, al_y, aw, arm_len + (3 if st.twitch else 0), st, p)
 	_arm(img, lx + tw, ar_y, aw, arm_len, st, p)
 	rect(img, cx - tw / 2, torso_top, tw, st.torso_h, shirt)
 	rect(img, cx + tw / 2 - 1, torso_top, 1, st.torso_h, darker(shirt, 0.8))
+	rect(img, cx - tw / 2, torso_top, 1, st.torso_h, lighter(shirt, 1.15))
+	rect(img, cx - 2, torso_top, 4, 1, darker(shirt, 0.7))                      # colarinho
+	if not back and st.skirt == 0:
+		rect(img, cx - tw / 2 + 1, torso_top + 3, tw - 2, 1, lighter(shirt, 1.12))   # faixa
+		rect(img, cx - tw / 2, torso_top + st.torso_h - 1, tw, 1, darker(shirt, 0.65))  # barra
 	if st.skirt > 0:
 		var top_y: int = torso_top + int(st.torso_h) - 2
 		for i in int(st.skirt):
@@ -203,16 +212,33 @@ static func _draw_front(img: Image, st: Dictionary, p: Dictionary, twitch: int, 
 		rect(img, hx, head_top + 3, 1, 2, hair)
 		rect(img, hx + 7, head_top + 3, 1, 2, hair)
 		var eye := Color("17121a")
+		var skin: Color = st.skin
+		rect(img, hx, head_top + 3, 1, 1, darker(skin, 0.9))
 		if st.glow_eyes:
-			eye = Color("f2f0e0")
-		px(img, hx + 2, head_top + 4, eye)
-		px(img, hx + 5, head_top + 4, eye)
-		if st.glow_eyes:
-			px(img, hx + 2, head_top + 5, Color("17121a"))
-			px(img, hx + 5, head_top + 5, Color("17121a"))
+			# órbitas fundas e olhos brancos minúsculos
+			rect(img, hx + 1, head_top + 4, 2, 2, Color("2a2a26"))
+			rect(img, hx + 5, head_top + 4, 2, 2, Color("2a2a26"))
+			px(img, hx + 2, head_top + 4, Color("f2f0e0"))
+			px(img, hx + 5, head_top + 4, Color("f2f0e0"))
+			rect(img, hx + 2, head_top + 6, 4, 1, Color("2a1a1c"))      # boca larga
+			px(img, hx + 3, head_top + 6, Color("d8d4c0"))
+			px(img, hx + 5, head_top + 6, Color("d8d4c0"))
+		else:
+			px(img, hx + 1, head_top + 4, Color("f4f0ea"))               # esclera
+			px(img, hx + 6, head_top + 4, Color("f4f0ea"))
+			px(img, hx + 2, head_top + 4, eye)
+			px(img, hx + 5, head_top + 4, eye)
+			px(img, hx + 2, head_top + 3, darker(st.hair, 0.9))          # sobrancelhas
+			px(img, hx + 5, head_top + 3, darker(st.hair, 0.9))
+			px(img, hx + 3, head_top + 5, lighter(skin, 1.08))            # nariz
+			px(img, hx + 3, head_top + 6, darker(skin, 0.72))             # boca
+			px(img, hx + 4, head_top + 6, darker(skin, 0.72))
+			px(img, hx + 1, head_top + 6, darker(skin, 0.94))
+			px(img, hx + 6, head_top + 6, darker(skin, 0.94))
 		if st.strands:
 			for sx in [1, 3, 4, 6]:
 				rect(img, hx + sx, head_top + 3, 1, 5, hair)
+	rect(img, hx + 1, head_top + 1, 6, 1, lighter(hair, 1.5))   # brilho do cabelo
 	if st.hair_long:
 		var drop: int = 9 if st.strands else 6
 		rect(img, hx - 1, head_top + 2, 1, drop, hair)
@@ -290,7 +316,7 @@ static func character_frames(style_name: String) -> SpriteFrames:
 	var sf := SpriteFrames.new()
 	sf.remove_animation("default")
 	var defs := {
-		"idle": [2, 2.0, true], "walk": [4, 7.0, true], "run": [4, 11.0, true],
+		"idle": [2, 2.0, true], "walk": [6, 9.0, true], "run": [6, 13.0, true],
 		"interact": [2, 5.0, false], "hide": [1, 1.0, false], "hit": [2, 3.0, false],
 	}
 	for dir in ["down", "up", "left", "right"]:
@@ -335,6 +361,19 @@ static func resident_image(frame: int, anim: String, grow: float = 1.0) -> Image
 		px(img, int(cx) + 1, int(base_y - 31 * h_scale), Color("120406"))
 		px(img, int(cx) + 4, int(base_y - 32 * h_scale), Color("120406"))
 		px(img, int(cx) + 3, int(base_y - 29 * h_scale), Color("120406"))
+	# costelas expostas, olhos extras, tentáculos e gotas
+	for k in 3:
+		rect(img, int(cx) - 5, int(base_y - (20 - k * 3) * h_scale), 8 - k, 1, Color("c9a0a0"))
+	if grow > 0.55:
+		px(img, int(cx) + 6, int(base_y - 33 * h_scale), Color("e8dcc8"))
+		px(img, int(cx) - 1, int(base_y - 34 * h_scale), Color("e8dcc8"))
+		px(img, int(cx) + 2, int(base_y - 28 * h_scale), Color("120406"))
+		px(img, int(cx) + 5, int(base_y - 29 * h_scale), Color("120406"))
+	for tx in [-10, 9, 13]:
+		for k in 8:
+			px(img, int(cx) + tx + int(sin(k * 0.9 + frame) * 1.5), int(base_y - 6 * h_scale) + k, flesh_lo)
+	for dx in [-3, 4]:
+		px(img, int(cx) + dx, int(base_y - 9 * h_scale) + 3 + (frame % 2) * 2, Color("c06a7e"))
 	# boca/dentes no tronco
 	var my := int(base_y - 11 * h_scale)
 	rect(img, int(cx) - 6, my, 10, 2, Color("120406"))
@@ -376,6 +415,11 @@ static func resident_frames() -> SpriteFrames:
 	sf.set_animation_speed("walk", 5.0)
 	for f in 4:
 		sf.add_frame("walk", tex(resident_image(f, "walk")))
+	sf.add_animation("sink")
+	sf.set_animation_speed("sink", 4.0)
+	sf.set_animation_loop("sink", false)
+	for g2 in [1.0, 0.75, 0.5, 0.25]:
+		sf.add_frame("sink", tex(resident_image(0, "idle", g2)))
 	sf.add_animation("emerge")
 	sf.set_animation_speed("emerge", 3.0)
 	sf.set_animation_loop("emerge", false)

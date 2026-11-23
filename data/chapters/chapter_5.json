@@ -3,7 +3,7 @@
 	"objective": "Sobreviver ao colapso. Abra a rota de fuga, arme o reator se quiser, e chegue à sala de controle.",
 	"rooms": {
 		"c5_colapso": {
-			"name": "Nível B — Colapso", "size": [38, 14], "theme": "organico", "ambient": 0.2, "ambient_sound": "amb_organic", "decals": 0.4,
+			"name": "Nível B — Colapso", "size": [38, 14], "overgrowth": 0.9, "theme": "organico", "ambient": 0.2, "ambient_sound": "amb_organic", "decals": 0.4,
 			"blocks": [[12, 5, 2, 3], [22, 8, 2, 3], [28, 4, 2, 3]],
 			"spawns": {"inicio": [3, 8], "este": [36, 8], "controle": [30, 3]},
 			"lights": [
@@ -34,7 +34,7 @@
 			]
 		},
 		"c5_reator": {
-			"name": "Reator", "size": [22, 12], "theme": "lab", "ambient": 0.2, "ambient_sound": "amb_lab", "decals": 0.4,
+			"name": "Reator", "size": [22, 12], "overgrowth": 0.55, "theme": "lab", "ambient": 0.2, "ambient_sound": "amb_lab", "decals": 0.4,
 			"spawns": {"oeste": [2, 6]},
 			"lights": [{"tile": [9, 5], "radius": 110, "energy": 0.8, "color": "#ff6060", "flicker": true}],
 			"objects": [
@@ -49,7 +49,7 @@
 			]
 		},
 		"c5_controle": {
-			"name": "Sala de Controle", "size": [24, 14], "theme": "lab", "ambient": 0.22, "ambient_sound": "amb_lab", "decals": 0.2,
+			"name": "Sala de Controle", "size": [24, 14], "overgrowth": 0.5, "theme": "lab", "ambient": 0.22, "ambient_sound": "amb_lab", "decals": 0.2,
 			"spawns": {"porta": [12, 12]},
 			"lights": [{"tile": [11, 6], "radius": 110, "energy": 0.7, "color": "#e8f0ff"}, {"tile": [12, 3], "radius": 70, "energy": 0.6, "color": "#80ffc0"}],
 			"objects": [

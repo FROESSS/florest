@@ -51,6 +51,8 @@
 				{"tile": [37, 5], "radius": 60, "energy": 0.5, "color": "#c0d0ff"}
 			],
 			"objects": [
+				{"id": "dec_plant1", "kind": "plant", "tile": [3, 2], "size": [1, 1], "px": [16, 24], "solid": false},
+				{"id": "dec_plant2", "kind": "plant", "tile": [37, 3], "size": [1, 1], "px": [16, 24], "solid": false},
 				{"id": "d_quarto", "kind": "door", "tile": [6, 1], "name": "Quarto 4", "prompt": "Abrir", "door": {"to": "c1_quarto", "spawn": "porta"}},
 				{"id": "d_dorm", "kind": "door", "tile": [17, 1], "name": "Dormitório", "prompt": "Abrir", "door": {"to": "c1_dormitorio", "spawn": "porta"}},
 				{"id": "d_sec", "kind": "door", "tile": [28, 1], "name": "Secretaria", "prompt": "Abrir",
@@ -108,10 +110,11 @@
 			]
 		},
 		"c1_secretaria": {
-			"name": "Secretaria", "size": [16, 10], "theme": "orfanato", "ambient": 0.2, "ambient_sound": "amb_house",
+			"name": "Secretaria", "size": [16, 10], "floor_zones": [{"rect": [2, 5, 6, 4], "kind": "carpet", "a": "#6a3a3a"}], "theme": "orfanato", "ambient": 0.2, "ambient_sound": "amb_house",
 			"spawns": {"porta": [3, 3]},
 			"lights": [{"tile": [7, 5], "radius": 80, "energy": 0.7, "flicker": true}],
 			"objects": [
+				{"id": "dec_plant", "kind": "plant", "tile": [14, 8], "size": [1, 1], "px": [16, 24], "solid": false},
 				{"id": "porta", "kind": "door", "tile": [3, 1], "name": "Corredor", "prompt": "Abrir", "door": {"to": "c1_corredor", "spawn": "porta_sec"}},
 				{"id": "mesa", "kind": "desk", "tile": [5, 4], "size": [3, 1], "name": "Escrivaninha", "prompt": "Examinar", "effects": [
 					{"text": "Papéis rasgados, carimbos secos. A gaveta de baixo está entreaberta, mas não me interessa... ainda."}]},
@@ -135,7 +138,7 @@
 			]
 		},
 		"c1_saguao": {
-			"name": "Salão Principal", "size": [34, 22], "theme": "orfanato", "ambient": 0.14, "ambient_sound": "amb_house", "decals": 0.2,
+			"name": "Salão Principal", "size": [34, 22], "floor_zones": [{"rect": [10, 8, 14, 6], "kind": "carpet", "a": "#5a3a3a"}, {"rect": [1, 2, 32, 1], "kind": "planks_dark", "a": "#2e2a22"}], "theme": "orfanato", "ambient": 0.14, "ambient_sound": "amb_house", "decals": 0.2,
 			"spawns": {"oeste": [2, 12]},
 			"recovery": [[20, 4], [30, 12]],
 			"lights": [
@@ -145,6 +148,7 @@
 				{"tile": [32, 12], "radius": 60, "energy": 0.7, "color": "#c0d0ff"}
 			],
 			"objects": [
+				{"id": "dec_statue", "kind": "statue", "tile": [20, 2], "size": [1, 1]},
 				{"id": "d_oeste", "kind": "door", "tile": [0, 12], "name": "Corredor", "prompt": "Abrir", "door": {"to": "c1_corredor", "spawn": "este"}},
 				{"id": "servico", "kind": "labdoor", "variant": "", "tile": [33, 12], "name": "Porta de serviço", "prompt": "Abrir", "important": true,
 					"requires": {"items": ["chave_servico"]}, "locked_text": "Trancada com uma fechadura pesada. Preciso da chave de serviço.",

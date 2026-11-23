@@ -68,6 +68,14 @@ func setup(p_room_id: String, p_spec: Dictionary) -> void:
 		cs.position = rect.get_center() - position
 		body.add_child(cs)
 		add_child(body)
+		if kind in ["wardrobe", "cabinet", "locker", "capsule", "boiler", "reactor", "pillar", "fridge", "bed", "hospital_bed", "shelf"]:
+			var oc := LightOccluder2D.new()
+			var poly := OccluderPolygon2D.new()
+			var rr := Rect2(rect.position - position + Vector2(3, 3), rect.size - Vector2(6, 6))
+			poly.polygon = PackedVector2Array([rr.position, Vector2(rr.end.x, rr.position.y), rr.end, Vector2(rr.position.x, rr.end.y)])
+			poly.cull_mode = OccluderPolygon2D.CULL_DISABLED
+			oc.occluder = poly
+			add_child(oc)
 	if spec.get("important", false) and kind != "npc":
 		_hint = Sprite2D.new()
 		var himg := PixelArt.new_image(5, 5)

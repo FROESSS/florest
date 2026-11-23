@@ -3,7 +3,7 @@
 	"objective": "Descobrir quem é a menina e o que são as escadas desenhadas nas paredes.",
 	"rooms": {
 		"c2_corredor": {
-			"name": "Ala Infantil — Corredor", "size": [36, 10], "theme": "orfanato", "ambient": 0.16, "ambient_sound": "amb_house", "decals": 0.18,
+			"name": "Ala Infantil — Corredor", "size": [36, 10], "overgrowth": 0.12, "theme": "orfanato", "ambient": 0.16, "ambient_sound": "amb_house", "decals": 0.18,
 			"blocks": [[9, 5, 2, 4], [19, 2, 2, 4]],
 			"spawns": {"porta_dorm": [5, 3], "porta_aula": [14, 3], "porta_enf": [24, 3], "alcapao": [28, 6]},
 			"lights": [
@@ -36,7 +36,7 @@
 			]
 		},
 		"c2_dormitorio": {
-			"name": "Dormitório das Meninas", "size": [20, 12], "theme": "quarto", "ambient": 0.2, "ambient_sound": "amb_house",
+			"name": "Dormitório das Meninas", "size": [20, 12], "overgrowth": 0.1, "floor_zones": [{"rect": [7, 4, 8, 5], "kind": "carpet", "a": "#5a4a6a"}], "theme": "quarto", "ambient": 0.2, "ambient_sound": "amb_house",
 			"spawns": {"porta": [3, 3], "inicio": [4, 6]},
 			"lights": [{"tile": [11, 5], "radius": 70, "energy": 0.55, "color": "#a0b4d8"}, {"tile": [4, 4], "radius": 50, "energy": 0.4}],
 			"objects": [
@@ -87,7 +87,7 @@
 			]
 		},
 		"c2_enfermaria": {
-			"name": "Enfermaria", "size": [20, 12], "theme": "lab", "ambient": 0.22, "ambient_sound": "amb_lab", "decals": 0.22,
+			"name": "Enfermaria", "size": [20, 12], "overgrowth": 0.18, "floor_zones": [{"rect": [1, 2, 18, 9], "kind": "checker", "a": "#b8bab0", "b": "#6a6c66"}], "theme": "lab", "ambient": 0.22, "ambient_sound": "amb_lab", "decals": 0.22,
 			"spawns": {"porta": [3, 3]},
 			"lights": [{"tile": [9, 6], "radius": 90, "energy": 0.6, "flicker": true, "color": "#e8f0ff"}],
 			"objects": [
@@ -114,7 +114,7 @@
 			]
 		},
 		"c2_alcapao": {
-			"name": "Escada de Serviço", "size": [14, 12], "theme": "orfanato", "ambient": 0.14, "ambient_sound": "amb_organic", "decals": 0.3,
+			"name": "Escada de Serviço", "size": [14, 12], "overgrowth": 0.4, "theme": "orfanato", "ambient": 0.14, "ambient_sound": "amb_organic", "decals": 0.3,
 			"blocks": [[1, 5, 8, 1], [5, 8, 8, 1]],
 			"spawns": {"entrada": [6, 3]},
 			"lights": [{"tile": [6, 4], "radius": 70, "energy": 0.5, "color": "#ffcc80"}, {"tile": [6, 10], "radius": 70, "energy": 0.5, "color": "#d06070"}],

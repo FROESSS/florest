@@ -3,7 +3,7 @@
 	"objective": "Atravessar o túnel, encontrar três componentes (cartão, chip, bateria) para ativar o elevador.",
 	"rooms": {
 		"c3_tunel": {
-			"name": "Túnel Orgânico", "size": [34, 12], "theme": "organico", "ambient": 0.2, "ambient_sound": "amb_organic", "decals": 0.35,
+			"name": "Túnel Orgânico", "size": [34, 12], "overgrowth": 0.85, "theme": "organico", "ambient": 0.2, "ambient_sound": "amb_organic", "decals": 0.35,
 			"blocks": [[12, 5, 3, 2], [18, 7, 3, 2], [24, 3, 3, 2]],
 			"spawns": {"inicio": [3, 6], "este": [32, 6]},
 			"lights": [
@@ -32,7 +32,7 @@
 			]
 		},
 		"c3_refeitorio": {
-			"name": "Refeitório", "size": [36, 16], "theme": "organico", "ambient": 0.2, "ambient_sound": "amb_organic", "decals": 0.3,
+			"name": "Refeitório", "size": [36, 16], "overgrowth": 0.8, "floor_zones": [{"rect": [1, 2, 14, 13], "kind": "checker", "a": "#9a9c90", "b": "#2a2830"}], "theme": "organico", "ambient": 0.2, "ambient_sound": "amb_organic", "decals": 0.3,
 			"blocks": [[15, 2, 3, 4], [19, 2, 3, 4], [8, 8, 2, 2], [24, 9, 3, 2]],
 			"barriers": [{"id": "t1", "kind": "tissue", "rect": [31, 2, 2, 13], "removed_if": {"flags": ["tissue_burned"]}}],
 			"spawns": {"oeste": [2, 8], "norte": [18, 3], "este": [33, 8]},
@@ -41,6 +41,10 @@
 				{"tile": [12, 13], "radius": 80, "energy": 0.5, "color": "#ffcc80"}, {"tile": [33, 8], "radius": 70, "energy": 0.5, "color": "#d05070"}
 			],
 			"objects": [
+				{"id": "dec_fridge", "kind": "fridge", "tile": [4, 2], "size": [1, 2]},
+				{"id": "dec_counter", "kind": "counter", "tile": [5, 2], "size": [3, 1]},
+				{"id": "dec_stove", "kind": "stove", "tile": [8, 2], "size": [1, 1]},
+				{"id": "dec_table", "kind": "roundtable", "tile": [26, 5], "size": [2, 2], "variant": "pink"},
 				{"id": "kit1", "kind": "medkit", "tile": [30, 13], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
 				{"id": "d_oeste", "kind": "door", "variant": "organic", "tile": [0, 8], "name": "Túnel", "prompt": "Abrir", "door": {"to": "c3_tunel", "spawn": "este"}},
 				{"id": "d_norte", "kind": "door", "variant": "organic", "tile": [18, 1], "name": "Sala de memórias", "prompt": "Abrir", "door": {"to": "c3_memoria", "spawn": "porta"}},
@@ -70,12 +74,13 @@
 			]
 		},
 		"c3_memoria": {
-			"name": "Sala das Lembranças", "size": [20, 12], "theme": "memoria", "ambient": 0.3, "ambient_sound": "amb_lab", "decals": 0.1,
+			"name": "Sala das Lembranças", "size": [20, 12], "overgrowth": 0.15, "theme": "memoria", "ambient": 0.3, "ambient_sound": "amb_lab", "decals": 0.1,
 			"blocks": [[6, 6, 2, 2]],
 			"spawns": {"porta": [10, 10]},
 			"recovery": [[10, 4]],
 			"lights": [{"tile": [10, 5], "radius": 100, "energy": 0.6, "color": "#c8c0b0"}],
 			"objects": [
+				{"id": "dec_table", "kind": "roundtable", "tile": [14, 7], "size": [2, 2], "variant": "pink"},
 				{"id": "porta", "kind": "door", "tile": [10, 11], "name": "Refeitório", "prompt": "Abrir", "door": {"to": "c3_refeitorio", "spawn": "norte"}},
 				{"id": "bau", "kind": "toybox", "tile": [4, 3], "size": [2, 1], "name": "Baú de brinquedos", "prompt": "Examinar", "important": true, "effects": [
 					{"text": "Brinquedos arrumados com cuidado ritual. Reconheço a ordem... não a ordem em si, mas o gesto."}, {"memory": "brinquedos"}]},
@@ -101,7 +106,7 @@
 			]
 		},
 		"c3_caldeira": {
-			"name": "Caldeira", "size": [30, 14], "theme": "orfanato", "ambient": 0.14, "ambient_sound": "amb_organic", "decals": 0.25,
+			"name": "Caldeira", "size": [30, 14], "overgrowth": 0.45, "floor_zones": [{"rect": [1, 2, 28, 11], "kind": "concrete", "a": "#4a4640"}], "theme": "orfanato", "ambient": 0.14, "ambient_sound": "amb_organic", "decals": 0.25,
 			"blocks": [[10, 6, 2, 4]],
 			"spawns": {"oeste": [2, 8]},
 			"lights": [{"tile": [6, 5], "radius": 80, "energy": 0.6, "color": "#ffb060", "flicker": true}, {"tile": [22, 8], "radius": 90, "energy": 0.5, "color": "#d06050"}],

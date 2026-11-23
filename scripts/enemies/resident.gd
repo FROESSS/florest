@@ -182,6 +182,7 @@ func _enter(s: int) -> void:
 		S.DIGGING:
 			GameManager.set_chasing("resident", false)
 			velocity = Vector2.ZERO
+			sprite.play("sink")
 			AudioManager.play_at("hole", position, -2.0, "[O Morador cava o chão]")
 		S.BLOCK:
 			visible = true

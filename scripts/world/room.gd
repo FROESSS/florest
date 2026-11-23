@@ -45,7 +45,17 @@ func build(room_id: String) -> void:
 	var floor_sprite := Sprite2D.new()
 	floor_sprite.centered = false
 	floor_sprite.z_index = -10
-	floor_sprite.texture = TileArt.build_room(id, str(spec.get("theme", "orfanato")), wall, w, h, float(spec.get("decals", 0.12)))
+	var avoid: Array = []
+	for o in spec.get("objects", []):
+		var tl: Array = o.get("tile", [0, 0])
+		var osz: Array = o.get("size", [1, 1])
+		avoid.append(Rect2(tl[0] * T, tl[1] * T, osz[0] * T, osz[1] * T))
+	var theme_name := str(spec.get("theme", "orfanato"))
+	var extra := {
+		"zones": spec.get("floor_zones", []), "avoid": avoid, "clutter": float(spec.get("clutter", 0.05)),
+		"overgrowth": float(spec.get("overgrowth", 0.55 if theme_name == "organico" else 0.0)),
+	}
+	floor_sprite.texture = TileArt.build_room(id, theme_name, wall, w, h, float(spec.get("decals", 0.12)), extra)
 	add_child(floor_sprite)
 	wall_body = StaticBody2D.new()
 	wall_body.collision_layer = 1
@@ -64,6 +74,7 @@ func build(room_id: String) -> void:
 				cs.shape = rs
 				cs.position = Vector2(x0 * T + rs.size.x / 2.0, y * T + T / 2.0)
 				wall_body.add_child(cs)
+				_add_occluder(Rect2(x0 * T + 3, y * T + 3, rs.size.x - 6, T - 6))
 			else:
 				x += 1
 	nav = RoomNav.new(w, h)
@@ -100,6 +111,14 @@ func build(room_id: String) -> void:
 	for hd in GameManager.world_state.get("holes", {}).get(id, []):
 		_spawn_hole_visual(Vector2i(int(hd["tile"][0]), int(hd["tile"][1])))
 	refresh_dynamic()
+
+func _add_occluder(r: Rect2) -> void:
+	var oc := LightOccluder2D.new()
+	var poly := OccluderPolygon2D.new()
+	poly.polygon = PackedVector2Array([r.position, Vector2(r.end.x, r.position.y), r.end, Vector2(r.position.x, r.end.y)])
+	poly.cull_mode = OccluderPolygon2D.CULL_DISABLED
+	oc.occluder = poly
+	add_child(oc)
 
 func _make_barrier(b: Dictionary) -> void:
 	var r: Array = b["rect"]

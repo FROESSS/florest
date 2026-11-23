@@ -27,7 +27,7 @@ func _ready() -> void:
 	add_child(wd)
 	wd.start()
 	await get_tree().process_frame
-	var suites := ["data", "geometry", "systems", "ai", "endings", "save", "e2", "e3", "e4", "walkthrough"]
+	var suites := ["data", "geometry", "systems", "ai", "endings", "save", "e2", "e3", "e4", "e5", "walkthrough"]
 	for s in suites:
 		if suite_filter != "" and suite_filter != s:
 			continue

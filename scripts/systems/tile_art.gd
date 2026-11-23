@@ -36,7 +36,7 @@ static func shade(c: Color, f: float) -> Color:
 
 # ---------- Sala ----------
 
-static func build_room(room_id: String, theme_name: String, wall: PackedByteArray, w: int, h: int, decals: float) -> ImageTexture:
+static func build_room(room_id: String, theme_name: String, wall: PackedByteArray, w: int, h: int, decals: float, extra: Dictionary = {}) -> ImageTexture:
 	var theme: Dictionary = THEMES.get(theme_name, THEMES["orfanato"])
 	var img := Image.create(w * T, h * T, false, Image.FORMAT_RGBA8)
 	img.fill(Color.BLACK)
@@ -52,8 +52,26 @@ static func build_room(room_id: String, theme_name: String, wall: PackedByteArra
 					_wall_cap(img, tx, ty, theme, wall, w, h)
 			else:
 				_floor(img, tx, ty, theme, wall, w, h, seed_v)
+	ArtFX.floor_zones(img, extra.get("zones", []), wall, w, seed_v)
+	_shadow_pass(img, wall, w, h)
+	ArtFX.wall_decay(img, wall, w, h, theme_name, seed_v)
+	ArtFX.ceiling_fixtures(img, wall, w, h, theme_name, seed_v)
 	_decals(img, theme_name, wall, w, h, decals, seed_v)
+	ArtFX.clutter(img, theme_name, wall, w, h, extra.get("avoid", []), seed_v, float(extra.get("clutter", 0.05)))
+	ArtFX.overgrowth(img, wall, w, h, float(extra.get("overgrowth", 0.0)), seed_v)
 	return PixelArt.tex(img)
+
+## Sombra suave da parede sobre o chão (inclusive sobre zonas de piso especiais).
+static func _shadow_pass(img: Image, wall: PackedByteArray, w: int, h: int) -> void:
+	for ty in range(1, h):
+		for tx in w:
+			if wall[ty * w + tx] == 0 and wall[(ty - 1) * w + tx] == 1:
+				for r in 3:
+					for x in T:
+						var px := tx * T + x
+						var py := ty * T + r
+						var c := img.get_pixel(px, py)
+						img.set_pixel(px, py, Color(c.r * 0.9, c.g * 0.9, c.b * 0.92, 1.0))
 
 static func _floor(img: Image, tx: int, ty: int, theme: Dictionary, wall: PackedByteArray, w: int, h: int, seed_v: int) -> void:
 	var x0 := tx * T
@@ -193,6 +211,7 @@ static func prop(kind: String, w: int, h: int, variant: String = "") -> ImageTex
 		return _cache[key]
 	var img := PixelArt.new_image(maxi(w, 1), maxi(h, 1))
 	_draw_prop(img, kind, w, h, variant)
+	_detail(img, kind, w, h, variant)
 	var no_outline := ["window", "drawing", "door", "poster", "panel", "blackboard", "mirror", "rug", "elevator", "labdoor", "vent", "hatch", "trap"]
 	if kind not in no_outline:
 		PixelArt.outline(img)
@@ -308,6 +327,34 @@ static func _draw_prop(img: Image, kind: String, w: int, h: int, variant: String
 			PixelArt.rect(img, w / 2 - 1, 2, 2, h - 3, Color("b02828"))
 			PixelArt.rect(img, w / 2 - 3, h / 2, 6, 2, Color("b02828"))
 			PixelArt.rect(img, w / 2 - 2, 0, 4, 1, Color("8a8a84"))
+		"roundtable":
+			var cloth := Color("b03a6a") if variant == "pink" else Color("8a8a7a")
+			PixelArt.ellipse(img, w / 2.0, h / 2.0 + 1.0, w / 2.0 - 0.5, h / 2.0 - 2.0, PixelArt.darker(cloth, 0.6))
+			PixelArt.ellipse(img, w / 2.0, h / 2.0 - 1.0, w / 2.0 - 1.0, h / 2.0 - 3.0, cloth)
+			PixelArt.ellipse(img, w / 2.0 - 2.0, h / 2.0 - 3.0, w / 4.0, h / 6.0, PixelArt.lighter(cloth, 1.25))
+			for k in range(3, w - 3, 4):
+				PixelArt.px(img, k, h - 4, PixelArt.darker(cloth, 0.5))
+		"counter":
+			_box(img, 0, 3, w, h - 3, Color("8a8a80"))
+			PixelArt.rect(img, 0, 0, w, 4, Color("c9c9be"))
+			PixelArt.rect(img, 0, 3, w, 1, Color("5a5a54"))
+			for x in range(3, w - 3, 6):
+				PixelArt.rect(img, x, h - 7, 4, 4, Color("6a6a62"))
+				PixelArt.px(img, x + 2, h - 6, Color("d2b26a"))
+		"stove":
+			_box(img, 0, 2, w, h - 2, Color("d0d0c4"))
+			PixelArt.rect(img, 2, 3, w - 4, 4, Color("2a2a2a"))
+			for x in [4, w - 6]:
+				PixelArt.ellipse(img, x + 1, 5, 2, 2, Color("5a1a1a"))
+			PixelArt.rect(img, 2, h - 8, w - 4, 5, Color("3a3a3a"))
+			PixelArt.rect(img, 3, h - 7, w - 6, 3, Color("6a5a3a"))
+		"plant":
+			PixelArt.rect(img, w / 2 - 3, h - 5, 6, 5, Color("6a4030"))
+			PixelArt.rect(img, w / 2 - 3, h - 5, 6, 1, Color("8a5a40"))
+			for k in 6:
+				var dx := (k - 3) * 2
+				PixelArt.rect(img, w / 2 + dx / 2, h - 8 - k * 2, 1, 4 + k, Color("4a3a24"))
+				PixelArt.px(img, w / 2 + dx, h - 9 - k * 2, Color("6a5a30"))
 		"hole":
 			PixelArt.ellipse(img, w / 2.0, h / 2.0, w / 2.0 - 0.5, h / 2.0 - 1.5, Color("6e2434"))
 			PixelArt.ellipse(img, w / 2.0, h / 2.0 + 0.5, w / 2.0 - 2.5, h / 2.0 - 3.0, Color("0a0204"))
@@ -493,3 +540,68 @@ static func _draw_prop(img: Image, kind: String, w: int, h: int, variant: String
 			PixelArt.ellipse(img, w / 2.0, 4, 3, 3, Color("a29e8a"))
 		_:
 			_box(img, 0, 0, w, h, Color("6a6a6a"))
+
+## Acabamento comum a todos os props: sujeira, desgaste, brilho de borda e detalhes por tipo.
+static func _detail(img: Image, kind: String, w: int, h: int, variant: String) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = (kind + variant).hash() + w * 31 + h
+	var metal := kind in ["panel", "terminal", "console", "capsule", "locker", "cabinet", "boiler", "reactor", "bucket", "elevator", "labdoor", "surgery", "fridge", "stove"]
+	for y in h:
+		for x in w:
+			var c := img.get_pixel(x, y)
+			if c.a < 0.5:
+				continue
+			var hv := PixelArt.hash2(x, y, w + h)
+			if hv % 23 == 0:
+				img.set_pixel(x, y, PixelArt.darker(c, 0.8))            # sujeira
+			elif hv % 41 == 0:
+				img.set_pixel(x, y, PixelArt.lighter(c, 1.2))           # lascas/brilhos
+			if metal and hv % 29 == 1 and y > 1:
+				img.set_pixel(x, y, Color(c.r * 0.85 + 0.12, c.g * 0.7 + 0.04, c.b * 0.55, c.a))   # ferrugem
+			if y >= h - 2 and kind not in ["rug", "drawing", "poster", "window", "door", "labdoor", "panel", "elevator", "blackboard", "mirror", "hole", "trap", "vent", "hatch"]:
+				img.set_pixel(x, y, PixelArt.darker(img.get_pixel(x, y), 0.88))   # oclusão no chão
+	match kind:
+		"door", "labdoor":
+			PixelArt.rect(img, 4, 3, 3, 2, Color(0.82, 0.78, 0.6, 0.9))    # plaquinha
+			for k in 3:
+				PixelArt.px(img, 3 + rng.randi_range(0, w - 7), 2 + rng.randi_range(0, h - 4), Color(0.1, 0.07, 0.05))
+			if variant == "organic":
+				for k in h - 3:
+					PixelArt.px(img, 5 + int(sin(k * 0.7) * 2), 1 + k, Color("3a1018"))
+		"window":
+			PixelArt.rect(img, 0, 0, 3, h, Color("4a2a30"))                  # cortina rasgada
+			PixelArt.rect(img, w - 3, 0, 3, h - 3, Color("4a2a30"))
+			for k in 3:
+				PixelArt.px(img, 1, h - 1 - k, Color(0, 0, 0, 0))
+			PixelArt.rect(img, w / 2 - 1, 4, 1, 3, Color(0.9, 0.9, 1.0, 0.5))
+		"bed", "hospital_bed":
+			for k in range(3, h - 4, 4):
+				PixelArt.rect(img, 2, k, w - 4, 1, Color(0, 0, 0, 0.22))     # dobras
+			PixelArt.rect(img, 3, 3, 2, 2, Color(0.55, 0.15, 0.15, 0.7))     # mancha
+		"wardrobe":
+			PixelArt.rect(img, 1, 1, w - 2, 1, PixelArt.lighter(WOOD, 1.4))
+			PixelArt.px(img, w / 2 - 1, h / 2 + 4, Color("120c08"))
+			for k in 4:
+				PixelArt.px(img, w / 2 + 2 + k / 2, 4 + k * 2, Color("120c08")) # rachadura
+		"capsule":
+			for k in 4:
+				PixelArt.px(img, 4 + (k * 3) % (w - 8), 6 + (k * 5) % (maxi(h - 16, 3)), Color(0.9, 1.0, 0.95, 0.8))  # bolhas
+			PixelArt.rect(img, w / 2 - 1, 0, 1, 3, Color("1a1a1a"))          # cabos
+			PixelArt.rect(img, w / 2 + 2, 0, 1, 4, Color("8e2f2f"))
+		"console", "terminal":
+			for k in 4:
+				PixelArt.px(img, 2 + k * 3, h - 4, [Color("e04040"), Color("40e060"), Color("e0c040"), Color("40a0e0")][k])
+			for k in range(2, w - 3, 2):
+				PixelArt.px(img, k, h - 6, Color(0.7, 0.7, 0.72))
+		"boiler", "reactor":
+			for k in range(2, w - 2, 4):
+				PixelArt.px(img, k, 8, Color(0.7, 0.7, 0.72))
+				PixelArt.px(img, k, h - 5, Color(0.7, 0.7, 0.72))
+		"locker", "cabinet":
+			for k in 3:
+				PixelArt.rect(img, 3, 3 + k * 2, w / 2 - 4, 1, Color(0.05, 0.05, 0.06))   # frestas
+			PixelArt.rect(img, w - 6, h / 2 - 3, 4, 3, Color(0.85, 0.82, 0.7))             # etiqueta
+		"desk", "reception":
+			PixelArt.rect(img, 2, 2, 2, 2, Color(0.12, 0.1, 0.25, 0.8))                    # mancha de tinta
+		"bucket":
+			PixelArt.rect(img, 3, 5, w - 6, 1, Color(0.35, 0.2, 0.1, 0.8))

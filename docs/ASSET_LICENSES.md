@@ -15,3 +15,6 @@
 **Referências:** "Decarnation" serviu apenas de inspiração de atmosfera/perspectiva. **Nenhum** código, sprite, música, mapa ou personagem de Decarnation ou de outros jogos comerciais foi usado.
 
 Observação honesta: a arte e o áudio são procedurais, coerentes entre si e originais, mas não equivalem a arte desenhada à mão por estúdio. Para substituir por assets externos, registre autor, fonte e licença nesta tabela.
+
+## Referência visual (rodada de aperfeiçoamento)
+A imagem de referência enviada pelo autor (cena com vegetação orgânica, pisos variados e móveis) foi usada **somente** como referência de atmosfera e composição (pisos por cômodo, objetos acumulados, crescimento orgânico sobre o cenário). Nenhum pixel, sprite ou elemento foi copiado: toda a arte nova é procedural e original (`art_fx.gd`, `tile_art.gd`, `pixel_art.gd`).

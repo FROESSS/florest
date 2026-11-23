@@ -29,6 +29,7 @@ var heal_t: float = 0.0
 var stun_t: float = 0.0
 var sprite: AnimatedSprite2D
 var flash: PointLight2D
+var dust: CPUParticles2D
 var glow: PointLight2D
 var col: CollisionShape2D
 var _step_acc: float = 0.0
@@ -68,7 +69,27 @@ func _ready() -> void:
 	flash.color = Color("fff1c8")
 	flash.enabled = GameManager.flashlight_on
 	flash.position = Vector2(0, -10)
+	flash.shadow_enabled = true
+	flash.shadow_filter = Light2D.SHADOW_FILTER_PCF5
+	flash.shadow_filter_smooth = 2.0
 	add_child(flash)
+	dust = CPUParticles2D.new()
+	dust.amount = 16
+	dust.lifetime = 2.6
+	dust.preprocess = 2.0
+	dust.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
+	dust.emission_rect_extents = Vector2(48, 20)
+	dust.position = Vector2(64, 0)
+	dust.direction = Vector2(0, -1)
+	dust.spread = 180.0
+	dust.gravity = Vector2(0, -1)
+	dust.initial_velocity_min = 1.0
+	dust.initial_velocity_max = 5.0
+	dust.scale_amount_min = 1.0
+	dust.scale_amount_max = 1.0
+	dust.color = Color(1.0, 0.95, 0.8, 0.55)
+	dust.emitting = false
+	flash.add_child(dust)
 	GameManager.flashlight_changed.connect(func(on: bool) -> void: flash.enabled = on and not hiding)
 	stamina = clampf(float(GameManager.player_state.get("stamina", STAMINA_MAX)), 0.0, STAMINA_MAX)
 	wound = clampi(int(GameManager.player_state.get("wound", 0)), 0, 3)
@@ -145,6 +166,7 @@ func _physics_process(delta: float) -> void:
 		_fatigue_visuals(delta, input == Vector2.ZERO)
 	if flash.enabled:
 		flash.rotation = lerp_angle(flash.rotation, facing.angle(), clampf(delta * 14.0, 0.0, 1.0))
+	dust.emitting = flash.enabled and not SettingsManager.reduce_distortion
 	if not hiding and not GameManager.is_chased() and velocity.length() < 1.0 and stun_t <= 0.0:
 		GameManager.last_safe_pos = position
 	_save_t += delta

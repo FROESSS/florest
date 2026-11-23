@@ -7,7 +7,7 @@ Base: v1.0.0 publicada. Esta rodada: correção/expansão (prompt de aperfeiçoa
 - [x] E2 Fundamentos: estados de puzzle, documentos reabríveis/inspeção, morte com retorno seguro (Recovery), save v2 (+migração v1). Testes: `tests/suite_e2.gd`
 - [x] E3 Sobrevivência: estamina (18/s, exaustão, regen lenta sob perigo), ferimentos 0–3 (golpe do Morador fere; só ferimento grave + golpe = morte), kits pequeno/grande (H ou inventário), armadilhas sinalizadas, cura natural, 20 kits distribuídos. Testes: `tests/suite_e3.gd`
 - [x] E4 Morador: buracos persistentes (cap 8/sala, 24 total, sem duplicar, sem cortar rotas), fuga por luz sustentada/golpe/tempo/zona/escondido, cava a cada 2ª fuga, retorno ≥18 s e ≥130 px com abertura sinalizada, intervalo encurta com mais buracos, save/load. Testes: `tests/suite_e4.gd`
-- [ ] E5 Visual
+- [x] E5 Visual: zonas de piso (tabuleiro/carpete/concreto), deterioração e rachaduras nas paredes, vigas/canos, teias, crescimento orgânico (tentáculos/veias) por sala, objetos soltos, props com sujeira/ferrugem e novos (mesa redonda, balcão, fogão, planta, buraco, armadilha, kit), sprites com rosto/sombreamento e caminhada/corrida de 6 quadros, Morador com mais detalhes + animação de afundar, lanterna com sombras (oclusores) e poeira. Referência de atmosfera: imagem enviada (sem copiar assets). Testes: `tests/suite_e5.gd`
 - [ ] E6 Narrativa e transições
 - [ ] E7 Remapeamento de teclas
 - [ ] E8 Validação e release
@@ -24,4 +24,4 @@ Base: v1.0.0 publicada. Esta rodada: correção/expansão (prompt de aperfeiçoa
 - Nenhum teste manual com jogador humano; áudio não ouvido.
 
 ## Próxima tarefa
-E5: visual (pisos/paredes/overgrowth, props, sprites, iluminação com sombras).
+E6: narrativa (proposta de conexão → documentos/gravações/memórias) e transições de capítulo.
