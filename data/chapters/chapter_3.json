@@ -1,140 +1,1361 @@
 {
-	"id": 3, "title": "A Casa Respira", "start_room": "c3_tunel", "start_spawn": "inicio",
+	"id": 3,
+	"title": "A Casa Respira",
+	"start_room": "c3_tunel",
+	"start_spawn": "inicio",
 	"objective": "Atravessar o túnel, encontrar três componentes (cartão, chip, bateria) para ativar o elevador.",
 	"rooms": {
 		"c3_tunel": {
-			"name": "Túnel Orgânico", "size": [34, 12], "overgrowth": 0.85, "theme": "organico", "ambient": 0.2, "ambient_sound": "amb_organic", "decals": 0.35,
-			"blocks": [[12, 5, 3, 2], [18, 7, 3, 2], [24, 3, 3, 2]],
-			"spawns": {"inicio": [3, 6], "este": [32, 6]},
+			"name": "Túnel Orgânico",
+			"size": [
+				34,
+				12
+			],
+			"overgrowth": 0.85,
+			"theme": "organico",
+			"ambient": 0.2,
+			"ambient_sound": "amb_organic",
+			"decals": 0.35,
+			"blocks": [
+				[
+					12,
+					5,
+					3,
+					2
+				],
+				[
+					18,
+					7,
+					3,
+					2
+				],
+				[
+					24,
+					3,
+					3,
+					2
+				]
+			],
+			"spawns": {
+				"inicio": [
+					3,
+					6
+				],
+				"este": [
+					32,
+					6
+				]
+			},
 			"lights": [
-				{"tile": [4, 5], "radius": 80, "energy": 0.6, "color": "#ff9080"}, {"tile": [16, 4], "radius": 70, "energy": 0.5, "color": "#d05070", "flicker": true},
-				{"tile": [28, 8], "radius": 70, "energy": 0.5, "color": "#d05070"}
+				{
+					"tile": [
+						4,
+						5
+					],
+					"radius": 80,
+					"energy": 0.6,
+					"color": "#ff9080"
+				},
+				{
+					"tile": [
+						16,
+						4
+					],
+					"radius": 70,
+					"energy": 0.5,
+					"color": "#d05070",
+					"flicker": true
+				},
+				{
+					"tile": [
+						28,
+						8
+					],
+					"radius": 70,
+					"energy": 0.5,
+					"color": "#d05070"
+				}
 			],
 			"objects": [
-				{"id": "kit1", "kind": "medkit", "tile": [30, 9], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
-				{"id": "trap1", "kind": "trap", "tile": [30, 5], "name": "Piso estragado", "prompt": "Examinar", "solid": false, "effects": [{"text": "Uma crosta de tecido endurecida com farpas de osso. Melhor não pisar."}], "hazard": {"hurt": 1, "text": "O piso cede e Elias cai de mau jeito. Um corte profundo na perna.", "sfx": "drop"}},
-				{"id": "d_ref", "kind": "door", "variant": "organic", "tile": [33, 6], "name": "Refeitório", "prompt": "Abrir", "door": {"to": "c3_refeitorio", "spawn": "oeste"}},
-				{"id": "bilhete", "kind": "note", "tile": [6, 3], "px": [8, 8], "name": "Bilhete da manutenção", "prompt": "Ler", "important": true, "solid": false, "effects": [{"doc": "nota_fusiveis"}]},
-				{"id": "pilha1", "kind": "battery", "tile": [3, 9], "px": [6, 8], "name": "Pilhas", "prompt": "Pegar", "solid": false, "effects": [{"battery": 40}], "once": true, "vanish_when_done": true},
-				{"id": "pilha2", "kind": "battery", "tile": [21, 5], "px": [6, 8], "name": "Pilhas (zona contaminada)", "prompt": "Pegar", "solid": false, "effects": [{"battery": 40}], "once": true, "vanish_when_done": true},
-				{"id": "casulo", "kind": "cocoon", "tile": [8, 8], "size": [1, 2], "name": "Casulo pulsante", "prompt": "Examinar", "effects": [
-					{"text": "Uma membrana rosada com algo humano dentro. Mexe-se devagar, no ritmo da minha respiração."}]}
+				{
+					"id": "kit1",
+					"kind": "medkit",
+					"tile": [
+						30,
+						9
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Kit médico",
+					"prompt": "Pegar",
+					"solid": false,
+					"important": true,
+					"vanish_when_done": true,
+					"effects": [
+						{
+							"give": "kit_pequeno"
+						}
+					]
+				},
+				{
+					"id": "trap1",
+					"kind": "trap",
+					"tile": [
+						30,
+						5
+					],
+					"name": "Piso estragado",
+					"prompt": "Examinar",
+					"solid": false,
+					"effects": [
+						{
+							"text": "Uma crosta de tecido endurecida com farpas de osso. Melhor não pisar."
+						}
+					],
+					"hazard": {
+						"hurt": 1,
+						"text": "O piso cede e Elias cai de mau jeito. Um corte profundo na perna.",
+						"sfx": "drop"
+					}
+				},
+				{
+					"id": "d_ref",
+					"kind": "door",
+					"variant": "organic",
+					"tile": [
+						33,
+						6
+					],
+					"name": "Refeitório",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c3_refeitorio",
+						"spawn": "oeste"
+					}
+				},
+				{
+					"id": "bilhete",
+					"kind": "note",
+					"tile": [
+						6,
+						3
+					],
+					"px": [
+						8,
+						8
+					],
+					"name": "Bilhete da manutenção",
+					"prompt": "Ler",
+					"important": true,
+					"solid": false,
+					"effects": [
+						{
+							"doc": "nota_fusiveis"
+						}
+					]
+				},
+				{
+					"id": "pilha1",
+					"kind": "battery",
+					"tile": [
+						3,
+						9
+					],
+					"px": [
+						6,
+						8
+					],
+					"name": "Pilhas",
+					"prompt": "Pegar",
+					"solid": false,
+					"effects": [
+						{
+							"battery": 40
+						}
+					],
+					"once": true,
+					"vanish_when_done": true
+				},
+				{
+					"id": "pilha2",
+					"kind": "battery",
+					"tile": [
+						21,
+						5
+					],
+					"px": [
+						6,
+						8
+					],
+					"name": "Pilhas (zona contaminada)",
+					"prompt": "Pegar",
+					"solid": false,
+					"effects": [
+						{
+							"battery": 40
+						}
+					],
+					"once": true,
+					"vanish_when_done": true
+				},
+				{
+					"id": "casulo",
+					"kind": "cocoon",
+					"tile": [
+						8,
+						8
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Casulo pulsante",
+					"prompt": "Examinar",
+					"effects": [
+						{
+							"text": "Uma membrana rosada com algo humano dentro. Mexe-se devagar, no ritmo da minha respiração."
+						}
+					]
+				},
+				{
+					"id": "mapa",
+					"kind": "poster",
+					"tile": [
+						12,
+						1
+					],
+					"name": "Mapa do tecido",
+					"prompt": "Ler",
+					"effects": [
+						{
+							"doc": "mapa_tnc"
+						}
+					]
+				}
 			],
 			"triggers": [
-				{"id": "t_clara", "rect": [1, 2, 6, 9], "effects": [
-					{"say": {"who": "Clara", "text": "Escute o chão. Quando vibrar, algo vai sair de uma das aberturas. Ele não corre, mas não desiste."}},
-					{"say": {"who": "Clara", "text": "A luz da lanterna o faz recuar. Só tem um jeito de seguir: o refeitório, à direita."}},
-					{"choice": "clara_c3"},
-					{"hint": "O Morador avisa antes de aparecer: vibração, sons e a abertura pulsando. Em zonas contaminadas não há esconderijos. Ele é mais lento que a caminhada.", "hint_time": 14}]}
+				{
+					"id": "t_clara",
+					"rect": [
+						1,
+						2,
+						6,
+						9
+					],
+					"effects": [
+						{
+							"say": {
+								"who": "Clara",
+								"text": "Escute o chão. Quando vibrar, algo vai sair de uma das aberturas. Ele não corre, mas não desiste."
+							}
+						},
+						{
+							"say": {
+								"who": "Clara",
+								"text": "A luz da lanterna o faz recuar. Só tem um jeito de seguir: o refeitório, à direita."
+							}
+						},
+						{
+							"choice": "clara_c3"
+						},
+						{
+							"hint": "O Morador avisa antes de aparecer: vibração, sons e a abertura pulsando. Em zonas contaminadas não há esconderijos. Ele é mais lento que a caminhada.",
+							"hint_time": 14
+						}
+					]
+				},
+				{
+					"id": "t_pulso",
+					"rect": [
+						9,
+						2,
+						2,
+						9
+					],
+					"effects": [
+						{
+							"sfx": "heartbeat",
+							"db": -2
+						},
+						{
+							"shake": 1.5
+						},
+						{
+							"text": "O chão pulsa como um coração. Eu devia olhar onde piso."
+						}
+					]
+				}
 			],
 			"enemies": [
-				{"id": "res", "type": "resident", "zone": [10, 2, 22, 9], "vents": [[14, 3], [20, 9], [28, 4]], "delay": [12, 18]}
+				{
+					"id": "res",
+					"type": "resident",
+					"zone": [
+						10,
+						2,
+						22,
+						9
+					],
+					"vents": [
+						[
+							14,
+							3
+						],
+						[
+							20,
+							9
+						],
+						[
+							28,
+							4
+						]
+					],
+					"delay": [
+						12,
+						18
+					]
+				}
 			]
 		},
 		"c3_refeitorio": {
-			"name": "Refeitório", "size": [36, 16], "overgrowth": 0.8, "floor_zones": [{"rect": [1, 2, 14, 13], "kind": "checker", "a": "#9a9c90", "b": "#2a2830"}], "theme": "organico", "ambient": 0.2, "ambient_sound": "amb_organic", "decals": 0.3,
-			"blocks": [[15, 2, 3, 4], [19, 2, 3, 4], [8, 8, 2, 2], [24, 9, 3, 2]],
-			"barriers": [{"id": "t1", "kind": "tissue", "rect": [31, 2, 2, 13], "removed_if": {"flags": ["tissue_burned"]}}],
-			"spawns": {"oeste": [2, 8], "norte": [18, 3], "este": [33, 8]},
+			"name": "Refeitório",
+			"size": [
+				36,
+				16
+			],
+			"overgrowth": 0.8,
+			"floor_zones": [
+				{
+					"rect": [
+						1,
+						2,
+						14,
+						13
+					],
+					"kind": "checker",
+					"a": "#9a9c90",
+					"b": "#2a2830"
+				}
+			],
+			"theme": "organico",
+			"ambient": 0.2,
+			"ambient_sound": "amb_organic",
+			"decals": 0.3,
+			"blocks": [
+				[
+					15,
+					2,
+					3,
+					4
+				],
+				[
+					19,
+					2,
+					3,
+					4
+				],
+				[
+					8,
+					8,
+					2,
+					2
+				],
+				[
+					24,
+					9,
+					3,
+					2
+				]
+			],
+			"barriers": [
+				{
+					"id": "t1",
+					"kind": "tissue",
+					"rect": [
+						31,
+						2,
+						2,
+						13
+					],
+					"removed_if": {
+						"flags": [
+							"tissue_burned"
+						]
+					}
+				}
+			],
+			"spawns": {
+				"oeste": [
+					2,
+					8
+				],
+				"norte": [
+					18,
+					3
+				],
+				"este": [
+					33,
+					8
+				]
+			},
 			"lights": [
-				{"tile": [6, 6], "radius": 90, "energy": 0.6, "color": "#ff9080", "flicker": true}, {"tile": [26, 6], "radius": 90, "energy": 0.5, "color": "#d05070"},
-				{"tile": [12, 13], "radius": 80, "energy": 0.5, "color": "#ffcc80"}, {"tile": [33, 8], "radius": 70, "energy": 0.5, "color": "#d05070"}
+				{
+					"tile": [
+						6,
+						6
+					],
+					"radius": 90,
+					"energy": 0.6,
+					"color": "#ff9080",
+					"flicker": true
+				},
+				{
+					"tile": [
+						26,
+						6
+					],
+					"radius": 90,
+					"energy": 0.5,
+					"color": "#d05070"
+				},
+				{
+					"tile": [
+						12,
+						13
+					],
+					"radius": 80,
+					"energy": 0.5,
+					"color": "#ffcc80"
+				},
+				{
+					"tile": [
+						33,
+						8
+					],
+					"radius": 70,
+					"energy": 0.5,
+					"color": "#d05070"
+				}
 			],
 			"objects": [
-				{"id": "dec_fridge", "kind": "fridge", "tile": [4, 2], "size": [1, 2]},
-				{"id": "dec_counter", "kind": "counter", "tile": [5, 2], "size": [3, 1]},
-				{"id": "dec_stove", "kind": "stove", "tile": [8, 2], "size": [1, 1]},
-				{"id": "dec_table", "kind": "roundtable", "tile": [26, 5], "size": [2, 2], "variant": "pink"},
-				{"id": "kit1", "kind": "medkit", "tile": [30, 13], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
-				{"id": "d_oeste", "kind": "door", "variant": "organic", "tile": [0, 8], "name": "Túnel", "prompt": "Abrir", "door": {"to": "c3_tunel", "spawn": "este"}},
-				{"id": "d_norte", "kind": "door", "variant": "organic", "tile": [18, 1], "name": "Sala de memórias", "prompt": "Abrir", "door": {"to": "c3_memoria", "spawn": "porta"}},
-				{"id": "d_leste", "gated_by_barrier": true, "kind": "door", "variant": "organic", "tile": [35, 8], "name": "Caldeira", "prompt": "Abrir", "door": {"to": "c3_caldeira", "spawn": "oeste"}},
-				{"id": "painel", "kind": "panel", "tile": [10, 1], "name": "Painel do incinerador", "prompt": "Operar", "important": true, "once": false, "effects": [
-					{"puzzle": "p_fusiveis", "on_solved": [
-						{"sfx": "fire", "db": 0, "sub": "[Incinerador rugindo]"}, {"shake": 2.5}, {"flag": "tissue_burned"},
-						{"text": ["O incinerador ruge atrás das paredes. O tecido recua, gritando sem boca.", "O caminho para a caldeira está livre."]},
-						{"objective": "Seguir até a caldeira. A bateria do laboratório está do outro lado do tecido."}]}]},
-				{"id": "panelas", "kind": "bucket", "tile": [6, 12], "px": [12, 12], "name": "Panelas penduradas", "prompt": "Derrubar", "solid": true, "important": true, "once": false, "effects": [
-					{"sfx": "drop", "db": 0, "sub": "[Panelas caindo]"},
-					{"noise": {"radius": 220, "source": "lure", "tile": [6, 11]}},
-					{"text": "As panelas desabam no chão. Atrás das paredes, algo pesado se arrasta na direção do barulho."}]},
-				{"id": "pilha", "kind": "battery", "tile": [4, 13], "px": [6, 8], "name": "Pilhas", "prompt": "Pegar", "solid": false, "effects": [{"battery": 40}], "once": true, "vanish_when_done": true},
-				{"id": "bateria", "gated_by_barrier": true, "kind": "crate", "tile": [34, 3], "px": [12, 12], "name": "Bateria do laboratório", "prompt": "Pegar", "important": true, "effects": [
-					{"text": "Uma célula de energia pesada, protegida por uma grade. Ainda está quente."}, {"give": "bateria_lab"}]},
-				{"id": "mesa1", "kind": "table", "tile": [11, 4], "size": [3, 1]}, {"id": "mesa2", "kind": "table", "tile": [11, 11], "size": [3, 1]},
-				{"id": "mesa3", "kind": "table", "tile": [22, 12], "size": [3, 1]}
+				{
+					"id": "dec_fridge",
+					"kind": "fridge",
+					"tile": [
+						4,
+						2
+					],
+					"size": [
+						1,
+						2
+					]
+				},
+				{
+					"id": "dec_counter",
+					"kind": "counter",
+					"tile": [
+						5,
+						2
+					],
+					"size": [
+						3,
+						1
+					]
+				},
+				{
+					"id": "dec_stove",
+					"kind": "stove",
+					"tile": [
+						8,
+						2
+					],
+					"size": [
+						1,
+						1
+					]
+				},
+				{
+					"id": "dec_table",
+					"kind": "roundtable",
+					"tile": [
+						26,
+						5
+					],
+					"size": [
+						2,
+						2
+					],
+					"variant": "pink"
+				},
+				{
+					"id": "kit1",
+					"kind": "medkit",
+					"tile": [
+						30,
+						13
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Kit médico",
+					"prompt": "Pegar",
+					"solid": false,
+					"important": true,
+					"vanish_when_done": true,
+					"effects": [
+						{
+							"give": "kit_pequeno"
+						}
+					]
+				},
+				{
+					"id": "d_oeste",
+					"kind": "door",
+					"variant": "organic",
+					"tile": [
+						0,
+						8
+					],
+					"name": "Túnel",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c3_tunel",
+						"spawn": "este"
+					}
+				},
+				{
+					"id": "d_norte",
+					"kind": "door",
+					"variant": "organic",
+					"tile": [
+						18,
+						1
+					],
+					"name": "Sala de memórias",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c3_memoria",
+						"spawn": "porta"
+					}
+				},
+				{
+					"id": "d_leste",
+					"gated_by_barrier": true,
+					"kind": "door",
+					"variant": "organic",
+					"tile": [
+						35,
+						8
+					],
+					"name": "Caldeira",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c3_caldeira",
+						"spawn": "oeste"
+					}
+				},
+				{
+					"id": "painel",
+					"kind": "panel",
+					"tile": [
+						10,
+						1
+					],
+					"name": "Painel do incinerador",
+					"prompt": "Operar",
+					"important": true,
+					"once": false,
+					"effects": [
+						{
+							"puzzle": "p_fusiveis",
+							"on_solved": [
+								{
+									"sfx": "fire",
+									"db": 0,
+									"sub": "[Incinerador rugindo]"
+								},
+								{
+									"shake": 2.5
+								},
+								{
+									"flag": "tissue_burned"
+								},
+								{
+									"text": [
+										"O incinerador ruge atrás das paredes. O tecido recua, gritando sem boca.",
+										"O caminho para a caldeira está livre."
+									]
+								},
+								{
+									"objective": "Seguir até a caldeira. A bateria do laboratório está do outro lado do tecido."
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "panelas",
+					"kind": "bucket",
+					"tile": [
+						6,
+						12
+					],
+					"px": [
+						12,
+						12
+					],
+					"name": "Panelas penduradas",
+					"prompt": "Derrubar",
+					"solid": true,
+					"important": true,
+					"once": false,
+					"effects": [
+						{
+							"sfx": "drop",
+							"db": 0,
+							"sub": "[Panelas caindo]"
+						},
+						{
+							"noise": {
+								"radius": 220,
+								"source": "lure",
+								"tile": [
+									6,
+									11
+								]
+							}
+						},
+						{
+							"text": "As panelas desabam no chão. Atrás das paredes, algo pesado se arrasta na direção do barulho."
+						}
+					]
+				},
+				{
+					"id": "pilha",
+					"kind": "battery",
+					"tile": [
+						4,
+						13
+					],
+					"px": [
+						6,
+						8
+					],
+					"name": "Pilhas",
+					"prompt": "Pegar",
+					"solid": false,
+					"effects": [
+						{
+							"battery": 40
+						}
+					],
+					"once": true,
+					"vanish_when_done": true
+				},
+				{
+					"id": "bateria",
+					"gated_by_barrier": true,
+					"kind": "crate",
+					"tile": [
+						34,
+						3
+					],
+					"px": [
+						12,
+						12
+					],
+					"name": "Bateria do laboratório",
+					"prompt": "Pegar",
+					"important": true,
+					"effects": [
+						{
+							"text": "Uma célula de energia pesada, protegida por uma grade. Ainda está quente."
+						},
+						{
+							"give": "bateria_lab"
+						}
+					]
+				},
+				{
+					"id": "mesa1",
+					"kind": "table",
+					"tile": [
+						11,
+						4
+					],
+					"size": [
+						3,
+						1
+					]
+				},
+				{
+					"id": "mesa2",
+					"kind": "table",
+					"tile": [
+						11,
+						11
+					],
+					"size": [
+						3,
+						1
+					]
+				},
+				{
+					"id": "mesa3",
+					"kind": "table",
+					"tile": [
+						22,
+						12
+					],
+					"size": [
+						3,
+						1
+					]
+				},
+				{
+					"id": "tres",
+					"kind": "drawing",
+					"variant": "star:3",
+					"tile": [
+						24,
+						1
+					],
+					"name": "Desenho dos três",
+					"prompt": "Examinar",
+					"important": true,
+					"effects": [
+						{
+							"text": "Três figuras de mãos dadas, desenhadas com giz. Embaixo, três nomes raspados com a unha: Davi, Rute, Caio."
+						},
+						{
+							"memory": "tres_criancas"
+						}
+					]
+				},
+				{
+					"id": "arq_necropsia",
+					"kind": "cabinet",
+					"tile": [
+						28,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Arquivo da cozinha",
+					"prompt": "Abrir",
+					"effects": [
+						{
+							"doc": "necropsia"
+						}
+					]
+				}
 			],
 			"triggers": [
-				{"id": "t_entra", "rect": [1, 2, 5, 12], "effects": [
-					{"text": "O refeitório está tomado por um tecido rosado. As mesas respiram. Um corredor estreito leva à sala ao norte, mas algo grande bloqueia o caminho."},
-					{"hint": "Barulho distante atrai o Morador. Derrube as panelas para desviá-lo do corredor norte.", "hint_time": 12}]}
+				{
+					"id": "t_entra",
+					"rect": [
+						1,
+						2,
+						5,
+						12
+					],
+					"effects": [
+						{
+							"text": "O refeitório está tomado por um tecido rosado. As mesas respiram. Um corredor estreito leva à sala ao norte, mas algo grande bloqueia o caminho."
+						},
+						{
+							"hint": "Barulho distante atrai o Morador. Derrube as panelas para desviá-lo do corredor norte.",
+							"hint_time": 12
+						}
+					]
+				}
 			],
 			"enemies": [
-				{"id": "bloqueio", "type": "resident", "mode": "blocker", "tile": [18, 4], "done_flag": "resident_lured_1"}
+				{
+					"id": "bloqueio",
+					"type": "resident",
+					"mode": "blocker",
+					"tile": [
+						18,
+						4
+					],
+					"done_flag": "resident_lured_1"
+				}
 			]
 		},
 		"c3_memoria": {
-			"name": "Sala das Lembranças", "size": [20, 12], "overgrowth": 0.15, "theme": "memoria", "ambient": 0.3, "ambient_sound": "amb_lab", "decals": 0.1,
-			"blocks": [[6, 6, 2, 2]],
-			"spawns": {"porta": [10, 10]},
-			"recovery": [[10, 4]],
-			"lights": [{"tile": [10, 5], "radius": 100, "energy": 0.6, "color": "#c8c0b0"}],
+			"name": "Sala das Lembranças",
+			"size": [
+				20,
+				12
+			],
+			"overgrowth": 0.15,
+			"theme": "memoria",
+			"ambient": 0.3,
+			"ambient_sound": "amb_lab",
+			"decals": 0.1,
+			"blocks": [
+				[
+					6,
+					6,
+					2,
+					2
+				]
+			],
+			"spawns": {
+				"porta": [
+					10,
+					10
+				]
+			},
+			"recovery": [
+				[
+					10,
+					4
+				]
+			],
+			"lights": [
+				{
+					"tile": [
+						10,
+						5
+					],
+					"radius": 100,
+					"energy": 0.6,
+					"color": "#c8c0b0"
+				}
+			],
 			"objects": [
-				{"id": "dec_table", "kind": "roundtable", "tile": [14, 7], "size": [2, 2], "variant": "pink"},
-				{"id": "porta", "kind": "door", "tile": [10, 11], "name": "Refeitório", "prompt": "Abrir", "door": {"to": "c3_refeitorio", "spawn": "norte"}},
-				{"id": "bau", "kind": "toybox", "tile": [4, 3], "size": [2, 1], "name": "Baú de brinquedos", "prompt": "Examinar", "important": true, "effects": [
-					{"text": "Brinquedos arrumados com cuidado ritual. Reconheço a ordem... não a ordem em si, mas o gesto."}, {"memory": "brinquedos"}]},
-				{"id": "prateleira", "kind": "shelf", "tile": [14, 2], "size": [2, 2], "name": "Prateleira de brinquedos", "prompt": "Arrumar", "important": true, "once": false, "effects": [
-					{"puzzle": "p_brinquedos", "on_solved": [
-						{"text": ["Os brinquedos assentam na ordem certa. O urso de pelúcia se desfaz em poeira, e dentro dele há um pequeno chip quente."]},
-						{"give": "chip_lazaro"}, {"objective": "Reunir cartão de acesso, chip e bateria e ir ao elevador, na caldeira."}]}]},
-				{"id": "lia", "kind": "npc", "style": "kid_b", "ghost": true, "tile": [10, 5], "name": "Lia", "prompt": "Falar com", "once": false, "hide_if": {"any_flags": ["helped_child_2", "lia_trap"]}, "effects": [
-					{"text": ["Você chegou! Ninguém chega aqui.", "A casa arrumou o meu quarto de novo. Mas está tudo fora do lugar."]},
-					{"choice": "lia"}]},
-				{"id": "cama", "kind": "bed", "tile": [16, 6], "size": [1, 2], "name": "Cama de Lia", "prompt": "Examinar", "effects": [
-					{"text": "A cama está arrumada. Mas os lençóis estão molhados, como se alguém tivesse acabado de sair da água."}]}
+				{
+					"id": "dec_table",
+					"kind": "roundtable",
+					"tile": [
+						14,
+						7
+					],
+					"size": [
+						2,
+						2
+					],
+					"variant": "pink"
+				},
+				{
+					"id": "porta",
+					"kind": "door",
+					"tile": [
+						10,
+						11
+					],
+					"name": "Refeitório",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c3_refeitorio",
+						"spawn": "norte"
+					}
+				},
+				{
+					"id": "bau",
+					"kind": "toybox",
+					"tile": [
+						4,
+						3
+					],
+					"size": [
+						2,
+						1
+					],
+					"name": "Baú de brinquedos",
+					"prompt": "Examinar",
+					"important": true,
+					"effects": [
+						{
+							"text": "Brinquedos arrumados com cuidado ritual. Reconheço a ordem... não a ordem em si, mas o gesto."
+						},
+						{
+							"memory": "brinquedos"
+						}
+					]
+				},
+				{
+					"id": "prateleira",
+					"kind": "shelf",
+					"tile": [
+						14,
+						2
+					],
+					"size": [
+						2,
+						2
+					],
+					"name": "Prateleira de brinquedos",
+					"prompt": "Arrumar",
+					"important": true,
+					"once": false,
+					"effects": [
+						{
+							"puzzle": "p_brinquedos",
+							"on_solved": [
+								{
+									"text": [
+										"Os brinquedos assentam na ordem certa. O urso de pelúcia se desfaz em poeira, e dentro dele há um pequeno chip quente."
+									]
+								},
+								{
+									"give": "chip_lazaro"
+								},
+								{
+									"objective": "Reunir cartão de acesso, chip e bateria e ir ao elevador, na caldeira."
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "lia",
+					"kind": "npc",
+					"style": "kid_b",
+					"ghost": true,
+					"tile": [
+						10,
+						5
+					],
+					"name": "Lia",
+					"prompt": "Falar com",
+					"once": false,
+					"hide_if": {
+						"any_flags": [
+							"helped_child_2",
+							"lia_trap"
+						]
+					},
+					"effects": [
+						{
+							"text": [
+								"Você chegou! Ninguém chega aqui.",
+								"A casa arrumou o meu quarto de novo. Mas está tudo fora do lugar."
+							]
+						},
+						{
+							"choice": "lia"
+						}
+					]
+				},
+				{
+					"id": "cama",
+					"kind": "bed",
+					"tile": [
+						16,
+						6
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Cama de Lia",
+					"prompt": "Examinar",
+					"effects": [
+						{
+							"text": "A cama está arrumada. Mas os lençóis estão molhados, como se alguém tivesse acabado de sair da água."
+						}
+					]
+				}
 			],
 			"triggers": [
-				{"id": "t_intro", "rect": [1, 2, 18, 9], "effects": [
-					{"text": "Esta sala reproduz uma lembrança de outra pessoa. As cores estão lavadas. Há uma menina no centro, de costas."}]}
+				{
+					"id": "t_intro",
+					"rect": [
+						1,
+						2,
+						18,
+						9
+					],
+					"effects": [
+						{
+							"text": "Esta sala reproduz uma lembrança de outra pessoa. As cores estão lavadas. Há uma menina no centro, de costas."
+						}
+					]
+				}
 			],
 			"enemies": [
-				{"id": "res_trap", "type": "resident", "zone": [1, 2, 18, 9], "vents": [[3, 9], [17, 9]], "delay": [5, 8], "active_if": {"flags": ["lia_trap"]}}
+				{
+					"id": "res_trap",
+					"type": "resident",
+					"zone": [
+						1,
+						2,
+						18,
+						9
+					],
+					"vents": [
+						[
+							3,
+							9
+						],
+						[
+							17,
+							9
+						]
+					],
+					"delay": [
+						5,
+						8
+					],
+					"active_if": {
+						"flags": [
+							"lia_trap"
+						]
+					}
+				}
 			],
 			"clara_talk": [
-				{"id": "a", "effects": [{"say": {"who": "Clara", "text": "Nem toda criança perdida ajuda. Algumas só querem companhia... lá embaixo."}}]}
+				{
+					"id": "a",
+					"effects": [
+						{
+							"say": {
+								"who": "Clara",
+								"text": "Nem toda criança perdida ajuda. Algumas só querem companhia... lá embaixo."
+							}
+						}
+					]
+				}
 			]
 		},
 		"c3_caldeira": {
-			"name": "Caldeira", "size": [30, 14], "overgrowth": 0.45, "floor_zones": [{"rect": [1, 2, 28, 11], "kind": "concrete", "a": "#4a4640"}], "theme": "orfanato", "ambient": 0.14, "ambient_sound": "amb_organic", "decals": 0.25,
-			"blocks": [[10, 6, 2, 4]],
-			"spawns": {"oeste": [2, 8]},
-			"lights": [{"tile": [6, 5], "radius": 80, "energy": 0.6, "color": "#ffb060", "flicker": true}, {"tile": [22, 8], "radius": 90, "energy": 0.5, "color": "#d06050"}],
+			"name": "Caldeira",
+			"size": [
+				30,
+				14
+			],
+			"overgrowth": 0.45,
+			"floor_zones": [
+				{
+					"rect": [
+						1,
+						2,
+						28,
+						11
+					],
+					"kind": "concrete",
+					"a": "#4a4640"
+				}
+			],
+			"theme": "orfanato",
+			"ambient": 0.14,
+			"ambient_sound": "amb_organic",
+			"decals": 0.25,
+			"blocks": [
+				[
+					10,
+					6,
+					2,
+					4
+				]
+			],
+			"spawns": {
+				"oeste": [
+					2,
+					8
+				]
+			},
+			"lights": [
+				{
+					"tile": [
+						6,
+						5
+					],
+					"radius": 80,
+					"energy": 0.6,
+					"color": "#ffb060",
+					"flicker": true
+				},
+				{
+					"tile": [
+						22,
+						8
+					],
+					"radius": 90,
+					"energy": 0.5,
+					"color": "#d06050"
+				}
+			],
 			"objects": [
-				{"id": "kit1", "kind": "medkit", "tile": [27, 10], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
-				{"id": "d_oeste", "kind": "door", "variant": "organic", "tile": [0, 8], "name": "Refeitório", "prompt": "Abrir", "door": {"to": "c3_refeitorio", "spawn": "este"}},
-				{"id": "caldeira", "kind": "boiler", "tile": [18, 2], "size": [2, 2], "name": "Caldeira", "prompt": "Examinar", "effects": [
-					{"text": "Uma caldeira velha, ainda quente. O vapor sai em pulsos, no mesmo ritmo do tecido."}]},
-				{"id": "mesa", "kind": "desk", "tile": [6, 3], "size": [2, 1], "name": "Mesa de Marta", "prompt": "Ler", "effects": [{"doc": "diario_marta"}]},
-				{"id": "armario", "kind": "locker", "tile": [24, 2], "size": [1, 2], "name": "Armário de Marta", "prompt": "Abrir", "important": true, "effects": [
-					{"text": "Um avental branco, um cartão magnético e uma cantiga rabiscada em um papel. 'Cantar é a única coisa que as acalma.'"},
-					{"give": "cartao_acesso"}, {"memory": "cuidadora"}]},
-				{"id": "elevador", "kind": "elevator", "tile": [14, 1], "size": [2, 1], "name": "Elevador de serviço", "prompt": "Usar", "important": true, "once": false,
-					"requires": {"items": ["cartao_acesso", "chip_lazaro", "bateria_lab"]},
+				{
+					"id": "kit1",
+					"kind": "medkit",
+					"tile": [
+						27,
+						10
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Kit médico",
+					"prompt": "Pegar",
+					"solid": false,
+					"important": true,
+					"vanish_when_done": true,
+					"effects": [
+						{
+							"give": "kit_pequeno"
+						}
+					]
+				},
+				{
+					"id": "d_oeste",
+					"kind": "door",
+					"variant": "organic",
+					"tile": [
+						0,
+						8
+					],
+					"name": "Refeitório",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c3_refeitorio",
+						"spawn": "este"
+					}
+				},
+				{
+					"id": "caldeira",
+					"kind": "boiler",
+					"tile": [
+						18,
+						2
+					],
+					"size": [
+						2,
+						2
+					],
+					"name": "Caldeira",
+					"prompt": "Examinar",
+					"effects": [
+						{
+							"text": "Uma caldeira velha, ainda quente. O vapor sai em pulsos, no mesmo ritmo do tecido."
+						}
+					]
+				},
+				{
+					"id": "mesa",
+					"kind": "desk",
+					"tile": [
+						6,
+						3
+					],
+					"size": [
+						2,
+						1
+					],
+					"name": "Mesa de Marta",
+					"prompt": "Ler",
+					"effects": [
+						{
+							"doc": "diario_marta"
+						}
+					]
+				},
+				{
+					"id": "armario",
+					"kind": "locker",
+					"tile": [
+						24,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Armário de Marta",
+					"prompt": "Abrir",
+					"important": true,
+					"effects": [
+						{
+							"text": "Um avental branco, um cartão magnético e uma cantiga rabiscada em um papel. 'Cantar é a única coisa que as acalma.'"
+						},
+						{
+							"give": "cartao_acesso"
+						},
+						{
+							"memory": "cuidadora"
+						}
+					]
+				},
+				{
+					"id": "elevador",
+					"kind": "elevator",
+					"tile": [
+						14,
+						1
+					],
+					"size": [
+						2,
+						1
+					],
+					"name": "Elevador de serviço",
+					"prompt": "Usar",
+					"important": true,
+					"once": false,
+					"requires": {
+						"items": [
+							"cartao_acesso",
+							"chip_lazaro",
+							"bateria_lab"
+						]
+					},
 					"locked_text": "O elevador exige três componentes: o cartão de acesso, o chip de memória e uma bateria. Ainda faltam peças.",
 					"effects": [
-						{"take": "cartao_acesso"}, {"take": "chip_lazaro"}, {"take": "bateria_lab"}, {"flag": "lab_open"},
-						{"sfx": "alarm", "sub": "[Alarme do elevador]"},
-						{"text": ["O elevador acorda com um gemido. As portas se abrem sobre uma escuridão iluminada em vermelho.", "Clara aperta minha mão. 'Agora vamos ver o que eles esconderam.'"]},
-						{"chapter": 4}]},
-				{"id": "locker", "kind": "locker", "tile": [3, 9], "size": [1, 2], "name": "Armário velho", "prompt": "Esconder-se", "hide": true},
-				{"id": "pilha", "kind": "battery", "tile": [26, 11], "px": [6, 8], "name": "Pilhas", "prompt": "Pegar", "solid": false, "effects": [{"battery": 30}], "once": true, "vanish_when_done": true}
+						{
+							"take": "cartao_acesso"
+						},
+						{
+							"take": "chip_lazaro"
+						},
+						{
+							"take": "bateria_lab"
+						},
+						{
+							"flag": "lab_open"
+						},
+						{
+							"sfx": "alarm",
+							"sub": "[Alarme do elevador]"
+						},
+						{
+							"text": [
+								"O elevador acorda com um gemido. As portas se abrem sobre uma escuridão iluminada em vermelho.",
+								"Clara aperta minha mão. 'Agora vamos ver o que eles esconderam.'"
+							]
+						},
+						{
+							"chapter": 4
+						}
+					]
+				},
+				{
+					"id": "locker",
+					"kind": "locker",
+					"tile": [
+						3,
+						9
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Armário velho",
+					"prompt": "Esconder-se",
+					"hide": true
+				},
+				{
+					"id": "pilha",
+					"kind": "battery",
+					"tile": [
+						26,
+						11
+					],
+					"px": [
+						6,
+						8
+					],
+					"name": "Pilhas",
+					"prompt": "Pegar",
+					"solid": false,
+					"effects": [
+						{
+							"battery": 30
+						}
+					],
+					"once": true,
+					"vanish_when_done": true
+				},
+				{
+					"id": "gravador",
+					"kind": "musicbox",
+					"tile": [
+						8,
+						12
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Gravador de fita",
+					"prompt": "Ouvir",
+					"important": true,
+					"solid": true,
+					"effects": [
+						{
+							"doc": "gravacao_marta"
+						}
+					]
+				}
 			],
 			"enemies": [
-				{"id": "patrol", "type": "caretaker", "tile": [18, 9], "patrol": [[4, 5], [8, 11], [14, 8], [22, 10], [24, 5]]}
+				{
+					"id": "patrol",
+					"type": "caretaker",
+					"tile": [
+						18,
+						9
+					],
+					"patrol": [
+						[
+							4,
+							5
+						],
+						[
+							8,
+							11
+						],
+						[
+							14,
+							8
+						],
+						[
+							22,
+							10
+						],
+						[
+							24,
+							5
+						]
+					]
+				}
 			],
 			"clara_talk": [
-				{"id": "a", "effects": [{"say": {"who": "Clara", "text": "A Marta não é má. Ela é a primeira pessoa que a casa aprendeu. Não a odeie."}}]}
+				{
+					"id": "marta",
+					"conditions": {
+						"flags": [
+							"doc_gravacao_marta"
+						]
+					},
+					"effects": [
+						{
+							"say": {
+								"who": "Clara",
+								"text": "A Marta me chamava de Clarinha. Eu não a chamo de nada, mas conheço a voz."
+							}
+						}
+					]
+				},
+				{
+					"id": "a",
+					"effects": [
+						{
+							"say": {
+								"who": "Clara",
+								"text": "A Marta não é má. Ela é a primeira pessoa que a casa aprendeu. Não a odeie."
+							}
+						}
+					]
+				}
 			]
 		}
 	}

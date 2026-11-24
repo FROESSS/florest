@@ -57,7 +57,7 @@ func _ready() -> void:
 		await SceneManager.fade_in(0.6)
 	if not NarrativeManager.has_flag("intro_shown") and GameManager.chapter == 1:
 		NarrativeManager.set_flag("intro_shown", true)
-		hud.show_hint(LocalizationManager.t("controls.hint"), 12.0)
+		hud.show_hint(SettingsManager.controls_hint(), 12.0)
 
 func _exit_tree() -> void:
 	if GameManager.world == self:
@@ -147,15 +147,22 @@ func goto_chapter(n: int) -> void:
 	var ch: Dictionary = NarrativeManager.chapters_db.get(n, {})
 	if ch.is_empty():
 		return
-	await SceneManager.fade_out(0.6)
+	await SceneManager.fade_out(0.9)
+	AudioManager.set_ambient("")
+	if n > 1 and NarrativeManager.cutscenes_db.has("chapter_end_%d" % (n - 1)):
+		NarrativeManager.set_flag("chapter_%d_done" % (n - 1), true)
+		await memory.play_cutscene("chapter_end_%d" % (n - 1))
 	GameManager.set_chapter(n)
 	NarrativeManager.set_flag("chapter_%d_started" % n, true)
 	await memory.play_cutscene("chapter_%d" % n)
 	NarrativeManager.set_objective(str(ch.get("objective", "")))
 	await load_room(str(ch["start_room"]), str(ch.get("start_spawn", "")), false, false)
-	await SceneManager.fade_in(0.6)
+	await SceneManager.fade_in(0.9)
 	if str(ch.get("objective", "")) != "":
 		hud.show_objective()
+	GameManager.toast.emit(LocalizationManager.tf("game.chapter", [n]) + " — " + str(ch.get("title", "")))
+	if not GameManager.is_chased():
+		SaveManager.save_to("auto")   # progresso salvo na virada de capítulo
 
 # ---------- Entidades ----------
 

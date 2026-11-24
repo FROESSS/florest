@@ -70,6 +70,7 @@ func _play(label: String, choices: Dictionary, expected_ending: String, check_al
 	t.check(SaveManager.has_slot("auto"), "[%s] checkpoint salvo" % tag)
 	await _use("porta"); _expect_room("c1_corredor")
 	await _use("d_salao"); _expect_room("c1_saguao")
+	await _use("recep")
 	await _use("servico")
 	_expect_room("c2_dormitorio")
 	t.check(GameManager.chapter == 2, "[%s] capítulo 2 iniciado" % tag)
@@ -82,6 +83,7 @@ func _play(label: String, choices: Dictionary, expected_ending: String, check_al
 	await _use("d_enf"); _expect_room("c2_corredor")      # trancada
 	await _use("d_aula"); _expect_room("c2_aula")
 	await _use("quadro")
+	await _use("livro")
 	await _use("mesa")
 	await _use("des_a")
 	await _use("des_b")
@@ -102,9 +104,12 @@ func _play(label: String, choices: Dictionary, expected_ending: String, check_al
 	t.check(GameManager.chapter == 3, "[%s] capítulo 3 iniciado" % tag)
 	# ---------- Capítulo III ----------
 	await _use("bilhete")
+	await _use("mapa")
 	await _use("pilha1")
 	await _use("d_ref"); _expect_room("c3_refeitorio")
 	await _use("painel")
+	await _use("tres")
+	await _use("arq_necropsia")
 	t.check(NarrativeManager.has_flag("tissue_burned"), "[%s] incinerador queima o tecido" % tag)
 	await _use("panelas")
 	await _use("pilha")
@@ -119,6 +124,7 @@ func _play(label: String, choices: Dictionary, expected_ending: String, check_al
 	await _use("elevador"); _expect_room("c3_caldeira")   # faltam o cartão
 	await _use("mesa")
 	await _use("armario")
+	await _use("gravador")
 	await _use("elevador")
 	_expect_room("c4_lab_hall")
 	t.check(GameManager.chapter == 4 and NarrativeManager.has_flag("lab_open"), "[%s] capítulo 4 iniciado" % tag)
@@ -126,6 +132,7 @@ func _play(label: String, choices: Dictionary, expected_ending: String, check_al
 	# ---------- Capítulo IV ----------
 	await _use("elevador"); _expect_room("c4_lab_hall")   # ainda não entendeu o laboratório
 	await _use("aviso")
+	await _use("contrato")
 	await _use("d_clara"); _expect_room("c4_lab_hall")    # trancada antes do terminal
 	await _use("d_arq"); _expect_room("c4_arquivos")
 	await _use("terminal")
@@ -137,9 +144,12 @@ func _play(label: String, choices: Dictionary, expected_ending: String, check_al
 	await _use("d_este"); _expect_room("c4_lab_hall")
 	await _use("d_cir"); _expect_room("c4_cirurgia")
 	await _use("projetor")
+	await _use("arq_memo")
+	await _use("gravador")
 	await _use("d_oeste"); _expect_room("c4_lab_hall")
 	await _use("d_clara"); _expect_room("c4_clara")
 	await _use("cadeira")
+	await _use("carta")
 	await _use("porta"); _expect_room("c4_lab_hall")
 	await _use("elevador")
 	_expect_room("c5_colapso")
@@ -149,9 +159,12 @@ func _play(label: String, choices: Dictionary, expected_ending: String, check_al
 	await _use("valvulas")
 	await _use("pilha")
 	await _use("d_reator"); _expect_room("c5_reator")
+	await _use("manual_emerg")
+	await _use("foto_func")
 	await _use("console")
 	await _use("d_oeste"); _expect_room("c5_colapso")
 	await _use("d_controle"); _expect_room("c5_controle")
+	await _use("gravador")
 	await _use("principal"); _expect_room("c5_controle")  # exige lembrar quem é
 	t.check(GameManager.ended == "", "[%s] console bloqueado antes da memória de Elias" % tag)
 	await _use("cadeira")
@@ -159,7 +172,7 @@ func _play(label: String, choices: Dictionary, expected_ending: String, check_al
 	var opts: Array = NarrativeManager.final_options().map(func(o): return o["id"])
 	t.check(expected_ending in opts, "[%s] final '%s' está disponível entre %s" % [tag, expected_ending, str(opts)])
 	if check_all_endings:
-		t.check(NarrativeManager.memory_count() == 10, "[%s] 10 memórias coletadas (%d)" % [tag, NarrativeManager.memory_count()])
+		t.check(NarrativeManager.memory_count() == 13, "[%s] 13 memórias coletadas (%d)" % [tag, NarrativeManager.memory_count()])
 		t.check(opts.size() == 4, "[%s] os 4 finais disponíveis com exploração completa (%s)" % [tag, str(opts)])
 	await _use("principal")
 	t.check(GameManager.ended == expected_ending, "[%s] final alcançado: %s (esperado %s)" % [tag, GameManager.ended, expected_ending])

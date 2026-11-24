@@ -8,8 +8,8 @@ Base: v1.0.0 publicada. Esta rodada: correção/expansão (prompt de aperfeiçoa
 - [x] E3 Sobrevivência: estamina (18/s, exaustão, regen lenta sob perigo), ferimentos 0–3 (golpe do Morador fere; só ferimento grave + golpe = morte), kits pequeno/grande (H ou inventário), armadilhas sinalizadas, cura natural, 20 kits distribuídos. Testes: `tests/suite_e3.gd`
 - [x] E4 Morador: buracos persistentes (cap 8/sala, 24 total, sem duplicar, sem cortar rotas), fuga por luz sustentada/golpe/tempo/zona/escondido, cava a cada 2ª fuga, retorno ≥18 s e ≥130 px com abertura sinalizada, intervalo encurta com mais buracos, save/load. Testes: `tests/suite_e4.gd`
 - [x] E5 Visual: zonas de piso (tabuleiro/carpete/concreto), deterioração e rachaduras nas paredes, vigas/canos, teias, crescimento orgânico (tentáculos/veias) por sala, objetos soltos, props com sujeira/ferrugem e novos (mesa redonda, balcão, fogão, planta, buraco, armadilha, kit), sprites com rosto/sombreamento e caminhada/corrida de 6 quadros, Morador com mais detalhes + animação de afundar, lanterna com sombras (oclusores) e poeira. Referência de atmosfera: imagem enviada (sem copiar assets). Testes: `tests/suite_e5.gd`
-- [ ] E6 Narrativa e transições
-- [ ] E7 Remapeamento de teclas
+- [x] E6 Narrativa e transições: puzzles com pistas em salas diferentes (dificuldade progressiva), 12 novos documentos (3 gravações), 3 memórias novas (13 no total; secreto exige ≥10), eventos ambientais, proposta de conexão no NARRATIVE_BIBLE, transições (cartão de fim + título + descrição + som + cena própria + autosave). Testes: `tests/suite_e6.gd`
+- [x] E7 Remapeamento: 11 ações com 2 teclas, conflito/troca, Esc reservada, restaurar padrões, persistência (`[controls]` em settings.cfg) e UI. Testes: `tests/suite_e7.gd`
 - [ ] E8 Validação e release
 
 ## Decisões técnicas
@@ -24,4 +24,4 @@ Base: v1.0.0 publicada. Esta rodada: correção/expansão (prompt de aperfeiçoa
 - Nenhum teste manual com jogador humano; áudio não ouvido.
 
 ## Próxima tarefa
-E6: narrativa (proposta de conexão → documentos/gravações/memórias) e transições de capítulo.
+E8: validação final, versão 1.1.0, release.

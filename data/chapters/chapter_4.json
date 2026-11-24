@@ -1,108 +1,1109 @@
 {
-	"id": 4, "title": "O Que Existe Debaixo", "start_room": "c4_lab_hall", "start_spawn": "elevador",
+	"id": 4,
+	"title": "O Que Existe Debaixo",
+	"start_room": "c4_lab_hall",
+	"start_spawn": "elevador",
 	"objective": "Descobrir o que foi o Projeto Lázaro. Ler os registros e falar com Clara.",
 	"rooms": {
 		"c4_lab_hall": {
-			"name": "Laboratório — Saguão", "size": [30, 14], "overgrowth": 0.3, "theme": "lab", "ambient": 0.22, "ambient_sound": "amb_lab", "decals": 0.25,
-			"blocks": [[12, 6, 6, 1]],
-			"spawns": {"elevador": [15, 3], "este": [27, 8], "oeste": [2, 8], "clara": [6, 3]},
+			"name": "Laboratório — Saguão",
+			"size": [
+				30,
+				14
+			],
+			"overgrowth": 0.3,
+			"theme": "lab",
+			"ambient": 0.22,
+			"ambient_sound": "amb_lab",
+			"decals": 0.25,
+			"blocks": [
+				[
+					12,
+					6,
+					6,
+					1
+				]
+			],
+			"spawns": {
+				"elevador": [
+					15,
+					3
+				],
+				"este": [
+					27,
+					8
+				],
+				"oeste": [
+					2,
+					8
+				],
+				"clara": [
+					6,
+					3
+				]
+			},
 			"lights": [
-				{"tile": [8, 8], "radius": 100, "energy": 0.6, "color": "#e8f0ff", "flicker": true}, {"tile": [22, 8], "radius": 100, "energy": 0.6, "color": "#ffb0b0"},
-				{"tile": [15, 3], "radius": 70, "energy": 0.5, "color": "#ff7070"}
+				{
+					"tile": [
+						8,
+						8
+					],
+					"radius": 100,
+					"energy": 0.6,
+					"color": "#e8f0ff",
+					"flicker": true
+				},
+				{
+					"tile": [
+						22,
+						8
+					],
+					"radius": 100,
+					"energy": 0.6,
+					"color": "#ffb0b0"
+				},
+				{
+					"tile": [
+						15,
+						3
+					],
+					"radius": 70,
+					"energy": 0.5,
+					"color": "#ff7070"
+				}
 			],
 			"objects": [
-				{"id": "kit1", "kind": "medkit", "tile": [26, 11], "px": [10, 8], "name": "Kit médico grande", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_grande"}]},
-				{"id": "d_arq", "kind": "labdoor", "tile": [0, 8], "name": "Arquivos", "prompt": "Abrir", "door": {"to": "c4_arquivos", "spawn": "este"}},
-				{"id": "d_cir", "kind": "labdoor", "tile": [29, 8], "name": "Sala de cirurgia", "prompt": "Abrir", "door": {"to": "c4_cirurgia", "spawn": "oeste"}},
-				{"id": "d_clara", "kind": "labdoor", "tile": [6, 1], "name": "Câmara B-2", "prompt": "Abrir", "important": true,
-					"requires": {"flags": ["terminal_open"]}, "locked_text": "Trancada eletronicamente. O terminal nos arquivos controla esta porta.",
-					"door": {"to": "c4_clara", "spawn": "porta"}},
-				{"id": "elevador", "kind": "elevator", "tile": [14, 1], "size": [2, 1], "name": "Elevador de serviço", "prompt": "Descer", "important": true, "once": false,
-					"requires": {"flags": ["record_choice_made", "mem_clara"]},
+				{
+					"id": "kit1",
+					"kind": "medkit",
+					"tile": [
+						26,
+						11
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Kit médico grande",
+					"prompt": "Pegar",
+					"solid": false,
+					"important": true,
+					"vanish_when_done": true,
+					"effects": [
+						{
+							"give": "kit_grande"
+						}
+					]
+				},
+				{
+					"id": "d_arq",
+					"kind": "labdoor",
+					"tile": [
+						0,
+						8
+					],
+					"name": "Arquivos",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c4_arquivos",
+						"spawn": "este"
+					}
+				},
+				{
+					"id": "d_cir",
+					"kind": "labdoor",
+					"tile": [
+						29,
+						8
+					],
+					"name": "Sala de cirurgia",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c4_cirurgia",
+						"spawn": "oeste"
+					}
+				},
+				{
+					"id": "d_clara",
+					"kind": "labdoor",
+					"tile": [
+						6,
+						1
+					],
+					"name": "Câmara B-2",
+					"prompt": "Abrir",
+					"important": true,
+					"requires": {
+						"flags": [
+							"terminal_open"
+						]
+					},
+					"locked_text": "Trancada eletronicamente. O terminal nos arquivos controla esta porta.",
+					"door": {
+						"to": "c4_clara",
+						"spawn": "porta"
+					}
+				},
+				{
+					"id": "elevador",
+					"kind": "elevator",
+					"tile": [
+						14,
+						1
+					],
+					"size": [
+						2,
+						1
+					],
+					"name": "Elevador de serviço",
+					"prompt": "Descer",
+					"important": true,
+					"once": false,
+					"requires": {
+						"flags": [
+							"record_choice_made",
+							"mem_clara"
+						]
+					},
 					"locked_text": "O elevador não responde. Preciso entender o que há neste lugar antes de descer: ler o registro de L-12 e conversar com Clara na câmara B-2.",
-					"effects": [{"sfx": "alarm", "sub": "[Alarme do elevador]"}, {"text": "O chão estremece. Algo grande se rompeu lá embaixo. É agora ou nunca."}, {"chapter": 5}]},
-				{"id": "aviso", "kind": "poster", "tile": [21, 1], "name": "Quadro do Projeto", "prompt": "Ler", "effects": [{"doc": "lazaro_fase1"}]},
-				{"id": "l1", "kind": "locker", "tile": [3, 2], "size": [1, 2], "name": "Armário metálico", "prompt": "Esconder-se", "hide": true},
-				{"id": "l2", "kind": "locker", "tile": [25, 2], "size": [1, 2], "name": "Armário metálico", "prompt": "Esconder-se", "hide": true},
-				{"id": "pilha", "kind": "battery", "tile": [20, 11], "px": [6, 8], "name": "Pilhas", "prompt": "Pegar", "solid": false, "effects": [{"battery": 40}], "once": true, "vanish_when_done": true}
+					"effects": [
+						{
+							"sfx": "alarm",
+							"sub": "[Alarme do elevador]"
+						},
+						{
+							"text": "O chão estremece. Algo grande se rompeu lá embaixo. É agora ou nunca."
+						},
+						{
+							"chapter": 5
+						}
+					]
+				},
+				{
+					"id": "aviso",
+					"kind": "poster",
+					"tile": [
+						21,
+						1
+					],
+					"name": "Quadro do Projeto",
+					"prompt": "Ler",
+					"effects": [
+						{
+							"doc": "lazaro_fase1"
+						}
+					]
+				},
+				{
+					"id": "l1",
+					"kind": "locker",
+					"tile": [
+						3,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Armário metálico",
+					"prompt": "Esconder-se",
+					"hide": true
+				},
+				{
+					"id": "l2",
+					"kind": "locker",
+					"tile": [
+						25,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Armário metálico",
+					"prompt": "Esconder-se",
+					"hide": true
+				},
+				{
+					"id": "pilha",
+					"kind": "battery",
+					"tile": [
+						20,
+						11
+					],
+					"px": [
+						6,
+						8
+					],
+					"name": "Pilhas",
+					"prompt": "Pegar",
+					"solid": false,
+					"effects": [
+						{
+							"battery": 40
+						}
+					],
+					"once": true,
+					"vanish_when_done": true
+				},
+				{
+					"id": "contrato",
+					"kind": "poster",
+					"tile": [
+						9,
+						1
+					],
+					"name": "Contrato emoldurado",
+					"prompt": "Ler",
+					"effects": [
+						{
+							"doc": "contrato_fundacao"
+						}
+					]
+				}
 			],
 			"clara_talk": [
-				{"id": "a", "conditions": {"not_flags": ["terminal_open"]}, "effects": [{"say": {"who": "Clara", "text": "O terminal dos arquivos abre a minha câmara. Procure a senha nos documentos de encerramento."}}]},
-				{"id": "b", "conditions": {"flags": ["terminal_open"]}, "effects": [{"say": {"who": "Clara", "text": "Entre na câmara B-2. Quero que você veja onde eu fiquei."}}]}
+				{
+					"id": "a",
+					"conditions": {
+						"not_flags": [
+							"terminal_open"
+						]
+					},
+					"effects": [
+						{
+							"say": {
+								"who": "Clara",
+								"text": "O terminal dos arquivos abre a minha câmara. Procure a senha nos documentos de encerramento."
+							}
+						}
+					]
+				},
+				{
+					"id": "b",
+					"conditions": {
+						"flags": [
+							"terminal_open"
+						]
+					},
+					"effects": [
+						{
+							"say": {
+								"who": "Clara",
+								"text": "Entre na câmara B-2. Quero que você veja onde eu fiquei."
+							}
+						}
+					]
+				}
+			],
+			"triggers": [
+				{
+					"id": "t_chegada",
+					"rect": [
+						13,
+						2,
+						4,
+						4
+					],
+					"effects": [
+						{
+							"sfx": "alarm",
+							"sub": "[Luzes de emergência]"
+						},
+						{
+							"text": "As luzes de emergência acendem uma a uma, como se alguém estivesse esperando por mim."
+						}
+					]
+				}
 			]
 		},
 		"c4_arquivos": {
-			"name": "Laboratório — Arquivos", "size": [26, 14], "overgrowth": 0.35, "theme": "lab", "ambient": 0.2, "ambient_sound": "amb_lab", "decals": 0.3,
-			"blocks": [[8, 6, 1, 3]],
-			"spawns": {"este": [23, 8]},
-			"recovery": [[6, 4]],
-			"lights": [{"tile": [6, 6], "radius": 90, "energy": 0.6, "color": "#e8f0ff", "flicker": true}, {"tile": [18, 6], "radius": 90, "energy": 0.5, "color": "#ffb0b0"}],
+			"name": "Laboratório — Arquivos",
+			"size": [
+				26,
+				14
+			],
+			"overgrowth": 0.35,
+			"theme": "lab",
+			"ambient": 0.2,
+			"ambient_sound": "amb_lab",
+			"decals": 0.3,
+			"blocks": [
+				[
+					8,
+					6,
+					1,
+					3
+				]
+			],
+			"spawns": {
+				"este": [
+					23,
+					8
+				]
+			},
+			"recovery": [
+				[
+					6,
+					4
+				]
+			],
+			"lights": [
+				{
+					"tile": [
+						6,
+						6
+					],
+					"radius": 90,
+					"energy": 0.6,
+					"color": "#e8f0ff",
+					"flicker": true
+				},
+				{
+					"tile": [
+						18,
+						6
+					],
+					"radius": 90,
+					"energy": 0.5,
+					"color": "#ffb0b0"
+				}
+			],
 			"objects": [
-				{"id": "kit1", "kind": "medkit", "tile": [22, 11], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
-				{"id": "d_este", "kind": "labdoor", "tile": [25, 8], "name": "Saguão", "prompt": "Abrir", "door": {"to": "c4_lab_hall", "spawn": "oeste"}},
-				{"id": "terminal", "kind": "terminal", "tile": [4, 2], "name": "Terminal do Projeto", "prompt": "Usar", "important": true, "effects": [
-					{"puzzle": "p_terminal", "on_solved": [
-						{"text": ["ACESSO CONCEDIDO. Câmara B-2: destrancada.", "Credencial de administrador: impressa."]},
-						{"flag": "terminal_open"}, {"give": "cartao_controle"}, {"flag": "control_card"},
-						{"objective": "Entrar na câmara B-2 (saguão, porta ao norte) e ler o registro L-12 no arquivo."}]}]},
-				{"id": "arq1", "kind": "cabinet", "tile": [11, 2], "size": [1, 2], "name": "Arquivo: falhas", "prompt": "Abrir", "effects": [{"doc": "lazaro_falha"}]},
-				{"id": "arq2", "kind": "cabinet", "tile": [14, 2], "size": [1, 2], "name": "Arquivo: encerramento", "prompt": "Abrir", "effects": [{"doc": "memorando_encerramento"}]},
-				{"id": "arq3", "kind": "cabinet", "tile": [20, 2], "size": [1, 2], "name": "Arquivo: L-12", "prompt": "Abrir", "important": true, "once": false, "effects": [
-					{"doc": "registro_elias"}, {"choice": "registro_elias"}]},
-				{"id": "cofre", "kind": "cabinet", "tile": [3, 9], "size": [1, 2], "name": "Cofre da diretoria", "prompt": "Abrir", "important": true, "once": false, "effects": [
-					{"if": {"flags": ["equipment_destroyed"]}, "then": [{"text": "O cofre ainda se abriria, mas sem o projetor de memórias não há como ouvir a fita. Fui eu quem o destruiu."}],
-						"else": [{"puzzle": "p_cofre", "on_solved": [
-							{"text": "No cofre há uma fita de áudio com uma etiqueta: 'Doadores — antes da inauguração'. O projetor ainda funciona e a reproduz sozinho."},
-							{"memory": "pre_inauguracao"}]}]}]},
-				{"id": "beto", "kind": "npc", "style": "kid_a", "ghost": true, "tile": [6, 9], "name": "Beto", "prompt": "Falar com", "once": false, "hide_if": {"flags": ["helped_child_3"]}, "effects": [
-					{"text": "Beto está encolhido num canto. Os olhos acompanham a lanterna, não o meu rosto."}, {"choice": "beto"}]},
-				{"id": "l1", "kind": "locker", "tile": [23, 2], "size": [1, 2], "name": "Armário metálico", "prompt": "Esconder-se", "hide": true}
+				{
+					"id": "kit1",
+					"kind": "medkit",
+					"tile": [
+						22,
+						11
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Kit médico",
+					"prompt": "Pegar",
+					"solid": false,
+					"important": true,
+					"vanish_when_done": true,
+					"effects": [
+						{
+							"give": "kit_pequeno"
+						}
+					]
+				},
+				{
+					"id": "d_este",
+					"kind": "labdoor",
+					"tile": [
+						25,
+						8
+					],
+					"name": "Saguão",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c4_lab_hall",
+						"spawn": "oeste"
+					}
+				},
+				{
+					"id": "terminal",
+					"kind": "terminal",
+					"tile": [
+						4,
+						2
+					],
+					"name": "Terminal do Projeto",
+					"prompt": "Usar",
+					"important": true,
+					"effects": [
+						{
+							"puzzle": "p_terminal",
+							"on_solved": [
+								{
+									"text": [
+										"ACESSO CONCEDIDO. Câmara B-2: destrancada.",
+										"Credencial de administrador: impressa."
+									]
+								},
+								{
+									"flag": "terminal_open"
+								},
+								{
+									"give": "cartao_controle"
+								},
+								{
+									"flag": "control_card"
+								},
+								{
+									"objective": "Entrar na câmara B-2 (saguão, porta ao norte) e ler o registro L-12 no arquivo."
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "arq1",
+					"kind": "cabinet",
+					"tile": [
+						11,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Arquivo: falhas",
+					"prompt": "Abrir",
+					"effects": [
+						{
+							"doc": "lazaro_falha"
+						}
+					]
+				},
+				{
+					"id": "arq2",
+					"kind": "cabinet",
+					"tile": [
+						14,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Arquivo: L-01",
+					"prompt": "Abrir",
+					"effects": [
+						{
+							"doc": "relatorio_clara"
+						}
+					]
+				},
+				{
+					"id": "arq3",
+					"kind": "cabinet",
+					"tile": [
+						20,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Arquivo: L-12",
+					"prompt": "Abrir",
+					"important": true,
+					"once": false,
+					"effects": [
+						{
+							"doc": "registro_elias"
+						},
+						{
+							"choice": "registro_elias"
+						}
+					]
+				},
+				{
+					"id": "cofre",
+					"kind": "cabinet",
+					"tile": [
+						3,
+						9
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Cofre da diretoria",
+					"prompt": "Abrir",
+					"important": true,
+					"once": false,
+					"effects": [
+						{
+							"if": {
+								"flags": [
+									"equipment_destroyed"
+								]
+							},
+							"then": [
+								{
+									"text": "O cofre ainda se abriria, mas sem o projetor de memórias não há como ouvir a fita. Fui eu quem o destruiu."
+								}
+							],
+							"else": [
+								{
+									"puzzle": "p_cofre",
+									"on_solved": [
+										{
+											"text": "No cofre há uma fita de áudio com uma etiqueta: 'Doadores — antes da inauguração'. O projetor ainda funciona e a reproduz sozinho."
+										},
+										{
+											"memory": "pre_inauguracao"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "beto",
+					"kind": "npc",
+					"style": "kid_a",
+					"ghost": true,
+					"tile": [
+						6,
+						9
+					],
+					"name": "Beto",
+					"prompt": "Falar com",
+					"once": false,
+					"hide_if": {
+						"flags": [
+							"helped_child_3"
+						]
+					},
+					"effects": [
+						{
+							"text": "Beto está encolhido num canto. Os olhos acompanham a lanterna, não o meu rosto."
+						},
+						{
+							"choice": "beto"
+						}
+					]
+				},
+				{
+					"id": "l1",
+					"kind": "locker",
+					"tile": [
+						23,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Armário metálico",
+					"prompt": "Esconder-se",
+					"hide": true
+				}
 			],
 			"enemies": [
-				{"id": "res", "type": "resident", "zone": [10, 5, 13, 8], "vents": [[12, 11], [20, 11]], "delay": [10, 16]}
+				{
+					"id": "res",
+					"type": "resident",
+					"zone": [
+						10,
+						5,
+						13,
+						8
+					],
+					"vents": [
+						[
+							12,
+							11
+						],
+						[
+							20,
+							11
+						]
+					],
+					"delay": [
+						10,
+						16
+					]
+				}
+			],
+			"clara_talk": [
+				{
+					"id": "relatorio",
+					"conditions": {
+						"flags": [
+							"doc_relatorio_clara"
+						]
+					},
+					"effects": [
+						{
+							"say": {
+								"who": "Clara",
+								"text": "Esse nome... eu ouvi tantas vezes que acho que sempre foi meu. Mas não sei se fui eu quem ouviu."
+							}
+						}
+					]
+				}
 			]
 		},
 		"c4_cirurgia": {
-			"name": "Laboratório — Cirurgia", "size": [26, 14], "overgrowth": 0.45, "theme": "lab", "ambient": 0.2, "ambient_sound": "amb_lab", "decals": 0.4,
-			"spawns": {"oeste": [2, 8]},
-			"lights": [{"tile": [10, 6], "radius": 100, "energy": 0.7, "color": "#e8f0ff", "flicker": true}, {"tile": [19, 5], "radius": 90, "energy": 0.6, "color": "#ff7070"}],
+			"name": "Laboratório — Cirurgia",
+			"size": [
+				26,
+				14
+			],
+			"overgrowth": 0.45,
+			"theme": "lab",
+			"ambient": 0.2,
+			"ambient_sound": "amb_lab",
+			"decals": 0.4,
+			"spawns": {
+				"oeste": [
+					2,
+					8
+				]
+			},
+			"lights": [
+				{
+					"tile": [
+						10,
+						6
+					],
+					"radius": 100,
+					"energy": 0.7,
+					"color": "#e8f0ff",
+					"flicker": true
+				},
+				{
+					"tile": [
+						19,
+						5
+					],
+					"radius": 90,
+					"energy": 0.6,
+					"color": "#ff7070"
+				}
+			],
 			"objects": [
-				{"id": "kit1", "kind": "medkit", "tile": [20, 10], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
-				{"id": "vidro", "kind": "trap", "tile": [14, 10], "name": "Piso estragado", "prompt": "Examinar", "solid": false, "effects": [{"text": "Cacos de vidro das cápsulas espalhados. Melhor não pisar descalço... nem de tênis."}], "hazard": {"hurt": 1, "text": "O piso cede e Elias cai de mau jeito. Um corte profundo na perna.", "sfx": "drop"}},
-				{"id": "d_oeste", "kind": "labdoor", "tile": [0, 8], "name": "Saguão", "prompt": "Abrir", "door": {"to": "c4_lab_hall", "spawn": "este"}},
-				{"id": "cap1", "kind": "capsule", "tile": [6, 2], "size": [1, 2], "name": "Cápsula", "prompt": "Examinar", "effects": [{"text": "Uma cápsula de vidro. Dentro, uma silhueta pequena, imóvel, com um cabo ligado à nuca."}]},
-				{"id": "cap2", "kind": "capsule", "variant": "broken", "tile": [9, 2], "size": [1, 2], "name": "Cápsula quebrada", "prompt": "Examinar", "effects": [{"text": "Vidro estilhaçado por dentro. Quem estava aqui saiu andando."}]},
-				{"id": "cap3", "kind": "capsule", "tile": [12, 2], "size": [1, 2], "name": "Cápsula", "prompt": "Examinar", "effects": [{"text": "Vazia. Na plaqueta: 'L-12'. Está limpa. Parece nunca ter sido usada... ou ter sido usada uma vez só, agora."}]},
-				{"id": "mesa", "kind": "surgery", "tile": [10, 7], "size": [1, 2], "name": "Mesa cirúrgica", "prompt": "Examinar", "effects": [{"text": "Tiras de couro. Marcas de unhas no metal, de várias tamanhos."}]},
-				{"id": "projetor", "kind": "console", "tile": [18, 3], "size": [2, 1], "name": "Projetor de memórias", "prompt": "Examinar", "important": true, "repeat_text": "O projetor está aqui. Ou o que restou dele.", "effects": [
-					{"text": "O projetor de memórias do Projeto Lázaro. Reproduz fitas, mostra fragmentos de vidas que não são minhas. Sem ele, nada do que estiver gravado voltará."},
-					{"choice": "equipamento"}]},
-				{"id": "l1", "kind": "locker", "tile": [23, 2], "size": [1, 2], "name": "Armário metálico", "prompt": "Esconder-se", "hide": true},
-				{"id": "l2", "kind": "locker", "tile": [1, 9], "size": [1, 2], "name": "Armário metálico", "prompt": "Esconder-se", "hide": true}
+				{
+					"id": "kit1",
+					"kind": "medkit",
+					"tile": [
+						20,
+						10
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Kit médico",
+					"prompt": "Pegar",
+					"solid": false,
+					"important": true,
+					"vanish_when_done": true,
+					"effects": [
+						{
+							"give": "kit_pequeno"
+						}
+					]
+				},
+				{
+					"id": "vidro",
+					"kind": "trap",
+					"tile": [
+						14,
+						10
+					],
+					"name": "Piso estragado",
+					"prompt": "Examinar",
+					"solid": false,
+					"effects": [
+						{
+							"text": "Cacos de vidro das cápsulas espalhados. Melhor não pisar descalço... nem de tênis."
+						}
+					],
+					"hazard": {
+						"hurt": 1,
+						"text": "O piso cede e Elias cai de mau jeito. Um corte profundo na perna.",
+						"sfx": "drop"
+					}
+				},
+				{
+					"id": "d_oeste",
+					"kind": "labdoor",
+					"tile": [
+						0,
+						8
+					],
+					"name": "Saguão",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c4_lab_hall",
+						"spawn": "este"
+					}
+				},
+				{
+					"id": "cap1",
+					"kind": "capsule",
+					"tile": [
+						6,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Cápsula",
+					"prompt": "Examinar",
+					"effects": [
+						{
+							"text": "Uma cápsula de vidro. Dentro, uma silhueta pequena, imóvel, com um cabo ligado à nuca."
+						}
+					]
+				},
+				{
+					"id": "cap2",
+					"kind": "capsule",
+					"variant": "broken",
+					"tile": [
+						9,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Cápsula quebrada",
+					"prompt": "Examinar",
+					"effects": [
+						{
+							"text": "Vidro estilhaçado por dentro. Quem estava aqui saiu andando."
+						}
+					]
+				},
+				{
+					"id": "cap3",
+					"kind": "capsule",
+					"tile": [
+						12,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Cápsula",
+					"prompt": "Examinar",
+					"effects": [
+						{
+							"text": "Vazia. Na plaqueta: 'L-12'. Está limpa. Parece nunca ter sido usada... ou ter sido usada uma vez só, agora."
+						}
+					]
+				},
+				{
+					"id": "mesa",
+					"kind": "surgery",
+					"tile": [
+						10,
+						7
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Mesa cirúrgica",
+					"prompt": "Examinar",
+					"effects": [
+						{
+							"text": "Tiras de couro. Marcas de unhas no metal, de várias tamanhos."
+						}
+					]
+				},
+				{
+					"id": "projetor",
+					"kind": "console",
+					"tile": [
+						18,
+						3
+					],
+					"size": [
+						2,
+						1
+					],
+					"name": "Projetor de memórias",
+					"prompt": "Examinar",
+					"important": true,
+					"repeat_text": "O projetor está aqui. Ou o que restou dele.",
+					"effects": [
+						{
+							"text": "O projetor de memórias do Projeto Lázaro. Reproduz fitas, mostra fragmentos de vidas que não são minhas. Sem ele, nada do que estiver gravado voltará."
+						},
+						{
+							"choice": "equipamento"
+						}
+					]
+				},
+				{
+					"id": "l1",
+					"kind": "locker",
+					"tile": [
+						23,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Armário metálico",
+					"prompt": "Esconder-se",
+					"hide": true
+				},
+				{
+					"id": "l2",
+					"kind": "locker",
+					"tile": [
+						1,
+						9
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Armário metálico",
+					"prompt": "Esconder-se",
+					"hide": true
+				},
+				{
+					"id": "arq_memo",
+					"kind": "cabinet",
+					"tile": [
+						15,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Arquivo morto",
+					"prompt": "Abrir",
+					"effects": [
+						{
+							"doc": "memorando_encerramento"
+						}
+					]
+				},
+				{
+					"id": "gravador",
+					"kind": "musicbox",
+					"tile": [
+						21,
+						7
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Gravador de fita",
+					"prompt": "Ouvir",
+					"important": true,
+					"solid": true,
+					"effects": [
+						{
+							"doc": "gravacao_valmont"
+						},
+						{
+							"memory": "valmont"
+						}
+					]
+				}
 			],
 			"enemies": [
-				{"id": "patrol", "type": "caretaker", "tile": [14, 8], "patrol": [[3, 5], [10, 10], [18, 9], [22, 5], [12, 4]]}
+				{
+					"id": "patrol",
+					"type": "caretaker",
+					"tile": [
+						14,
+						8
+					],
+					"patrol": [
+						[
+							3,
+							5
+						],
+						[
+							10,
+							10
+						],
+						[
+							18,
+							9
+						],
+						[
+							22,
+							5
+						],
+						[
+							12,
+							4
+						]
+					]
+				}
+			],
+			"clara_talk": [
+				{
+					"id": "valmont",
+					"conditions": {
+						"flags": [
+							"doc_gravacao_valmont"
+						]
+					},
+					"effects": [
+						{
+							"say": {
+								"who": "Clara",
+								"text": "Ele chorava ao gravar. Eu lembro... ou aprendi a lembrar."
+							}
+						}
+					]
+				}
 			]
 		},
 		"c4_clara": {
-			"name": "Câmara B-2", "size": [18, 12], "overgrowth": 0.6, "floor_zones": [{"rect": [5, 4, 8, 5], "kind": "carpet", "a": "#6a3a4a"}], "theme": "memoria", "ambient": 0.3, "ambient_sound": "amb_lab", "decals": 0.1,
-			"spawns": {"porta": [8, 10]},
-			"lights": [{"tile": [8, 5], "radius": 100, "energy": 0.7, "color": "#e0d0c0"}],
+			"name": "Câmara B-2",
+			"size": [
+				18,
+				12
+			],
+			"overgrowth": 0.6,
+			"floor_zones": [
+				{
+					"rect": [
+						5,
+						4,
+						8,
+						5
+					],
+					"kind": "carpet",
+					"a": "#6a3a4a"
+				}
+			],
+			"theme": "memoria",
+			"ambient": 0.3,
+			"ambient_sound": "amb_lab",
+			"decals": 0.1,
+			"spawns": {
+				"porta": [
+					8,
+					10
+				]
+			},
+			"lights": [
+				{
+					"tile": [
+						8,
+						5
+					],
+					"radius": 100,
+					"energy": 0.7,
+					"color": "#e0d0c0"
+				}
+			],
 			"objects": [
-				{"id": "porta", "kind": "labdoor", "tile": [8, 11], "name": "Saguão", "prompt": "Abrir", "door": {"to": "c4_lab_hall", "spawn": "clara"}},
-				{"id": "cadeira", "kind": "surgery", "tile": [8, 5], "size": [1, 2], "name": "Cadeira com tiras", "prompt": "Examinar", "important": true, "effects": [
-					{"text": "Uma cadeira pequena, com tiras de couro desgastadas. O encosto tem marcas de dedos de criança."},
-					{"memory": "clara"},
-					{"say": {"who": "Clara", "text": "Eu não fugi daqui. Eu nunca saí. Quando eles apagaram a luz, eu fiquei."}},
-					{"say": {"who": "Clara", "text": "O tecido me guarda. E eu guardo o tecido. Quando você chegou, ele ficou mais calmo. Você é parecido com a gente."}},
-					{"choice": "clara_c4"},
-					{"flag": "clara_revealed"},
-					{"objective": "Voltar ao saguão do laboratório e usar o elevador (leia o registro L-12 se ainda não leu)."}]},
-				{"id": "desenhos", "kind": "poster", "tile": [3, 1], "name": "Desenhos de Clara", "prompt": "Examinar", "effects": [
-					{"text": "Desenhos infantis de uma menina em uma cadeira, repetidos. Em todos, ela sorri. Em todos, o sorriso é o mesmo."}]}
+				{
+					"id": "porta",
+					"kind": "labdoor",
+					"tile": [
+						8,
+						11
+					],
+					"name": "Saguão",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c4_lab_hall",
+						"spawn": "clara"
+					}
+				},
+				{
+					"id": "cadeira",
+					"kind": "surgery",
+					"tile": [
+						8,
+						5
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Cadeira com tiras",
+					"prompt": "Examinar",
+					"important": true,
+					"effects": [
+						{
+							"text": "Uma cadeira pequena, com tiras de couro desgastadas. O encosto tem marcas de dedos de criança."
+						},
+						{
+							"memory": "clara"
+						},
+						{
+							"say": {
+								"who": "Clara",
+								"text": "Eu não fugi daqui. Eu nunca saí. Quando eles apagaram a luz, eu fiquei."
+							}
+						},
+						{
+							"say": {
+								"who": "Clara",
+								"text": "O tecido me guarda. E eu guardo o tecido. Quando você chegou, ele ficou mais calmo. Você é parecido com a gente."
+							}
+						},
+						{
+							"choice": "clara_c4"
+						},
+						{
+							"flag": "clara_revealed"
+						},
+						{
+							"objective": "Voltar ao saguão do laboratório e usar o elevador (leia o registro L-12 se ainda não leu)."
+						}
+					]
+				},
+				{
+					"id": "desenhos",
+					"kind": "poster",
+					"tile": [
+						3,
+						1
+					],
+					"name": "Desenhos de Clara",
+					"prompt": "Examinar",
+					"effects": [
+						{
+							"text": "Desenhos infantis de uma menina em uma cadeira, repetidos. Em todos, ela sorri. Em todos, o sorriso é o mesmo."
+						}
+					]
+				},
+				{
+					"id": "carta",
+					"kind": "note",
+					"tile": [
+						12,
+						4
+					],
+					"px": [
+						8,
+						8
+					],
+					"name": "Carta amassada",
+					"prompt": "Ler",
+					"important": true,
+					"solid": false,
+					"effects": [
+						{
+							"doc": "carta_marta"
+						}
+					]
+				}
 			],
 			"clara_talk": [
-				{"id": "a", "effects": [{"say": {"who": "Clara", "text": "Você não sente frio? Eu parei de sentir há muito tempo."}}]}
+				{
+					"id": "a",
+					"effects": [
+						{
+							"say": {
+								"who": "Clara",
+								"text": "Você não sente frio? Eu parei de sentir há muito tempo."
+							}
+						}
+					]
+				}
 			]
 		}
 	}

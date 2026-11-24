@@ -57,7 +57,7 @@ func _ready() -> void:
 	_add("menu.settings", _on_settings)
 	_add("menu.credits", _on_credits)
 	_add("menu.quit", func() -> void: get_tree().quit())
-	var hint := UIKit.label(LocalizationManager.t("controls.hint"), 9, UIKit.DIM, false)
+	var hint := UIKit.label(SettingsManager.controls_hint(), 9, UIKit.DIM, false)
 	hint.position = Vector2(0, 342)
 	hint.size = Vector2(640, 14)
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

@@ -71,6 +71,7 @@ func run(lines: Array, who: String = "") -> void:
 			body.visible_characters = mini(total, int((Time.get_ticks_msec() - t0) / 1000.0 * 55.0))
 		body.visible_characters = -1
 		_typing = false
+		cont.text = "[%s]" % SettingsManager.key_name("interact")
 		cont.visible = true
 		await _advance
 	visible = false

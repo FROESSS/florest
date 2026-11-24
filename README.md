@@ -8,7 +8,7 @@ Você é **Elias**, 12 anos, que acorda num orfanato isolado e precisa sobrevive
 - Idioma inicial: **pt-BR**. Single-player.
 - Arte e áudio: **100% procedurais e originais**, gerados em código (ver `docs/ASSET_LICENSES.md`). Nenhum asset de jogos comerciais.
 
-## Estado real do projeto (v1.0.0)
+## Estado real do projeto (v1.1.0)
 
 | Área | Estado |
 |---|---|
@@ -16,15 +16,25 @@ Você é **Elias**, 12 anos, que acorda num orfanato isolado e precisa sobrevive
 | 4 finais (Liberdade, Silêncio, Herdeiro, As Coisas Perdidas — secreto) | **Concluído**; condições em `docs/ENDINGS.md`, alcançabilidade testada |
 | IA da Cuidadora (Patrol/Suspicious/Investigate/Search/Chase/Attack/Return) | **Concluído** e testado |
 | IA do Morador (zonas, aviso de 3 s, surgimento justo, reação à luz, bloqueio/atração) | **Concluído** e testado |
-| Salvamento versionado (user://), checkpoints, configurações | **Concluído** e testado |
+| Salvamento v2 (user://) com migração de saves v1, checkpoints, configurações | **Concluído** e testado |
+| Puzzles com estados (não iniciado/em andamento/resolvido/bloqueado), nunca de uso único; pistas distribuídas entre salas, dificuldade progressiva | **Concluído** e testado (dedução de cada solução verificada por teste) |
+| Documentos/gravações reabríveis a qualquer momento, inspeção visual de objetos, acervo no diário | **Concluído** |
+| Morte sem perder progresso, com retorno a ponto seguro (≥150 px de inimigos) | **Concluído** e testado em todas as salas |
+| Estamina, ferimentos (4 níveis) e kits médicos (2 potências), armadilhas sinalizadas | **Concluído** e testado |
+| Buracos persistentes do Morador (fuga, escavação, retorno justo, limite técnico) | **Concluído** e testado |
+| Remapeamento de teclas (2 por ação, conflito/troca, restaurar, persistência) | **Concluído** e testado |
+| História expandida (origem do Projeto, Clara, Marta, Morador, continuidade do orfanato): 23 documentos, 13 memórias | **Concluído** (ver `docs/NARRATIVE_BIBLE.md`) |
+| Transições de capítulo (fim + título + descrição + som + autosave) | **Concluído** |
 | Menu, pausa, inventário, diário, puzzles, acessibilidade | **Concluído** |
-| Arte procedural (personagens, tiles, props) e áudio sintetizado | **Concluído (nível protótipo avançado)**; não é arte final de estúdio |
+| Arte procedural (personagens, tiles, props, overgrowth orgânico, sombras de lanterna) e áudio sintetizado | **Concluído (nível protótipo avançado)**; não é arte final de estúdio |
 | Pipeline GitHub Actions (Windows) + Release | **Configurado**; veja a seção "Build" e o histórico de Actions |
 | Testado em Windows real (execução do EXE exportado) | Apenas pelo smoke test na CI do GitHub (runner Windows). Nenhum teste manual com jogador humano foi feito. |
 
-Limitações conhecidas: ver `docs/TEST_PLAN.md` (seção "Limitações").
+Limitações conhecidas: ver `docs/TEST_PLAN.md` (seção "Limitações"). Progresso e decisões de desenvolvimento: `STATUS.md`.
 
 ## Controles
+
+Teclas padrão (todas **remapeáveis** em Configurações → Controles):
 
 | Tecla | Ação |
 |---|---|
@@ -34,6 +44,7 @@ Limitações conhecidas: ver `docs/TEST_PLAN.md` (seção "Limitações").
 | F | lanterna (bateria limitada) |
 | Tab | inventário |
 | J | diário (documentos, memórias, objetivo) |
+| H | usar kit médico |
 | Esc | pausa / voltar |
 
 ## Abrir no editor
@@ -62,7 +73,7 @@ scripts/player/    Player          scripts/enemies/  Caretaker, Resident
 scripts/systems/   PixelArt, TileArt (arte procedural)
 scripts/ui/        HUD, diálogo, puzzles, livro (inventário/diário), memórias/cutscenes, pausa, menu, config
 data/              items, documents, dialogue (memórias/cutscenes/escolhas), puzzles, chapters (5 JSON)
-tests/             7 suítes automatizadas + roteiro de QA
+tests/             13 suítes automatizadas (2.600+ verificações) + roteiro de QA que completa o jogo
 docs/              GDD, TECHNICAL_DESIGN, NARRATIVE_BIBLE, ENDINGS, ASSET_LICENSES, TEST_PLAN
 tools/             capturas de tela (ShotRunner)
 .github/workflows/windows-portable.yml

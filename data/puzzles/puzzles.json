@@ -1,55 +1,191 @@
 {
 	"p_caixa_musica": {
-		"type": "code", "title": "Caixa de música", "digits": 4, "solution": "3142",
-		"prompt": "Quatro dígitos. Os desenhos sobre as camas do dormitório parecem ser a chave: cada um mostra uma quantidade de figuras. Siga a ordem das camas, da 1 à 4."
+		"type": "code",
+		"title": "Caixa de música",
+		"digits": 4,
+		"solution": "3142",
+		"prompt": "Quatro dígitos. Os desenhos sobre as camas do dormitório parecem ser a chave: cada um mostra uma quantidade de figuras. Siga a ordem das camas, da 1 à 4.",
+		"clues": [],
+		"info": [],
+		"cross_room": false
 	},
 	"p_prontuarios": {
-		"type": "order", "title": "Arquivo de prontuários",
-		"prompt": "Uma etiqueta no arquivo diz: 'Arquivar por data de admissão, do mais antigo ao mais recente'. Escolha os prontuários na ordem correta.",
+		"type": "order",
+		"title": "Arquivo de prontuários",
+		"prompt": "Uma etiqueta no arquivo: 'Arquivar por data de admissão, do mais antigo ao mais recente'. As datas não estão nos prontuários: é preciso descobri-las em outro lugar.",
 		"items": [
-			{"id": "p3", "label": "Admissão 19/08/1978 — L-07"},
-			{"id": "p1", "label": "Admissão 14/03/1978 — L-01"},
-			{"id": "p4", "label": "Admissão 30/11/1978 — L-11"},
-			{"id": "p2", "label": "Admissão 02/05/1978 — L-04"}
+			{
+				"id": "p3",
+				"label": "Prontuário de Lia (L-07)"
+			},
+			{
+				"id": "p1",
+				"label": "Prontuário da menina da diretoria (L-01)"
+			},
+			{
+				"id": "p4",
+				"label": "Prontuário de Beto (L-11)"
+			},
+			{
+				"id": "p2",
+				"label": "Prontuário de Tomás (L-04)"
+			}
 		],
-		"solution": ["p1", "p2", "p3", "p4"]
+		"solution": [
+			"p1",
+			"p2",
+			"p3",
+			"p4"
+		],
+		"clues": [
+			"doc:ledger_matricula"
+		],
+		"info": [
+			"14/03/1978",
+			"02/05/1978",
+			"19/08/1978",
+			"30/11/1978"
+		],
+		"cross_room": true
 	},
 	"p_simbolos": {
-		"type": "code", "title": "Tranca do alçapão", "digits": 3, "solution": "271",
-		"prompt": "Três dígitos. Os desenhos das crianças mostram uma escada para baixo. Cada um tem uma legenda com o número de degraus. Use a ordem em que você os encontrou: dormitório, e depois os dois da sala de aula (da esquerda para a direita)."
+		"type": "code",
+		"title": "Tranca do alçapão",
+		"digits": 3,
+		"solution": "271",
+		"prompt": "Três dígitos. O Tomás desenhava escadas e contava os degraus. Segundo quem o conhecia, a escada só funciona se for lida na ordem em que ele a desenhou.",
+		"clues": [
+			"doc:diario_lia"
+		],
+		"info": [
+			"primeiro a do nosso quarto",
+			"grande da sala de aula",
+			"pequena"
+		],
+		"cross_room": true
 	},
 	"p_fusiveis": {
-		"type": "toggles", "title": "Painel elétrico", "labels": ["Fusível A", "Fusível B", "Fusível C", "Fusível D"],
-		"solution": [0, 1, 1, 0],
-		"prompt": "Uma etiqueta colada no painel: 'Incinerador: B e C LIGADOS. A e D DESLIGADOS. Nunca o contrário.'"
+		"type": "toggles",
+		"title": "Painel elétrico",
+		"labels": [
+			"Fusível 1",
+			"Fusível 2",
+			"Fusível 3",
+			"Fusível 4"
+		],
+		"solution": [
+			0,
+			1,
+			0,
+			1
+		],
+		"prompt": "Painel do incinerador. Uma etiqueta quase apagada: 'Ligar conforme o manual da manutenção.' Os fusíveis são numerados da esquerda para a direita.",
+		"clues": [
+			"doc:nota_fusiveis"
+		],
+		"info": [
+			"de número par",
+			"1 a 4"
+		],
+		"cross_room": true
 	},
 	"p_brinquedos": {
-		"type": "order", "title": "Brinquedos de Lia",
-		"prompt": "Arrume os brinquedos na ordem em que a lembrança os mostrou. (Consulte o diário: aba Memórias.)",
+		"type": "order",
+		"title": "Brinquedos de Lia",
+		"prompt": "Arrume os brinquedos na ordem do ritual de Marta. Uma parte da ordem está numa lembrança; a outra, nos escritos de quem a criou.",
 		"items": [
-			{"id": "bola", "label": "Bola vermelha"},
-			{"id": "urso", "label": "Urso de pelúcia"},
-			{"id": "boneca", "label": "Boneca de pano"},
-			{"id": "trem", "label": "Trem azul"}
+			{
+				"id": "bola",
+				"label": "Bola vermelha"
+			},
+			{
+				"id": "urso",
+				"label": "Urso de pelúcia"
+			},
+			{
+				"id": "boneca",
+				"label": "Boneca de pano"
+			},
+			{
+				"id": "trem",
+				"label": "Trem azul"
+			}
 		],
-		"solution": ["urso", "trem", "boneca", "bola"]
+		"solution": [
+			"urso",
+			"trem",
+			"boneca",
+			"bola"
+		],
+		"clues": [
+			"memory:brinquedos",
+			"doc:diario_marta"
+		],
+		"info": [
+			"urso",
+			"trem",
+			"boneca de pano",
+			"bola vermelha"
+		],
+		"cross_room": true
 	},
 	"p_terminal": {
-		"type": "code", "title": "Terminal do Projeto Lázaro", "digits": 4, "solution": "0712",
-		"prompt": "SENHA DE ADMINISTRAÇÃO (DDMM). Dica do sistema: 'data de encerramento do projeto'."
+		"type": "code",
+		"title": "Terminal do Projeto Lázaro",
+		"digits": 4,
+		"solution": "0712",
+		"prompt": "SENHA DE ADMINISTRAÇÃO (DDMM). Dica do sistema: 'a data em que a casa foi lacrada'.",
+		"clues": [
+			"doc:memorando_encerramento"
+		],
+		"info": [
+			"07/12/1978"
+		],
+		"cross_room": true
 	},
 	"p_cofre": {
-		"type": "code", "title": "Cofre da diretoria", "digits": 4, "solution": "1403",
-		"prompt": "Cofre de quatro dígitos (DDMM). A placa de bronze diz: 'Para a data em que tudo começou'."
+		"type": "code",
+		"title": "Cofre da diretoria",
+		"digits": 4,
+		"solution": "1403",
+		"prompt": "Cofre de quatro dígitos (DDMM). A placa de bronze diz: 'Para a data em que tudo começou.'",
+		"clues": [
+			"doc:carta_inauguracao"
+		],
+		"info": [
+			"14 de março"
+		],
+		"cross_room": true
 	},
 	"p_valvulas": {
-		"type": "order", "title": "Válvulas de pressão",
-		"prompt": "O manual de emergência diz: 'Fechar na ordem 3, 1, 2 para abrir a rota de serviço'.",
+		"type": "order",
+		"title": "Válvulas de pressão",
+		"prompt": "Um painel com três válvulas. É preciso fechá-las na ordem certa para abrir a rota de serviço. A ordem está no manual de emergência... que não está aqui.",
 		"items": [
-			{"id": "v1", "label": "Válvula 1"},
-			{"id": "v2", "label": "Válvula 2"},
-			{"id": "v3", "label": "Válvula 3"}
+			{
+				"id": "v1",
+				"label": "Válvula 1"
+			},
+			{
+				"id": "v2",
+				"label": "Válvula 2"
+			},
+			{
+				"id": "v3",
+				"label": "Válvula 3"
+			}
 		],
-		"solution": ["v3", "v1", "v2"]
+		"solution": [
+			"v3",
+			"v1",
+			"v2"
+		],
+		"clues": [
+			"doc:nota_valvulas"
+		],
+		"info": [
+			"3, 1, 2"
+		],
+		"cross_room": true
 	}
 }

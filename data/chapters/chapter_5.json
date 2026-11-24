@@ -1,75 +1,714 @@
 {
-	"id": 5, "title": "A Última Criança", "start_room": "c5_colapso", "start_spawn": "inicio",
+	"id": 5,
+	"title": "A Última Criança",
+	"start_room": "c5_colapso",
+	"start_spawn": "inicio",
 	"objective": "Sobreviver ao colapso. Abra a rota de fuga, arme o reator se quiser, e chegue à sala de controle.",
 	"rooms": {
 		"c5_colapso": {
-			"name": "Nível B — Colapso", "size": [38, 14], "overgrowth": 0.9, "theme": "organico", "ambient": 0.2, "ambient_sound": "amb_organic", "decals": 0.4,
-			"blocks": [[12, 5, 2, 3], [22, 8, 2, 3], [28, 4, 2, 3]],
-			"spawns": {"inicio": [3, 8], "este": [36, 8], "controle": [30, 3]},
+			"name": "Nível B — Colapso",
+			"size": [
+				38,
+				14
+			],
+			"overgrowth": 0.9,
+			"theme": "organico",
+			"ambient": 0.2,
+			"ambient_sound": "amb_organic",
+			"decals": 0.4,
+			"blocks": [
+				[
+					12,
+					5,
+					2,
+					3
+				],
+				[
+					22,
+					8,
+					2,
+					3
+				],
+				[
+					28,
+					4,
+					2,
+					3
+				]
+			],
+			"spawns": {
+				"inicio": [
+					3,
+					8
+				],
+				"este": [
+					36,
+					8
+				],
+				"controle": [
+					30,
+					3
+				]
+			},
 			"lights": [
-				{"tile": [4, 6], "radius": 80, "energy": 0.6, "color": "#ff5050", "flicker": true}, {"tile": [17, 9], "radius": 80, "energy": 0.5, "color": "#ff7060", "flicker": true},
-				{"tile": [26, 6], "radius": 80, "energy": 0.5, "color": "#ff5050", "flicker": true}, {"tile": [34, 8], "radius": 80, "energy": 0.5, "color": "#d05070"}
+				{
+					"tile": [
+						4,
+						6
+					],
+					"radius": 80,
+					"energy": 0.6,
+					"color": "#ff5050",
+					"flicker": true
+				},
+				{
+					"tile": [
+						17,
+						9
+					],
+					"radius": 80,
+					"energy": 0.5,
+					"color": "#ff7060",
+					"flicker": true
+				},
+				{
+					"tile": [
+						26,
+						6
+					],
+					"radius": 80,
+					"energy": 0.5,
+					"color": "#ff5050",
+					"flicker": true
+				},
+				{
+					"tile": [
+						34,
+						8
+					],
+					"radius": 80,
+					"energy": 0.5,
+					"color": "#d05070"
+				}
 			],
 			"objects": [
-				{"id": "kit1", "kind": "medkit", "tile": [4, 12], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
-				{"id": "kit2", "kind": "medkit", "tile": [34, 3], "px": [10, 8], "name": "Kit médico", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_pequeno"}]},
-				{"id": "d_reator", "kind": "labdoor", "tile": [37, 8], "name": "Reator", "prompt": "Abrir", "door": {"to": "c5_reator", "spawn": "oeste"}},
-				{"id": "d_controle", "kind": "labdoor", "tile": [30, 1], "name": "Sala de controle", "prompt": "Abrir", "important": true, "door": {"to": "c5_controle", "spawn": "porta"}},
-				{"id": "manual", "kind": "poster", "tile": [6, 1], "name": "Manual de emergência", "prompt": "Ler", "important": true, "effects": [{"doc": "nota_valvulas"}]},
-				{"id": "valvulas", "kind": "panel", "tile": [18, 1], "name": "Painel de válvulas", "prompt": "Operar", "important": true, "once": false, "effects": [
-					{"puzzle": "p_valvulas", "on_solved": [
-						{"shake": 3}, {"sfx": "door_open"}, {"flag": "escape_tunnel_open"},
-						{"text": "Uma grade pesada se ergue ao fundo do corredor, revelando o túnel de serviço que leva para fora. A rota de fuga está aberta."}]}]},
-				{"id": "pilha", "kind": "battery", "tile": [3, 11], "px": [6, 8], "name": "Pilhas", "prompt": "Pegar", "solid": false, "effects": [{"battery": 50}], "once": true, "vanish_when_done": true},
-				{"id": "l1", "kind": "locker", "tile": [3, 2], "size": [1, 2], "name": "Armário metálico", "prompt": "Esconder-se", "hide": true}
+				{
+					"id": "kit1",
+					"kind": "medkit",
+					"tile": [
+						4,
+						12
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Kit médico",
+					"prompt": "Pegar",
+					"solid": false,
+					"important": true,
+					"vanish_when_done": true,
+					"effects": [
+						{
+							"give": "kit_pequeno"
+						}
+					]
+				},
+				{
+					"id": "kit2",
+					"kind": "medkit",
+					"tile": [
+						34,
+						3
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Kit médico",
+					"prompt": "Pegar",
+					"solid": false,
+					"important": true,
+					"vanish_when_done": true,
+					"effects": [
+						{
+							"give": "kit_pequeno"
+						}
+					]
+				},
+				{
+					"id": "d_reator",
+					"kind": "labdoor",
+					"tile": [
+						37,
+						8
+					],
+					"name": "Reator",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c5_reator",
+						"spawn": "oeste"
+					}
+				},
+				{
+					"id": "d_controle",
+					"kind": "labdoor",
+					"tile": [
+						30,
+						1
+					],
+					"name": "Sala de controle",
+					"prompt": "Abrir",
+					"important": true,
+					"door": {
+						"to": "c5_controle",
+						"spawn": "porta"
+					}
+				},
+				{
+					"id": "manual",
+					"kind": "poster",
+					"tile": [
+						6,
+						1
+					],
+					"name": "Bilhete do supervisor",
+					"prompt": "Ler",
+					"important": true,
+					"effects": [
+						{
+							"doc": "bilhete_anselmo"
+						}
+					]
+				},
+				{
+					"id": "valvulas",
+					"kind": "panel",
+					"tile": [
+						18,
+						1
+					],
+					"name": "Painel de válvulas",
+					"prompt": "Operar",
+					"important": true,
+					"once": false,
+					"effects": [
+						{
+							"puzzle": "p_valvulas",
+							"on_solved": [
+								{
+									"shake": 3
+								},
+								{
+									"sfx": "door_open"
+								},
+								{
+									"flag": "escape_tunnel_open"
+								},
+								{
+									"text": "Uma grade pesada se ergue ao fundo do corredor, revelando o túnel de serviço que leva para fora. A rota de fuga está aberta."
+								}
+							]
+						}
+					]
+				},
+				{
+					"id": "pilha",
+					"kind": "battery",
+					"tile": [
+						3,
+						11
+					],
+					"px": [
+						6,
+						8
+					],
+					"name": "Pilhas",
+					"prompt": "Pegar",
+					"solid": false,
+					"effects": [
+						{
+							"battery": 50
+						}
+					],
+					"once": true,
+					"vanish_when_done": true
+				},
+				{
+					"id": "l1",
+					"kind": "locker",
+					"tile": [
+						3,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Armário metálico",
+					"prompt": "Esconder-se",
+					"hide": true
+				}
 			],
 			"triggers": [
-				{"id": "t_colapso", "rect": [1, 2, 6, 11], "effects": [
-					{"shake": 3}, {"sfx": "rumble", "sub": "[O teto desaba ao longe]"},
-					{"say": {"who": "Clara", "text": "O laboratório está morrendo. O Morador está inquieto: ele sente que você é o centro de tudo isso."}},
-					{"hint": "Três objetivos opcionais definem os finais: abrir o túnel (válvulas), armar o reator, e o cartão de controle que você já tem. Sobreviva e chegue à sala de controle.", "hint_time": 14}]}
+				{
+					"id": "t_colapso",
+					"rect": [
+						1,
+						2,
+						6,
+						11
+					],
+					"effects": [
+						{
+							"shake": 3
+						},
+						{
+							"sfx": "rumble",
+							"sub": "[O teto desaba ao longe]"
+						},
+						{
+							"say": {
+								"who": "Clara",
+								"text": "O laboratório está morrendo. O Morador está inquieto: ele sente que você é o centro de tudo isso."
+							}
+						},
+						{
+							"hint": "Três objetivos opcionais definem os finais: abrir o túnel (válvulas), armar o reator, e o cartão de controle que você já tem. Sobreviva e chegue à sala de controle.",
+							"hint_time": 14
+						}
+					]
+				}
 			],
 			"enemies": [
-				{"id": "res", "type": "resident", "zone": [8, 2, 28, 11], "vents": [[10, 3], [18, 11], [26, 3], [33, 10]], "delay": [6, 10]}
+				{
+					"id": "res",
+					"type": "resident",
+					"zone": [
+						8,
+						2,
+						28,
+						11
+					],
+					"vents": [
+						[
+							10,
+							3
+						],
+						[
+							18,
+							11
+						],
+						[
+							26,
+							3
+						],
+						[
+							33,
+							10
+						]
+					],
+					"delay": [
+						6,
+						10
+					]
+				}
 			]
 		},
 		"c5_reator": {
-			"name": "Reator", "size": [22, 12], "overgrowth": 0.55, "theme": "lab", "ambient": 0.2, "ambient_sound": "amb_lab", "decals": 0.4,
-			"spawns": {"oeste": [2, 6]},
-			"lights": [{"tile": [9, 5], "radius": 110, "energy": 0.8, "color": "#ff6060", "flicker": true}],
+			"name": "Reator",
+			"size": [
+				22,
+				12
+			],
+			"overgrowth": 0.55,
+			"theme": "lab",
+			"ambient": 0.2,
+			"ambient_sound": "amb_lab",
+			"decals": 0.4,
+			"spawns": {
+				"oeste": [
+					2,
+					6
+				]
+			},
+			"lights": [
+				{
+					"tile": [
+						9,
+						5
+					],
+					"radius": 110,
+					"energy": 0.8,
+					"color": "#ff6060",
+					"flicker": true
+				}
+			],
 			"objects": [
-				{"id": "d_oeste", "kind": "labdoor", "tile": [0, 6], "name": "Nível B", "prompt": "Abrir", "door": {"to": "c5_colapso", "spawn": "este"}},
-				{"id": "reator", "kind": "reactor", "tile": [8, 2], "size": [2, 2], "name": "Núcleo do reator", "prompt": "Examinar", "effects": [
-					{"text": "O núcleo do reator pulsa. Se for armado, o laboratório inteiro será consumido. Há uma etiqueta: 'CONSOLE ADJACENTE'."}]},
-				{"id": "console", "kind": "console", "tile": [12, 2], "size": [2, 1], "name": "Console do reator", "prompt": "Operar", "important": true, "repeat_text": "O reator continua em contagem. Só desistir na sala de controle.", "effects": [{"choice": "reator"}]},
-				{"id": "l1", "kind": "locker", "tile": [19, 2], "size": [1, 2], "name": "Armário metálico", "prompt": "Esconder-se", "hide": true}
+				{
+					"id": "d_oeste",
+					"kind": "labdoor",
+					"tile": [
+						0,
+						6
+					],
+					"name": "Nível B",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c5_colapso",
+						"spawn": "este"
+					}
+				},
+				{
+					"id": "reator",
+					"kind": "reactor",
+					"tile": [
+						8,
+						2
+					],
+					"size": [
+						2,
+						2
+					],
+					"name": "Núcleo do reator",
+					"prompt": "Examinar",
+					"effects": [
+						{
+							"text": "O núcleo do reator pulsa. Se for armado, o laboratório inteiro será consumido. Há uma etiqueta: 'CONSOLE ADJACENTE'."
+						}
+					]
+				},
+				{
+					"id": "console",
+					"kind": "console",
+					"tile": [
+						12,
+						2
+					],
+					"size": [
+						2,
+						1
+					],
+					"name": "Console do reator",
+					"prompt": "Operar",
+					"important": true,
+					"repeat_text": "O reator continua em contagem. Só desistir na sala de controle.",
+					"effects": [
+						{
+							"choice": "reator"
+						}
+					]
+				},
+				{
+					"id": "l1",
+					"kind": "locker",
+					"tile": [
+						19,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Armário metálico",
+					"prompt": "Esconder-se",
+					"hide": true
+				},
+				{
+					"id": "manual_emerg",
+					"kind": "poster",
+					"tile": [
+						5,
+						1
+					],
+					"name": "Manual de emergência",
+					"prompt": "Ler",
+					"effects": [
+						{
+							"doc": "nota_valvulas"
+						}
+					]
+				},
+				{
+					"id": "foto_func",
+					"kind": "photo",
+					"tile": [
+						4,
+						9
+					],
+					"px": [
+						8,
+						8
+					],
+					"name": "Foto de funcionários",
+					"prompt": "Examinar",
+					"important": true,
+					"solid": false,
+					"effects": [
+						{
+							"memory": "anselmo"
+						}
+					]
+				}
 			],
 			"enemies": [
-				{"id": "patrol", "type": "caretaker", "tile": [14, 8], "patrol": [[3, 5], [10, 8], [17, 6], [17, 9]]}
+				{
+					"id": "patrol",
+					"type": "caretaker",
+					"tile": [
+						14,
+						8
+					],
+					"patrol": [
+						[
+							3,
+							5
+						],
+						[
+							10,
+							8
+						],
+						[
+							17,
+							6
+						],
+						[
+							17,
+							9
+						]
+					]
+				}
 			]
 		},
 		"c5_controle": {
-			"name": "Sala de Controle", "size": [24, 14], "overgrowth": 0.5, "theme": "lab", "ambient": 0.22, "ambient_sound": "amb_lab", "decals": 0.2,
-			"spawns": {"porta": [12, 12]},
-			"lights": [{"tile": [11, 6], "radius": 110, "energy": 0.7, "color": "#e8f0ff"}, {"tile": [12, 3], "radius": 70, "energy": 0.6, "color": "#80ffc0"}],
+			"name": "Sala de Controle",
+			"size": [
+				24,
+				14
+			],
+			"overgrowth": 0.5,
+			"theme": "lab",
+			"ambient": 0.22,
+			"ambient_sound": "amb_lab",
+			"decals": 0.2,
+			"spawns": {
+				"porta": [
+					12,
+					12
+				]
+			},
+			"lights": [
+				{
+					"tile": [
+						11,
+						6
+					],
+					"radius": 110,
+					"energy": 0.7,
+					"color": "#e8f0ff"
+				},
+				{
+					"tile": [
+						12,
+						3
+					],
+					"radius": 70,
+					"energy": 0.6,
+					"color": "#80ffc0"
+				}
+			],
 			"objects": [
-				{"id": "kit1", "kind": "medkit", "tile": [20, 11], "px": [10, 8], "name": "Kit médico grande", "prompt": "Pegar", "solid": false, "important": true, "vanish_when_done": true, "effects": [{"give": "kit_grande"}]},
-				{"id": "porta", "kind": "labdoor", "tile": [12, 13], "name": "Nível B", "prompt": "Abrir", "door": {"to": "c5_colapso", "spawn": "controle"}},
-				{"id": "cadeira", "kind": "surgery", "tile": [11, 6], "size": [1, 2], "name": "Cadeira de L-12", "prompt": "Sentar", "important": true, "effects": [
-					{"text": "A última cadeira. A única sem marcas de unha. Minha mão cabe exatamente nos apoios."},
-					{"memory": "elias"},
-					{"say": {"who": "Clara", "text": "Você não é o último, Elias. Você é o primeiro que eu consegui manter acordado."}},
-					{"objective": "Decidir o destino do sistema no console principal."}]},
-				{"id": "principal", "kind": "console", "tile": [10, 2], "size": [3, 1], "name": "Console principal", "prompt": "Decidir", "important": true, "once": false,
-					"requires": {"flags": ["mem_elias"]}, "locked_text": "O console exige uma identidade. Primeiro preciso entender quem eu sou.",
-					"effects": [{"final_choice": true}]},
-				{"id": "cap1", "kind": "capsule", "tile": [3, 2], "size": [1, 2], "name": "Cápsula", "prompt": "Examinar", "effects": [{"text": "Dentro, só uma luz fraca. Sussurros, em vozes de crianças."}]},
-				{"id": "cap2", "kind": "capsule", "tile": [19, 2], "size": [1, 2], "name": "Cápsula", "prompt": "Examinar", "effects": [{"text": "Mais vozes. Uma delas chama o meu nome, com o tom de alguém que sempre soube que eu viria."}]}
+				{
+					"id": "kit1",
+					"kind": "medkit",
+					"tile": [
+						20,
+						11
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Kit médico grande",
+					"prompt": "Pegar",
+					"solid": false,
+					"important": true,
+					"vanish_when_done": true,
+					"effects": [
+						{
+							"give": "kit_grande"
+						}
+					]
+				},
+				{
+					"id": "porta",
+					"kind": "labdoor",
+					"tile": [
+						12,
+						13
+					],
+					"name": "Nível B",
+					"prompt": "Abrir",
+					"door": {
+						"to": "c5_colapso",
+						"spawn": "controle"
+					}
+				},
+				{
+					"id": "cadeira",
+					"kind": "surgery",
+					"tile": [
+						11,
+						6
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Cadeira de L-12",
+					"prompt": "Sentar",
+					"important": true,
+					"effects": [
+						{
+							"text": "A última cadeira. A única sem marcas de unha. Minha mão cabe exatamente nos apoios."
+						},
+						{
+							"memory": "elias"
+						},
+						{
+							"say": {
+								"who": "Clara",
+								"text": "Você não é o último, Elias. Você é o primeiro que eu consegui manter acordado."
+							}
+						},
+						{
+							"objective": "Decidir o destino do sistema no console principal."
+						}
+					]
+				},
+				{
+					"id": "principal",
+					"kind": "console",
+					"tile": [
+						10,
+						2
+					],
+					"size": [
+						3,
+						1
+					],
+					"name": "Console principal",
+					"prompt": "Decidir",
+					"important": true,
+					"once": false,
+					"requires": {
+						"flags": [
+							"mem_elias"
+						]
+					},
+					"locked_text": "O console exige uma identidade. Primeiro preciso entender quem eu sou.",
+					"effects": [
+						{
+							"final_choice": true
+						}
+					]
+				},
+				{
+					"id": "cap1",
+					"kind": "capsule",
+					"tile": [
+						3,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Cápsula",
+					"prompt": "Examinar",
+					"effects": [
+						{
+							"text": "Dentro, só uma luz fraca. Sussurros, em vozes de crianças."
+						}
+					]
+				},
+				{
+					"id": "cap2",
+					"kind": "capsule",
+					"tile": [
+						19,
+						2
+					],
+					"size": [
+						1,
+						2
+					],
+					"name": "Cápsula",
+					"prompt": "Examinar",
+					"effects": [
+						{
+							"text": "Mais vozes. Uma delas chama o meu nome, com o tom de alguém que sempre soube que eu viria."
+						}
+					]
+				},
+				{
+					"id": "gravador",
+					"kind": "musicbox",
+					"tile": [
+						4,
+						8
+					],
+					"px": [
+						10,
+						8
+					],
+					"name": "Gravador de fita",
+					"prompt": "Ouvir",
+					"important": true,
+					"solid": true,
+					"effects": [
+						{
+							"doc": "gravacao_final"
+						}
+					]
+				}
 			],
 			"clara_talk": [
-				{"id": "secreta", "conditions": {"memories_min": 8, "flags": ["mem_pre_inauguracao", "keep_elias_record"], "not_flags": ["equipment_destroyed"], "counter": {"clara_trust": 2}},
-					"effects": [{"say": {"who": "Clara", "text": "Você ouviu os mortos, guardou o seu registro, confiou em mim. Posso lhe mostrar tudo. Se quiser me ouvir até o fim, há uma saída que não é nenhuma destas."}}]},
-				{"id": "geral", "effects": [{"say": {"who": "Clara", "text": "Fugir, destruir, assumir... Cada uma dessas portas exige que você tenha preparado algo antes. É assim que a casa decide por você."}}]}
+				{
+					"id": "secreta",
+					"conditions": {
+						"memories_min": 8,
+						"flags": [
+							"mem_pre_inauguracao",
+							"keep_elias_record"
+						],
+						"not_flags": [
+							"equipment_destroyed"
+						],
+						"counter": {
+							"clara_trust": 2
+						}
+					},
+					"effects": [
+						{
+							"say": {
+								"who": "Clara",
+								"text": "Você ouviu os mortos, guardou o seu registro, confiou em mim. Posso lhe mostrar tudo. Se quiser me ouvir até o fim, há uma saída que não é nenhuma destas."
+							}
+						}
+					]
+				},
+				{
+					"id": "geral",
+					"effects": [
+						{
+							"say": {
+								"who": "Clara",
+								"text": "Fugir, destruir, assumir... Cada uma dessas portas exige que você tenha preparado algo antes. É assim que a casa decide por você."
+							}
+						}
+					]
+				}
 			]
 		}
 	}

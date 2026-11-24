@@ -26,13 +26,13 @@ func run() -> void:
 	# secreto: precisa de TUDO
 	_reset()
 	t.check(not NarrativeManager.secret_available(), "secreto indisponível no início")
-	for m in ["ursinho", "foto", "desenho", "aula", "tomas", "cuidadora", "brinquedos", "clara"]:
+	for m in ["ursinho", "foto", "desenho", "aula", "tomas", "cuidadora", "brinquedos", "clara", "valmont"]:
 		NarrativeManager.add_memory(m)
 	NarrativeManager.add_counter("clara_trust", 2)
 	NarrativeManager.set_flag("keep_elias_record")
 	t.check(not NarrativeManager.secret_available(), "secreto exige a memória pré-inauguração")
 	NarrativeManager.add_memory("pre_inauguracao")
-	t.check(NarrativeManager.secret_available(), "secreto disponível com ≥8 memórias, pré-inauguração, confiança e registro guardado")
+	t.check(NarrativeManager.secret_available(), "secreto disponível com ≥10 memórias, pré-inauguração, confiança e registro guardado")
 	t.check("coisas_perdidas" in _opts(), "opção secreta aparece")
 	NarrativeManager.set_flag("equipment_destroyed")
 	t.check(not NarrativeManager.secret_available(), "destruir o equipamento impede o secreto (consequência)")
@@ -44,11 +44,11 @@ func run() -> void:
 	t.check(not NarrativeManager.secret_available(), "destruir o registro de Elias impede o secreto")
 	_reset()
 	# memórias suficientes mas poucas (7)
-	for m in ["ursinho", "foto", "desenho", "aula", "tomas", "cuidadora", "pre_inauguracao"]:
+	for m in ["ursinho", "foto", "desenho", "aula", "tomas", "cuidadora", "valmont", "tres_criancas", "pre_inauguracao"]:
 		NarrativeManager.add_memory(m)
 	NarrativeManager.add_counter("clara_trust", 3)
 	NarrativeManager.set_flag("keep_elias_record")
-	t.check(not NarrativeManager.secret_available(), "7 memórias não bastam")
+	t.check(not NarrativeManager.secret_available(), "9 memórias não bastam")
 	NarrativeManager.add_memory("brinquedos")
-	t.check(NarrativeManager.secret_available(), "8 memórias bastam")
+	t.check(NarrativeManager.secret_available(), "10 memórias bastam")
 	_reset()

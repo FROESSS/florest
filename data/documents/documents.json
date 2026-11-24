@@ -1,46 +1,115 @@
 {
 	"carta_inauguracao": {
-		"title": "Carta de inauguração", "chapter": 1,
+		"title": "Carta de inauguração",
+		"chapter": 1,
 		"body": "FUNDAÇÃO AURORA\nOrfanato Santa Aurora — Carta aos benfeitores\n\nNo dia 14 de março de 1978 inauguramos nossa casa, que acolherá crianças sem família. A cuidadora-chefe, Sra. Marta Reis, dedica-se dia e noite aos pequenos.\n\nOs recursos adicionais vêm do Departamento de Pesquisa. Pedimos discrição sobre o 'Nível B'.\n\n— Dr. Heitor Valmont, diretor"
 	},
 	"diario_lia": {
-		"title": "Diário de Lia", "chapter": 2,
-		"body": "Dia 12. A Marta canta pra gente dormir. Mas ontem ela não cantou, só ficou olhando.\n\nDia 19. Levaram o Tomás pra baixo de novo. Ele voltou sem lembrar da própria caixa de música.\n\nDia 23. Os desenhos de escada na parede são do Tomás. Ele diz que é o caminho que leva até onde a gente dorme de verdade."
+		"title": "Diário de Lia",
+		"chapter": 2,
+		"body": "Dia 12. A Marta canta pra gente dormir. Mas ontem ela não cantou, só ficou olhando.\n\nDia 19. Levaram o Tomás pra baixo de novo. Ele voltou sem lembrar da própria caixa de música.\n\nDia 23. Os desenhos de escada na parede são do Tomás. Ele diz que a escada só funciona se for lida na ordem em que ele desenhou: primeiro a do nosso quarto, depois a grande da sala de aula e, por último, a pequena."
 	},
 	"prontuarios_resumo": {
-		"title": "Prontuários: resumo", "chapter": 2,
-		"body": "L-01 (14/03): menina, 10 anos. Resposta extraordinária ao estímulo de memória. Sem registro de família.\nL-04 (02/05): menino, 8 anos. Reproduz falas de pessoas que nunca conheceu.\nL-07 (19/08): menina, 9 anos. Lembra de um incêndio que não existiu.\nL-11 (30/11): menino, 7 anos. Não responde ao próprio nome.\n\nObservação manuscrita: 'Falta o prontuário L-12. Ainda não nasceu... ainda não chegou.'"
+		"title": "Prontuários: resumo",
+		"chapter": 2,
+		"body": "L-01: menina, 10 anos. Resposta extraordinária ao estímulo de memória. Sem registro de família.\nL-04: menino, 8 anos. Reproduz falas de pessoas que nunca conheceu.\nL-07: menina, 9 anos. Lembra de um incêndio que não existiu.\nL-11: menino, 7 anos. Não responde ao próprio nome.\n\nObservação manuscrita: 'Falta o prontuário L-12. Ainda não nasceu... ainda não chegou.'"
 	},
 	"nota_fusiveis": {
-		"title": "Bilhete da manutenção", "chapter": 3,
-		"body": "Se o tecido voltar a crescer no refeitório, ligue o incinerador pelo painel. Lembre: B e C ligados, A e D desligados. Do contrário a casa percebe e respira mais forte."
+		"title": "Bilhete da manutenção",
+		"chapter": 3,
+		"body": "Bilhete da manutenção, para quem vier depois de mim:\n\nA casa respira em dois tempos. No primeiro, quando ela inspira, só os fusíveis de número par ficam ligados. O incinerador só funciona no primeiro tempo. Se ligar os ímpares, ela percebe e respira mais forte.\n\nOs fusíveis do painel do refeitório são numerados de 1 a 4, da esquerda para a direita."
 	},
 	"diario_marta": {
-		"title": "Diário de Marta Reis", "chapter": 3,
-		"body": "Eu me ofereci. Se uma pessoa adulta aguentasse o procedimento, eles não precisariam usar as crianças. Eu aguentei. Mas o tecido não aceitou só a mim: ele aprendeu meu rosto e minha voz.\n\nAgora ouço as crianças dentro de mim. Cantar é a única coisa que as acalma. Se eu parar de cantar, elas procuram sozinhas, e machucam.\n\nSe alguém ler isto: não deixe que me chamem de monstro. Eu só continuei cuidando."
+		"title": "Diário de Marta Reis",
+		"chapter": 3,
+		"body": "Eu me ofereci. Se uma pessoa adulta aguentasse o procedimento, eles não precisariam usar as crianças. Eu aguentei. Mas o tecido não aceitou só a mim: ele aprendeu meu rosto e minha voz.\n\nAgora ouço as crianças dentro de mim. Cantar é a única coisa que as acalma. Se eu parar de cantar, elas procuram sozinhas, e machucam.\n\nPara fazê-las dormir arrumo os brinquedos sempre do mesmo jeito: o urso primeiro, depois o trem. Depois do trem vem a boneca de pano; a bola vermelha vai por último, para rolar para longe do medo.\n\nSe alguém ler isto: não deixe que me chamem de monstro. Eu só continuei cuidando."
 	},
 	"lazaro_fase1": {
-		"title": "Projeto Lázaro — Fase 1", "chapter": 4,
+		"title": "Projeto Lázaro — Fase 1",
+		"chapter": 4,
 		"body": "OBJETIVO: registrar, reproduzir e preservar fragmentos de memória humana usando tecido neural cultivado (TNC).\n\nMÉTODO: estimulação em ambiente controlado; o tecido absorve o padrão e o devolve como experiência reproduzida.\n\nRESULTADO PRELIMINAR: o TNC não separa memória de quem a viveu. Memórias de pessoas falecidas podem ser reproduzidas se registradas antes do óbito."
 	},
 	"lazaro_falha": {
-		"title": "Registro de falha", "chapter": 4,
+		"title": "Registro de falha",
+		"chapter": 4,
 		"body": "O tecido ultrapassou o contenimento da Sala B-2. Responde a ruído, calor e presença de sujeitos L-01 e L-12.\n\nSujeito L-12 é o único cujo padrão não foi construído a partir de uma vida própria, mas montado a partir de fragmentos de todos os demais. Recomenda-se não expô-lo ao tecido principal."
 	},
 	"memorando_encerramento": {
-		"title": "Memorando de encerramento", "chapter": 4,
-		"body": "Data: 07/12/1978.\n\nO laboratório está lacrado. O orfanato será declarado desativado. Registros parciais serão destruídos. O TNC permanece ativo e será 'isolado' atrás do Nível B.\n\nA Sra. Reis recusou-se a sair. Os sujeitos remanescentes ficam aos cuidados dela."
+		"title": "Memorando de encerramento",
+		"chapter": 4,
+		"body": "Data: 07/12/1978.\n\nO laboratório está lacrado. O orfanato será declarado desativado. Registros parciais serão destruídos. O TNC permanece ativo e será 'isolado' atrás do Nível B.\n\nA Sra. Reis recusou-se a sair. Os sujeitos remanescentes ficam aos cuidados dela.\n\nPor determinação do Dr. Valmont, a energia do Nível B nunca deve ser cortada."
 	},
 	"registro_elias": {
-		"title": "Registro L-12: Elias", "chapter": 4,
+		"title": "Registro L-12: Elias",
+		"chapter": 4,
 		"body": "SUJEITO L-12 — 'ELIAS'\nIdade aparente: 12 anos. Origem: nenhuma.\n\nMemória base: composta de fragmentos de L-01 a L-11 e de doadores falecidos antes da inauguração. Memória do orfanato: implantada.\n\nNOTA: o sujeito acredita ter acordado no quarto 4. Não há registro de que tenha entrado no prédio algum dia."
 	},
 	"nota_valvulas": {
-		"title": "Manual de emergência", "chapter": 5,
-		"body": "COLAPSO DO NÍVEL B\n1. Corte a pressão: feche as válvulas na ordem 3, 1, 2.\n2. A rota de serviço se abrirá para o túnel externo.\n3. O reator deve ser armado manualmente SOMENTE se o laboratório precisar ser destruído."
+		"title": "Manual de emergência",
+		"chapter": 5,
+		"body": "COLAPSO DO NÍVEL B — manual de emergência\n1. Corte a pressão: feche as válvulas na ordem 3, 1, 2.\n2. A rota de serviço se abrirá para o túnel externo.\n3. O reator só deve ser armado manualmente se o laboratório precisar ser destruído.\n\n(As válvulas ficam no painel do corredor principal do Nível B.)"
 	},
 	"lista_criancas": {
-		"title": "Lista de crianças", "chapter": 2,
-		"body": "Nomes riscados a lápis: Lia, Tomás, Beto, Ana, Davi, Rute, Caio, Nina, Pedro, Isa, Teo.\n\nUm nome escrito por cima, com letra diferente, ainda sem risco: Elias.\n\nAbaixo, em outra letra: 'Clara não consta na lista. Clara nunca esteve na lista.'"
+		"title": "Lista de crianças",
+		"chapter": 2,
+		"body": "Nomes riscados a lápis: Davi, Rute e Caio — 'não voltaram'. Lia, Tomás, Beto, Ana, Pedro, Isa, Teo — 'transferidos'.\n\nUm nome escrito por cima, com letra diferente, ainda sem risco: Elias.\n\nAbaixo, em outra letra: 'A menina da diretoria nunca esteve nesta lista. Ela não foi admitida: foi construída.'"
+	},
+	"ledger_matricula": {
+		"title": "Livro de matrícula",
+		"chapter": 2,
+		"body": "Orfanato Santa Aurora — LIVRO DE MATRÍCULA\n\n14/03/1978 — L-01: 'a menina da diretoria'. Sem sobrenome registrado.\n02/05/1978 — L-04: Tomás, 8 anos.\n19/08/1978 — L-07: Lia, 9 anos.\n30/11/1978 — L-11: Beto, 7 anos.\n\nAs demais linhas foram riscadas com tanta força que o papel rasgou."
+	},
+	"recibo_fundacao": {
+		"title": "Comprovante de repasse",
+		"chapter": 1,
+		"body": "FUNDAÇÃO AURORA — Comprovante de repasse\n\nReferência: manutenção do Orfanato Santa Aurora (incluindo Nível B).\nStatus do imóvel: DESATIVADO (para fins públicos) / OPERACIONAL (para fins contratuais).\nPagamento por débito automático, até 12/2031, por determinação testamentária do Dr. H. Valmont.\n\nCláusula 7: a energia elétrica do Nível B jamais deve ser interrompida."
+	},
+	"mapa_tnc": {
+		"title": "Mapa do TNC: nós de ancoragem",
+		"chapter": 3,
+		"body": "MAPA DO TNC — nós de ancoragem\n\nO tecido se fixa à estrutura em pontos sob o piso. Quando ferido, retrai-se para o nó mais próximo. Se não houver nó por perto, cria um: perfura o piso e permanece ali.\n\nCada novo nó torna a rede mais densa e a resposta mais rápida. Recomenda-se não ferir o tecido repetidamente. Recomenda-se, sobretudo, olhar para o chão."
+	},
+	"necropsia": {
+		"title": "Necropsia: L-03, L-06, L-09",
+		"chapter": 3,
+		"body": "NECROPSIA — sujeitos L-03 (Davi), L-06 (Rute) e L-09 (Caio)\n\nCausa: falência neural durante a transferência de memória. Os corpos foram absorvidos pelo TNC em até 72 horas. O tecido passou a reproduzir o padrão motor dos três de forma conjunta. Designação interna: 'o Morador'.\n\nNota: a resposta do Morador aumenta diante de fragmentos de L-12 (em montagem), que contém material dos três."
+	},
+	"gravacao_marta": {
+		"title": "[Gravação] Fita 04 — M. Reis",
+		"chapter": 3,
+		"body": "[GRAVAÇÃO — Fita 04 — M. Reis]\n\n'...falo baixinho para elas não acordarem. O doutor diz que a Clarinha não sente nada. Eu sei que sente: ela pede água na hora do estalo da máquina.\n\nSe um dia eu não for mais eu, quero que me procurem pela cantiga. É a última coisa que vai sobrar.'\n\n[a fita termina com uma cantiga, desafinada]",
+		"kind": "audio"
+	},
+	"carta_marta": {
+		"title": "Carta de Marta ao Dr. Valmont",
+		"chapter": 4,
+		"body": "'Doutor: o senhor perdeu uma filha. Eu perdi a mesma menina duas vezes: primeiro para a doença, depois para a máquina.\n\nNão devia trazê-la de volta assim. Mas se ela voltar, vou cuidar dela, e não deixarei ninguém levá-la embora desta casa. Nem o senhor.'\n\n— M. Reis"
+	},
+	"relatorio_clara": {
+		"title": "Relatório L-01",
+		"chapter": 4,
+		"body": "RELATÓRIO L-01\n\nOrigem do padrão: registros de memória de Clara Valmont (1961–1971), gravados antes do óbito por solicitação do pai.\n\nL-01 não é uma criança admitida: é a primeira reprodução bem-sucedida. Exibe afeto, medo e saudade que não foram programados. Pergunta pelo pai e pela 'Marta'.\n\nRecomendação: continuar."
+	},
+	"gravacao_valmont": {
+		"title": "[Gravação] H. Valmont",
+		"chapter": 4,
+		"body": "[GRAVAÇÃO — H. Valmont]\n\n'Clara, repita comigo: o nome da nossa casa é...'\n[uma voz infantil responde, meio segundo atrasada]\n\n'Se funcionar com ela, funcionará com todos que perdemos. Os doadores já gravaram. Ninguém precisa esquecer ninguém.'",
+		"kind": "audio"
+	},
+	"contrato_fundacao": {
+		"title": "Contrato de continuidade",
+		"chapter": 4,
+		"body": "CONTRATO DE CONTINUIDADE — Fundação Aurora\n\nO supervisor de campo (Sr. Anselmo, e depois 'a empresa') visitará o local uma vez por ano. Não interferir. Não entrar. Se alguém sair do local, registrar e observar.\n\nO imóvel permanece 'em funcionamento' para todos os efeitos contratuais."
+	},
+	"bilhete_anselmo": {
+		"title": "Bilhete do supervisor",
+		"chapter": 5,
+		"body": "Anselmo — caderno de campo, 1998:\n\n'A luz do Nível B nunca foi por causa das contas. Alguém continua lá embaixo. Deixei a porta de serviço destrancada e nunca tive coragem de descer.\n\nSe um dia alguém sair, eu anoto. É só o que o contrato pede.'"
+	},
+	"gravacao_final": {
+		"title": "[Gravação] Valmont — última",
+		"chapter": 5,
+		"body": "[GRAVAÇÃO — H. Valmont — última]\n\n'Não deixei instrução para desligar. Deixei para escolher. Quem chegar até aqui, a casa pertence a quem ela lembrar.'",
+		"kind": "audio"
 	}
 }

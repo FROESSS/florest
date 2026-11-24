@@ -119,7 +119,7 @@ func _update_battery() -> void:
 	battery_text.text = "%d%% %s%s" % [int(GameManager.battery), state, " !" if low else ""]
 
 func set_prompt(text: String) -> void:
-	prompt_label.text = ("[E] " + text) if text != "" else ""
+	prompt_label.text = ("[%s] " % SettingsManager.key_name("interact") + text) if text != "" else ""
 
 func set_hidden(h: bool) -> void:
 	hidden_label.visible = h
@@ -173,6 +173,6 @@ func _process(delta: float) -> void:
 		stamina_fill.color = Color("e0a060") if pl.exhausted else Color("8fc0e0")
 		stamina_text.text = LocalizationManager.t("hud.exhausted") if pl.exhausted else (LocalizationManager.t("hud.stamina") if pl.stamina < 99.0 else "")
 		var kits := InventoryManager.count("kit_pequeno") + InventoryManager.count("kit_grande")
-		wound_label.text = ("+ %s: %s%s" % [LocalizationManager.t("hud.wound"), pl.wound_name(), ("  [H] kits: %d" % kits) if kits > 0 else ""]) if pl.wound > 0 else ("[H] kits: %d" % kits if kits > 0 else "")
+		wound_label.text = ("+ %s: %s%s" % [LocalizationManager.t("hud.wound"), pl.wound_name(), ("  [%s] kits: %d" % [SettingsManager.key_name("heal"), kits]) if kits > 0 else ""]) if pl.wound > 0 else ("[%s] kits: %d" % [SettingsManager.key_name("heal"), kits] if kits > 0 else "")
 	var chased := GameManager.is_chased()
 	vignette.modulate = Color(1, 0.5, 0.5, 1.0) if chased and not SettingsManager.reduce_flashes else Color.WHITE

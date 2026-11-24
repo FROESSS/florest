@@ -23,3 +23,20 @@
 
 ## Segredos e ambiguidades deixados em aberto
 Elias esteve mesmo ali ou reviveu uma memória implantada? Clara é a menina, o tecido ou uma lembrança de Elias? O observador no carro (final Liberdade) é da Fundação? Nada disso é respondido.
+
+---
+
+## Expansão (rodada de aperfeiçoamento) — proposta de conexão com o enredo canônico
+
+Nada abaixo contradiz o GDD nem os 4 finais; tudo aprofunda o que já era sugerido.
+
+| Novo elemento | Como se conecta ao canon |
+|---|---|
+| **Origem do Projeto Lázaro**: o Dr. Heitor Valmont perdeu a filha **Clara Valmont (1961–1971)** e, antes do óbito, gravou as memórias dela. O projeto nasce para "ninguém precisar esquecer ninguém". | Explica "memórias de pessoas mortas antes da inauguração" (os **doadores**) e a Clara "sem família" nos registros. Clara/L-01 é a primeira **reprodução** bem-sucedida, não uma criança admitida — a ambiguidade do final secreto fica intacta. |
+| **Marta Reis** foi a governanta que criou Clara Valmont. | Explica por que a Cuidadora canta, protege Clara ("Clarinha") e se voluntaria: o tecido aprendeu a voz de quem cuidava de Clara. |
+| **O Morador** = o TNC fundido aos corpos de **Davi, Rute e Caio** (L-03, L-06, L-09), mortos na transferência de memória. | Cumpre "massa orgânica de proporções humanas". Reage a Elias porque L-12 é montado com fragmentos deles. Os **buracos** são *nós de ancoragem* da rede do tecido: ferido, ele se retrai para um nó ou cria outro. |
+| **As crianças**: 3 mortas (Davi, Rute, Caio), 3 manifestações (Tomás, Lia, Beto), L-01 (Clara) e L-12 (Elias). | Preenche "crianças desaparecidas" sem resolver o mistério de L-12. |
+| **Por que o orfanato "continua"**: testamento de Valmont mantém energia e pagamentos do Nível B até 2031; um supervisor (Anselmo, depois "a empresa") observa o local desde 1979. | Explica a luz/energia e dá origem ao observador do carro no final **Liberdade**, sem identificá-lo. |
+| **Valmont deixou a decisão em aberto** ("a casa pertence a quem ela lembrar"). | Sustenta **Herdeiro** (assumir) e **Silêncio** (destruir) como escolhas legítimas; **As Coisas Perdidas** continua sendo uma leitura ambígua (Elias esteve lá ou revive memória implantada). |
+
+Revelações graduais: Cap. I (recibo, "Nível B"), II (livro de matrícula, "a menina da diretoria"), III (mapa do TNC, necropsia, gravação de Marta), IV (relatório L-01, gravação de Valmont, contrato de continuidade, carta de Marta), V (gravação final, bilhete de Anselmo).

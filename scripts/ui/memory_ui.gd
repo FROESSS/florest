@@ -32,6 +32,59 @@ class Canvas extends Control:
 		draw_rect(Rect2(x + 2 * s, y - 10 * s, 3 * s, 14 * s), col)
 		draw_rect(Rect2(x + 8 * s, y - 34 * s, 2 * s, 26 * s), col)
 
+	func _fog() -> void:
+		for k in 4:
+			var fx := fmod(t * (5.0 + k * 3.0) + k * 170.0, 820.0) - 120.0
+			draw_rect(Rect2(fx, 200 + k * 28, 220, 14), Color(0.6, 0.65, 0.6, 0.05))
+
+	func _title_scene(sc: String) -> void:
+		match sc:
+			"title_1":
+				_grad(Color("0b1018"), Color("1d2a2a"))
+				draw_circle(Vector2(500, 80), 22, Color("c9cdb8"))
+				draw_circle(Vector2(508, 76), 20, Color("0f1620"))
+				draw_rect(Rect2(0, 270, 640, 90), Color("0a0d0a"))
+				draw_rect(Rect2(170, 170, 240, 110), Color("11160f"))
+				draw_colored_polygon(PackedVector2Array([Vector2(160, 172), Vector2(290, 118), Vector2(420, 172)]), Color("0e130d"))
+				draw_rect(Rect2(236, 196, 14, 18), Color("e6c36a") if fmod(t, 4.0) > 0.3 else Color("07090a"))
+			"title_2":
+				_grad(Color("14110d"), Color("0a0907"))
+				for i in 7:
+					var x := 40.0 + i * 88.0
+					draw_rect(Rect2(x, 120, 56, 130), Color("2a1f16"))
+					draw_rect(Rect2(x + 4, 124, 48, 122), Color("1c150f"))
+					draw_rect(Rect2(x + 10, 248, 36, 3), Color("e6c36a") if i == 3 else Color("0a0907"))
+			"title_3":
+				_grad(Color("1a060c"), Color("0a0204"))
+				for i in 9:
+					var y0 := 60.0 + i * 28.0
+					var pts := PackedVector2Array()
+					for k in 33:
+						pts.append(Vector2(k * 20.0, y0 + sin(k * 0.5 + t * 1.5 + i) * 10.0))
+					draw_polyline(pts, Color(0.5, 0.12, 0.22, 0.7), 3.0)
+					draw_polyline(pts, Color(0.8, 0.4, 0.5, 0.35), 1.0)
+			"title_4":
+				_grad(Color("0c1012"), Color("050708"))
+				for r in 4:
+					for c in 8:
+						draw_rect(Rect2(40 + c * 72, 70 + r * 52, 56, 38), Color("1a2226"))
+						var on := int(t * 1.2 + r * 3 + c) % 5 == 0
+						draw_rect(Rect2(46 + c * 72, 76 + r * 52, 6, 6), Color("e04040") if on else Color("401818"))
+			"title_5":
+				_grad(Color("200808"), Color("050202"))
+				for i in 14:
+					var ang := i * TAU / 14.0
+					var pts2 := PackedVector2Array([Vector2(320, 180)])
+					var pp := Vector2(320, 180)
+					for k in 6:
+						pp += Vector2(cos(ang + sin(k + i) * 0.4), sin(ang + sin(k + i) * 0.4)) * (24 + k * 6)
+						pts2.append(pp)
+					draw_polyline(pts2, Color(0.9, 0.25, 0.15, 0.6), 2.0)
+				draw_circle(Vector2(320, 180), 20 + (0.0 if calm else 4.0 * sin(t * 4.0)), Color(0.9, 0.2, 0.1, 0.25))
+			_:
+				_grad(Color("050605"), Color("0e120d"))
+		_fog()
+
 	func _draw() -> void:
 		var dark := Color(0.02, 0.02, 0.03)
 		match scene:
@@ -124,8 +177,8 @@ class Canvas extends Control:
 				draw_circle(Vector2(320, 230), 40, Color("f0d090"))
 				draw_rect(Rect2(0, 250, 640, 110), Color("1a1c14"))
 				_kid(320, 300, 2.0, Color("0a0a0a"))
-			"title":
-				_grad(Color("050605"), Color("0e120d"))
+			"title", "title_1", "title_2", "title_3", "title_4", "title_5":
+				_title_scene(scene)
 			_:
 				draw_rect(Rect2(0, 0, 640, 360), Color.BLACK)
 		# grão e vinheta
@@ -140,6 +193,7 @@ class Canvas extends Control:
 var canvas: Canvas
 var text_label: Label
 var title_label: Label
+var sub_label: Label
 var bg: ColorRect
 var _skip: bool = false
 var _active: bool = false
@@ -160,6 +214,11 @@ func _ready() -> void:
 	title_label.size = Vector2(640, 30)
 	title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	add_child(title_label)
+	sub_label = UIKit.label("", 11, Color("b8b4a0"))
+	sub_label.position = Vector2(60, 186)
+	sub_label.size = Vector2(520, 20)
+	sub_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	add_child(sub_label)
 	text_label = UIKit.label("", 13, Color("f0ead8"))
 	text_label.position = Vector2(60, 286)
 	text_label.size = Vector2(520, 44)
@@ -185,9 +244,11 @@ func play_cutscene(id: String) -> void:
 	var c: Dictionary = NarrativeManager.cutscenes_db.get(id, {})
 	if c.is_empty() or GameManager.test_mode:
 		return
-	await _play(c.get("lines", []), str(c.get("scene", "black")), Color.WHITE, str(c.get("title", "")), 1.0)
+	if str(c.get("sound", "")) != "":
+		AudioManager.play_sfx(str(c["sound"]), -4.0)
+	await _play(c.get("lines", []), str(c.get("scene", "black")), Color.WHITE, str(c.get("title", "")), 1.0, str(c.get("subtitle", "")))
 
-func _play(lines: Array, scene: String, tint: Color, title: String, fade: float) -> void:
+func _play(lines: Array, scene: String, tint: Color, title: String, fade: float, subtitle: String = "") -> void:
 	_active = true
 	visible = true
 	canvas.scene = scene
@@ -198,14 +259,19 @@ func _play(lines: Array, scene: String, tint: Color, title: String, fade: float)
 	title_label.text = ""
 	var tw := create_tween()
 	tw.tween_property(canvas, "modulate:a", 1.0, fade)
+	sub_label.text = ""
 	if title != "":
 		title_label.text = title
 		title_label.modulate.a = 0.0
+		sub_label.text = subtitle
+		sub_label.modulate.a = 0.0
+		create_tween().tween_property(sub_label, "modulate:a", 1.0, 1.4)
 		var tw2 := create_tween()
 		tw2.tween_property(title_label, "modulate:a", 1.0, 0.8)
 		await get_tree().create_timer(2.4, true).timeout
 		var tw3 := create_tween()
 		tw3.tween_property(title_label, "modulate:a", 0.0, 0.5)
+		create_tween().tween_property(sub_label, "modulate:a", 0.0, 0.5)
 	for i in lines.size():
 		text_label.text = str(lines[i])
 		text_label.modulate.a = 0.0

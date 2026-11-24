@@ -190,11 +190,11 @@ func check(cond: Dictionary) -> bool:
 #  liberdade        -> opção disponível se flag escape_tunnel_open
 #  silencio         -> opção disponível se reactor_primed OU equipment_destroyed
 #  herdeiro         -> opção disponível se control_card
-#  coisas_perdidas  -> secreto: >=8 memórias, mem_pre_inauguracao, clara_trust>=2,
+#  coisas_perdidas  -> secreto: >=10 de 13 memórias, mem_pre_inauguracao, clara_trust>=2,
 #                      doc_registro_elias guardado (flag keep_elias_record) e equipamento NÃO destruído
 
 func secret_available() -> bool:
-	return memory_count() >= 8 \
+	return memory_count() >= 10 \
 		and has_flag("mem_pre_inauguracao") \
 		and counter("clara_trust") >= 2 \
 		and has_flag("keep_elias_record") \
